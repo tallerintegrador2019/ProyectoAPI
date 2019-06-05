@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
-
+using ProyectoAPI.Services;
 namespace ProyectoAPI.Controllers
 {
     public class HomeController : Controller
@@ -22,7 +23,14 @@ namespace ProyectoAPI.Controllers
         }
         public ActionResult Publicacion()
         {
-            ViewBag.Title = "Home Page";
+            ProductoService prod = new ProductoService();
+            var valor  =  prod.ObtenerProductoPorNombre();
+            //HttpClient client = new HttpClient();
+            ViewBag.Title1 = "titulo";
+            ViewBag.Title = valor;
+            if (valor.Equals("tres")) {
+                var variable = "es TRes";
+            }
 
             return View();
         }

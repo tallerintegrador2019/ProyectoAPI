@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodaviaSirve", "..\..\Todav
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TresEmpanadas", "..\..\pw3-empanadas\TresEmpanadas\TresEmpanadas.csproj", "{8B298C4C-585B-4D23-B0A3-6B9E3402D2B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EjemploWebApi", "..\..\EjemploWebApi\EjemploWebApi\EjemploWebApi.csproj", "{57CEDF22-6047-4281-BAA0-F9835C6C5263}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{8B298C4C-585B-4D23-B0A3-6B9E3402D2B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B298C4C-585B-4D23-B0A3-6B9E3402D2B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B298C4C-585B-4D23-B0A3-6B9E3402D2B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57CEDF22-6047-4281-BAA0-F9835C6C5263}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57CEDF22-6047-4281-BAA0-F9835C6C5263}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57CEDF22-6047-4281-BAA0-F9835C6C5263}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57CEDF22-6047-4281-BAA0-F9835C6C5263}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
