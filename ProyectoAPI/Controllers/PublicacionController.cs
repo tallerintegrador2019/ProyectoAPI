@@ -6,8 +6,10 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Newtonsoft.Json;
 using ProyectoAPI.Models;
 
 namespace ProyectoAPI.Controllers
@@ -114,5 +116,31 @@ namespace ProyectoAPI.Controllers
         {
             return db.Publicacion.Count(e => e.id == id) > 0;
         }
-    }
-}
+
+
+        // METODO BUSCAR
+        [HttpGet]
+        [Route("Api/Publicacion/Buscar/{nombre}")]
+        public HttpResponseMessage Buscar(string nombre)
+        {
+            try
+            {
+                List<Publicacion> publicacion = (from publi in db.Publicacion
+                                                 where publi.nombre.Contains(nombre)
+                                                 select publi).ToList();
+
+                var response = new HttpResponseMessage(HttpStatusCode.OK);
+                response.Content = new StringContent(JsonConvert.SerializeObject(publicacion));
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                return response;
+            }
+            catch
+            {
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+            }
+        }
+
+
+
+    } // cierre clase
+} // cierre controller
