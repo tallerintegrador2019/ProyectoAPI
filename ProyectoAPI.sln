@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoAPI", "ProyectoAPI\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodaviaSirve", "..\..\TodaviaSirve\TodaviaSirve\TodaviaSirve.csproj", "{37ED8FB7-142B-46F4-B656-D30FB4BA4870}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TresEmpanadas", "..\..\pw3-empanadas\TresEmpanadas\TresEmpanadas.csproj", "{8B298C4C-585B-4D23-B0A3-6B9E3402D2B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{37ED8FB7-142B-46F4-B656-D30FB4BA4870}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37ED8FB7-142B-46F4-B656-D30FB4BA4870}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37ED8FB7-142B-46F4-B656-D30FB4BA4870}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B298C4C-585B-4D23-B0A3-6B9E3402D2B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B298C4C-585B-4D23-B0A3-6B9E3402D2B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B298C4C-585B-4D23-B0A3-6B9E3402D2B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B298C4C-585B-4D23-B0A3-6B9E3402D2B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -22,6 +22,17 @@ namespace ProyectoAPI
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/bundles/materializer").Include(
+                "~/Scripts/node_modules/materialize-css/dist/css/materialize.*",
+                "~/Scripts/node_modules/materialize-css/sass/components/*.scss",
+                "~/Scripts/node_modules/materialize-css/sass/components/forms/*.scss"));
+
+            bundles.Add(new ScriptBundle("~/bundles/materializerjs").Include(
+                      "~/Scripts/node_modules/materialize-css/dist/js/materialize.*",
+                      "~/Scripts/node_modules/materialize-css/js/*.js",
+                      "~/Scripts/node_modules/materialize-css/*.js"));
+            BundleTable.EnableOptimizations = true;
+
         }
     }
 }
