@@ -239,6 +239,7 @@
     <Content Include="Content\Images\background1.jpg" />
     <Content Include="Content\Images\background2.jpg" />
     <Content Include="Content\Images\background3.jpg" />
+    <Content Include="Content\Images\BolsaReciclada.jpg" />
     <Content Include="Content\Images\descarga.jpg" />
     <Content Include="Content\Images\ecosistema.jpg" />
     <Content Include="Content\Images\reciclaje-reutilizacion.jpg" />
