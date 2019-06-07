@@ -139,8 +139,5 @@ namespace ProyectoAPI.Controllers
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
         }
-
-
-
     } // cierre clase
 } // cierre controller
