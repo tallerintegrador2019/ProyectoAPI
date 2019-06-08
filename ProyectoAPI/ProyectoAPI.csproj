@@ -219,12 +219,27 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ModelDB.cs" />
-    <Compile Include="Models\Publicacion.cs" />
+    <Compile Include="Models\ModelDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Publicacion.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -237,17 +252,69 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\activista-ambiental.jpg" />
     <Content Include="Content\Images\background1.jpg" />
     <Content Include="Content\Images\background2.jpg" />
     <Content Include="Content\Images\background3.jpg" />
+    <Content Include="Content\Images\basura-reciclable.jpg" />
     <Content Include="Content\Images\BolsaReciclada.jpg" />
+    <Content Include="Content\Images\botella-agua.jpg" />
+    <Content Include="Content\Images\botella-plastica-vacia.jpg" />
+    <Content Include="Content\Images\botellas-plastico.jpg" />
+    <Content Include="Content\Images\casco-reciclar.jpg" />
+    <Content Include="Content\Images\cebolleta-reciclaje.jpg" />
+    <Content Include="Content\Images\chica-asiatica.jpg" />
+    <Content Include="Content\Images\chicos-reciclaje.jpg" />
+    <Content Include="Content\Images\columpios-parque.jpg" />
+    <Content Include="Content\Images\concepto-gestion.jpg" />
+    <Content Include="Content\Images\creciente.jpg" />
+    <Content Include="Content\Images\cultivo-botellas.jpg" />
     <Content Include="Content\Images\descarga.jpg" />
+    <Content Include="Content\Images\diseno-icono.jpg" />
     <Content Include="Content\Images\ecosistema.jpg" />
+    <Content Include="Content\Images\gente-plantando.jpg" />
+    <Content Include="Content\Images\gente-plantando2.jpg" />
+    <Content Include="Content\Images\gente-plantando3.jpg" />
+    <Content Include="Content\Images\gente-plantando4.jpg" />
+    <Content Include="Content\Images\lampara-reciclada-icono.jpg" />
+    <Content Include="Content\Images\masetas-dibujo.jpg" />
+    <Content Include="Content\Images\mujer-sonriente.jpg" />
+    <Content Include="Content\Images\ninos-que-plantan-plantas-semillero-.jpg" />
+    <Content Include="Content\Images\no-utilice-plastico.jpg" />
+    <Content Include="Content\Images\nucleos-rollo.jpg" />
+    <Content Include="Content\Images\plantar-plantulas.jpg" />
+    <Content Include="Content\Images\plantas-semillero.jpg" />
+    <Content Include="Content\Images\plantas-semillero2.jpg" />
+    <Content Include="Content\Images\plantulas-crecen.jpg" />
+    <Content Include="Content\Images\plantulas-crecen2.jpg" />
+    <Content Include="Content\Images\propaganda - Copia.jpg" />
+    <Content Include="Content\Images\propaganda.jpg" />
     <Content Include="Content\Images\reciclaje-reutilizacion.jpg" />
+    <Content Include="Content\Images\reciclar-diseno - Copia.jpg" />
+    <Content Include="Content\Images\reciclar-diseno.jpg" />
+    <Content Include="Content\Images\reciclar-diseno2 - Copia.jpg" />
+    <Content Include="Content\Images\reciclar-diseno2.jpg" />
     <Content Include="Content\Images\rueda maseta.jpg" />
+    <Content Include="Content\Images\siembra-botas.jpg" />
+    <Content Include="Content\Images\trituracion-utiliza.jpg" />
+    <Content Include="Content\Images\varias-botellas.jpg" />
+    <Content Include="Content\Images\varios-tipos-reciclaje.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="img\img0001.jpg" />
+    <Content Include="img\img0002.jpg" />
+    <Content Include="img\img0003.jpg" />
+    <Content Include="Models\ModelDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelDB.edmx</DependentUpon>
+      <LastGenOutput>ModelDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ModelDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelDB.edmx</DependentUpon>
+      <LastGenOutput>ModelDB.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -269,6 +336,13 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <EntityDeploy Include="Models\ModelDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ModelDB.edmx.diagram">
+      <DependentUpon>ModelDB.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

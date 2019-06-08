@@ -1,6 +1,7 @@
 ﻿@{ 
     Layout = null;
 }
+@model IEnumerable<ProyectoAPI.Models.Publicacion>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,10 +23,9 @@
 <body>
     <nav class="green" role="navigation">
         <div class="nav-wrapper container">
-            <title>@ViewBag.Title  -  @ViewBag.Title1</title>
             <a id="logo-container" href="#" class="brand-logo">TodaviaSirve</a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="#"></a>@ViewBag.Title  -- @ViewBag.Title1</li>
+                <li><a href="#"></a>Login</li>
             </ul>
             <ul id="nav-mobile" class="sidenav">
                 <li><a href="#">Navbar Link</a></li>
@@ -38,18 +38,73 @@
             <div class="container">
                 <br><br>
                 <h1 class="header center teal-text text-lighten-2">No deseches reutiliza</h1>
-                <div class="row center">
+                @*<div class="row center">
                     <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
                 </div>
                 <div class="row center">
                     <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
-                </div>
+                </div>*@
                 <br><br>
             </div>
         </div>
-        <div class="parallax"><img src="~/Content/Images/reciclaje-reutilizacion.jpg" alt="Unsplashed background img 1"></div>
+        <div class="parallax"><img src="~/Content/Images/gente-plantando4.jpg" alt="Unsplashed background img 1"></div>
     </div>
+    <div class="container">
+        @*<table class="table">
 
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.nombre)
+                </th>
+                <th>
+                    @Html.DisplayName("Publicaciones")
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in (Model))
+            {
+                <tr>
+                    <td>
+                        <label value=""> @item.nombre</label>
+                        @Html.HiddenFor(modelItem => item.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descripcion)
+                    </td>
+                </tr>
+            }
+
+        </table>*@
+        <ul class="collection with-header">
+            <li class="collection-header"><h5>Publicaciones recientes</h5></li>
+            @foreach (var item in (Model))
+            {
+            <li class="collection-item avatar">
+                @*<img src="~/Content/Images/" + @item.imagen alt="" class="circle">*@
+                <img src="~/Content/Images/@(item.imagen)" alt="" class="circle">
+                <span class="title"> @item.titulo</span>
+
+                @*<p>
+                    First Line <br>
+                    Second Line
+                </p>*@
+                <a href="#!" class="secondary-content" style="top: 30px;"><i class="material-icons">grade</i></a>
+                <a href="#!" class="secondary-content" style="right : 55px;top: 30px;"><i class="material-icons">send</i></a>
+
+
+
+            </li>
+            }
+
+
+        </ul>
+
+
+    </div>
     <div class="container">
         <div class="section">
             <!--   Icon Section   -->
@@ -57,21 +112,21 @@
                 <div class="col s12 m4">
                     <div class="icon-block">
                         <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-                        <h5 class="center">Speeds up development</h5>
+                        <h5 class="center">Publicaciones rapidas</h5>
                         <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
                     </div>
                 </div>
                 <div class="col s12 m4">
                     <div class="icon-block">
                         <h2 class="center brown-text"><i class="material-icons">group</i></h2>
-                        <h5 class="center">User Experience Focused</h5>
+                        <h5 class="center">Comparte con otros usuarios</h5>
                         <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
                     </div>
                 </div>
                 <div class="col s12 m4">
                     <div class="icon-block">
                         <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
-                        <h5 class="center">Easy to work with</h5>
+                        <h5 class="center">Facil de usar</h5>
                         <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
                     </div>
                 </div>
@@ -83,19 +138,22 @@
         <div class="section no-pad-bot">
             <div class="container">
                 <div class="row center">
-                    <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+                    <h5 class="header col s12 light">Columpios en un parque</h5>
                 </div>
             </div>
         </div>
-        <div class="parallax"><img src="~/Content/Images/rueda maseta.jpg" alt="Unsplashed background img 2"></div>
+        <div class="parallax"><img src="~/Content/Images/columpios-parque.jpg" alt="Unsplashed background img 2"></div>
     </div>
     <div class="container">
         <div class="section">
             <div class="row">
                 <div class="col s12 center">
                     <h3><i class="mdi-content-send brown-text"></i></h3>
-                    <h4>Contact Us</h4>
-                    <p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+                    <h4>Reutilización</h4>
+                    <p class="left-align light">Ya sea entendido como proceso de reconstrucción o transformación de productos de desecho en
+                    nuevos materiales a nivel industrial, como si se trata de un reciclaje doméstico, el reciclaje ayuda a prolongar la vida 
+                    y utilidad de los recursos.
+                    Sus beneficios, por lo tanto, serán tanto para los seres humanos como para el medio ambiente.;</p>
                 </div>
             </div>
         </div>
@@ -105,43 +163,47 @@
         <div class="section no-pad-bot">
             <div class="container">
                 <div class="row center">
-                    <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+                    <h5 class="header col s12 light">Plantando en botellas recicladas</h5>
                 </div>
             </div>
         </div>
-        <div class="parallax"><img src="~/Content/Images/BolsaReciclada.jpg" alt="Unsplashed background img 3"></div>
+        <div class="parallax"><img src="~/Content/Images/plantar-plantulas.jpg" alt="Unsplashed background img 3"></div>
     </div>
     <footer class="page-footer teal">
         <div class="container">
             <div class="row">
                 <div class="col l6 s12">
-                    <h5 class="white-text">Company Bio</h5>
-                    <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+                    <h5 class="white-text">Biografia</h5>
+                    <p class="grey-text text-lighten-4">
+                        Somos un equipo de estudiantes universitarios que trabajamos en este proyecto como si fuera nuestro trabajo de tiempo completo.
+                        Buscamos ayudar a construir un mundo mejor a traves de la reutilización y esto nos inspira.
+                       @* Any amount would help support and continue development on this project and is greatly appreciated.*@
+                    </p>
 
                 </div>
                 <div class="col l3 s12">
-                    <h5 class="white-text">Settings</h5>
+                    <h5 class="white-text">Extras</h5>
                     <ul>
-                        <li><a class="white-text" href="#!">Link 1</a></li>
-                        <li><a class="white-text" href="#!">Link 2</a></li>
-                        <li><a class="white-text" href="#!">Link 3</a></li>
-                        <li><a class="white-text" href="#!">Link 4</a></li>
+                        <li><a class="white-text" href="#!">Publicaciones</a></li>
+                        <li><a class="white-text" href="#!">Pinterest</a></li>
+                        <li><a class="white-text" href="#!">Youtube</a></li>
+                        <li><a class="white-text" href="#!">Reconocimiento Imagenes</a></li>
                     </ul>
                 </div>
                 <div class="col l3 s12">
-                    <h5 class="white-text">Connect</h5>
+                    <h5 class="white-text">Contacto</h5>
                     <ul>
-                        <li><a class="white-text" href="#!">Link 1</a></li>
-                        <li><a class="white-text" href="#!">Link 2</a></li>
-                        <li><a class="white-text" href="#!">Link 3</a></li>
-                        <li><a class="white-text" href="#!">Link 4</a></li>
+                        <li><a class="white-text" href="#!">RoberFernandez@company.co</a></li>
+                        <li><a class="white-text" href="#!">JoseGuinovart@company.co</a></li>
+                        <li><a class="white-text" href="#!">MichaelValencia@company.co</a></li>
+                        <li><a class="white-text" href="#!">LucasRanoni@company.co</a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="footer-copyright">
             <div class="container">
-                Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+                Made by <a class="brown-text text-lighten-3">TodaviaSirve</a>
             </div>
         </div>
     </footer>
