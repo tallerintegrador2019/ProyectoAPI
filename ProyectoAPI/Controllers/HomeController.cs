@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using ProyectoAPI.Models;
 using ProyectoAPI.Services;
 namespace ProyectoAPI.Controllers
 {
@@ -23,16 +24,10 @@ namespace ProyectoAPI.Controllers
         }
         public ActionResult Publicacion()
         {
-            ProductoService prod = new ProductoService();
-            var valor  =  prod.ObtenerProductoPorNombre();
-            //HttpClient client = new HttpClient();
-            ViewBag.Title1 = "titulo";
-            ViewBag.Title = valor;
-            if (valor.Equals("tres")) {
-                var variable = "es TRes";
-            }
-
-            return View();
+            PublicacionService prod = new PublicacionService();
+            List<Publicacion> valor = prod.ObtenerPublicaciones();
+            ViewBag.publicaciones = valor;
+            return View(valor);
         }
     }
 }
