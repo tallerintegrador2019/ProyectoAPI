@@ -13,7 +13,7 @@ namespace ProyectoAPI.Services
 {
     public class PublicacionService
     {
-        ModelDB instanciaBd = new ModelDB();
+        todaviasirveDBEntities instanciaBd = new todaviasirveDBEntities();
         public List<Publicacion> ObtenerPublicaciones() {
             Publicacion publicacion = new Publicacion();
             //HttpClient client = new HttpClient();
