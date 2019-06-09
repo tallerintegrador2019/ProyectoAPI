@@ -15,7 +15,7 @@ namespace ProyectoAPI.Services
     {
         
 
-        todaviasirveDBEntities1 instanciaBd = new todaviasirveDBEntities1();
+        todaviasirveDBEntities instanciaBd = new todaviasirveDBEntities();
         public List<Publicacion> ObtenerPublicaciones() {
             Publicacion publicacion = new Publicacion();
             //HttpClient client = new HttpClient();

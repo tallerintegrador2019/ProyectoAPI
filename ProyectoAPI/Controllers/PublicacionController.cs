@@ -16,7 +16,7 @@ namespace ProyectoAPI.Controllers
 {
     public class PublicacionController : ApiController
     {
-        private todaviasirveDBEntities1 db = new todaviasirveDBEntities1();
+        private todaviasirveDBEntities db = new todaviasirveDBEntities();
 
         // GET: api/Publicacion
         public IQueryable<Publicacion> GetPublicacion()
@@ -46,7 +46,7 @@ namespace ProyectoAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != publicacion.id)
+            if (id != publicacion.Id)
             {
                 return BadRequest();
             }
@@ -84,7 +84,7 @@ namespace ProyectoAPI.Controllers
             db.Publicacion.Add(publicacion);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = publicacion.id }, publicacion);
+            return CreatedAtRoute("DefaultApi", new { id = publicacion.Id }, publicacion);
         }
 
         // DELETE: api/Publicacion/5
@@ -114,7 +114,7 @@ namespace ProyectoAPI.Controllers
 
         private bool PublicacionExists(int id)
         {
-            return db.Publicacion.Count(e => e.id == id) > 0;
+            return db.Publicacion.Count(e => e.Id == id) > 0;
         }
 
 

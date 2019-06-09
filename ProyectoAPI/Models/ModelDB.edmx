@@ -7,9 +7,9 @@
       <Schema Namespace="todaviasirveDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Publicacion">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="titulo" Type="nvarchar" MaxLength="50" />
           <Property Name="descripcion" Type="nvarchar" MaxLength="100" />
           <Property Name="imagen" Type="nvarchar" MaxLength="100" />
@@ -24,14 +24,14 @@
       <Schema Namespace="todaviasirveDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Publicacion">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="titulo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="imagen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="todaviasirveDBEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="todaviasirveDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Publicacion" EntityType="Self.Publicacion" />
         </EntityContainer>
       </Schema>
@@ -39,11 +39,11 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="todaviasirveDBModelStoreContainer" CdmEntityContainer="todaviasirveDBEntities1">
+        <EntityContainerMapping StorageEntityContainer="todaviasirveDBModelStoreContainer" CdmEntityContainer="todaviasirveDBEntities">
           <EntitySetMapping Name="Publicacion">
             <EntityTypeMapping TypeName="todaviasirveDBModel.Publicacion">
               <MappingFragment StoreEntitySet="Publicacion">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="titulo" ColumnName="titulo" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
