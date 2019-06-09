@@ -13,7 +13,9 @@ namespace ProyectoAPI.Services
 {
     public class PublicacionService
     {
-        ModelDB instanciaBd = new ModelDB();
+        
+
+        todaviasirveDBEntities1 instanciaBd = new todaviasirveDBEntities1();
         public List<Publicacion> ObtenerPublicaciones() {
             Publicacion publicacion = new Publicacion();
             //HttpClient client = new HttpClient();
@@ -24,6 +26,8 @@ namespace ProyectoAPI.Services
             List<Publicacion> publicaciones = instanciaBd.Publicacion.ToList();
             return publicaciones;
         }
+
+    
 
     }
 }

@@ -16,7 +16,7 @@ namespace ProyectoAPI.Controllers
 {
     public class PublicacionController : ApiController
     {
-        private ModelDB db = new ModelDB();
+        private todaviasirveDBEntities1 db = new todaviasirveDBEntities1();
 
         // GET: api/Publicacion
         public IQueryable<Publicacion> GetPublicacion()
@@ -126,7 +126,7 @@ namespace ProyectoAPI.Controllers
             try
             {
                 List<Publicacion> publicacion = (from publi in db.Publicacion
-                                                 where publi.nombre.Contains(nombre)
+                                                 where publi.titulo.Contains(nombre)
                                                  select publi).ToList();
 
                 var response = new HttpResponseMessage(HttpStatusCode.OK);
