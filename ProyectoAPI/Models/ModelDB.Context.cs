@@ -13,10 +13,10 @@ namespace ProyectoAPI.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class todaviasirveDBEntities : DbContext
+    public partial class todaviasirveDBEntities1 : DbContext
     {
-        public todaviasirveDBEntities()
-            : base("name=todaviasirveDBEntities")
+        public todaviasirveDBEntities1()
+            : base("name=todaviasirveDBEntities1")
         {
         }
     

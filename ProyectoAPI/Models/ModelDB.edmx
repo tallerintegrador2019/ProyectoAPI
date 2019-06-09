@@ -12,7 +12,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="titulo" Type="nvarchar" MaxLength="50" />
           <Property Name="descripcion" Type="nvarchar" MaxLength="100" />
-          <Property Name="imagen" Type="nvarchar" MaxLength="50" />
+          <Property Name="imagen" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityContainer Name="todaviasirveDBModelStoreContainer">
           <EntitySet Name="Publicacion" EntityType="Self.Publicacion" Schema="dbo" store:Type="Tables" />
@@ -29,9 +29,9 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="titulo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="imagen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="imagen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="todaviasirveDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="todaviasirveDBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Publicacion" EntityType="Self.Publicacion" />
         </EntityContainer>
       </Schema>
@@ -39,7 +39,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="todaviasirveDBModelStoreContainer" CdmEntityContainer="todaviasirveDBEntities">
+        <EntityContainerMapping StorageEntityContainer="todaviasirveDBModelStoreContainer" CdmEntityContainer="todaviasirveDBEntities1">
           <EntitySetMapping Name="Publicacion">
             <EntityTypeMapping TypeName="todaviasirveDBModel.Publicacion">
               <MappingFragment StoreEntitySet="Publicacion">

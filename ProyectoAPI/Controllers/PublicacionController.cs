@@ -16,7 +16,7 @@ namespace ProyectoAPI.Controllers
 {
     public class PublicacionController : ApiController
     {
-        private todaviasirveDBEntities db = new todaviasirveDBEntities();
+        private todaviasirveDBEntities1 db = new todaviasirveDBEntities1();
 
         // GET: api/Publicacion
         public IQueryable<Publicacion> GetPublicacion()
