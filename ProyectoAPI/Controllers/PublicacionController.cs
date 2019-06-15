@@ -46,7 +46,7 @@ namespace ProyectoAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != publicacion.id)
+            if (id != publicacion.Id)
             {
                 return BadRequest();
             }
@@ -84,7 +84,7 @@ namespace ProyectoAPI.Controllers
             db.Publicacion.Add(publicacion);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = publicacion.id }, publicacion);
+            return CreatedAtRoute("DefaultApi", new { id = publicacion.Id }, publicacion);
         }
 
         // DELETE: api/Publicacion/5
@@ -114,7 +114,7 @@ namespace ProyectoAPI.Controllers
 
         private bool PublicacionExists(int id)
         {
-            return db.Publicacion.Count(e => e.id == id) > 0;
+            return db.Publicacion.Count(e => e.Id == id) > 0;
         }
 
 
@@ -139,5 +139,18 @@ namespace ProyectoAPI.Controllers
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
         }
+
+
+        /*   Imagga Api
+        Api Key =  acc_0e583cf299e6b14 
+        Api Secret = 0857f1d8b89dcb30afbb8c6c034ebd14
+        Authorization = Basic YWNjXzBlNTgzY2YyOTllNmIxNDowODU3ZjFkOGI4OWRjYjMwYWZiYjhjNmMwMzRlYmQxNA==
+        Api Endpoint = https://api.imagga.com
+        Sample Curl request = curl -u 
+        "acc_0e583cf299e6b14:0857f1d8b89dcb30afbb8c6c034ebd14" 
+        "https://api.imagga.com/v2/tags?image_url=https://imagga.com/static/images/tagging/wind-farm-538576_640.jpg"
+         
+         */
     } // cierre clase
 } // cierre controller
+                      
