@@ -10,6 +10,9 @@ namespace ProyectoAPI.Controllers
 {
     public class HomeController : Controller
     {
+        public ActionResult Login() {
+            return View();
+        }
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";

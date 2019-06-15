@@ -215,13 +215,27 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PublicacionController.cs" />
+    <Compile Include="Controllers\PublicacionCRUDController.cs" />
+    <Compile Include="Controllers\UsuarioCRUDController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Categoria.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feedback.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Imagen.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Material.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ModelDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -240,9 +254,22 @@
     <Compile Include="Models\Publicacion.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Publicacion_Categoria.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Publicacion_Material.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Rango.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Usuario.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
+    <Compile Include="Services\LoginService.cs" />
     <Compile Include="Services\ProductoService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -342,6 +369,7 @@
     <Content Include="fonts\font-map-unicode-berlin-sans-fb.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+<<<<<<< HEAD
     <Content Include="img\img0001.jpg" />
     <Content Include="img\img0002.jpg" />
     <Content Include="img\img0003.jpg" />
@@ -352,6 +380,8 @@
     <Content Include="img\isologo\logo_blanco.png" />
     <Content Include="img\isologo\logo_negro.png" />
     <Content Include="img\isologo\logo_verde.png" />
+=======
+>>>>>>> 626284d59cb2f09c4bc7018b08595d3f64d8bbca
     <Content Include="Models\ModelDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelDB.edmx</DependentUpon>
@@ -515,6 +545,16 @@
     <Content Include="Scripts\package-lock.json" />
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Home\Publicacion.cshtml" />
+    <Content Include="Views\UsuarioCRUD\Create.cshtml" />
+    <Content Include="Views\UsuarioCRUD\Delete.cshtml" />
+    <Content Include="Views\UsuarioCRUD\Details.cshtml" />
+    <Content Include="Views\UsuarioCRUD\Edit.cshtml" />
+    <Content Include="Views\UsuarioCRUD\Index.cshtml" />
+    <Content Include="Views\PublicacionCRUD\Create.cshtml" />
+    <Content Include="Views\PublicacionCRUD\Delete.cshtml" />
+    <Content Include="Views\PublicacionCRUD\Details.cshtml" />
+    <Content Include="Views\PublicacionCRUD\Edit.cshtml" />
+    <Content Include="Views\PublicacionCRUD\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -26,9 +26,13 @@
             <a id="logo-container" href="#" class="brand-logo"><img class="isologo-header" src="~/img/isologo/logotipo_blanco.png" /></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="#"></a>Login</li>
+                <li>@Html.ActionLink("Adm. Publicaciones", "Index", "PublicacionCRUD", new { area = "" }, null)</li>
+                <li>@Html.ActionLink("Adm. Usuarios", "Index", "UsuarioCRUD", new { area = "" }, null)</li>
             </ul>
             <ul id="nav-mobile" class="sidenav">
                 <li><a href="#">Navbar Link</a></li>
+                <li>@Html.ActionLink("Adm. Publicaciones", "Index", "PublicacionCRUD", new { area = "" }, null)</li>
+                <li>@Html.ActionLink("Adm. Usuarios", "Index", "UsuarioCRUD", new { area = "" }, null)</li>
             </ul>
             <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         </div>
@@ -84,8 +88,13 @@
             @*@foreach (var item in (Model))
             {
             <li class="collection-item avatar">
+<<<<<<< HEAD
                 @*<img src="~/Content/Images/" + @item.imagen alt="" class="circle">
                 <img src="~/Content/Images/@(item.imagen)" alt="" class="circle">
+=======
+                @*<img src="~/Content/Images/" + @item.imagen alt="" class="circle">*@
+                <img src="~/Content/Images/@(item.imagenPortada)" alt="" class="circle">
+>>>>>>> 626284d59cb2f09c4bc7018b08595d3f64d8bbca
                 <span class="title"> @item.titulo</span>
 
                 @*<p>
