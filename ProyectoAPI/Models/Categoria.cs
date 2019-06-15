@@ -12,31 +12,18 @@ namespace ProyectoAPI.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Publicacion
+    public partial class Categoria
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Publicacion()
+        public Categoria()
         {
-            this.Feedback = new HashSet<Feedback>();
-            this.Imagen = new HashSet<Imagen>();
             this.Publicacion_Categoria = new HashSet<Publicacion_Categoria>();
-            this.Publicacion_Material = new HashSet<Publicacion_Material>();
         }
     
         public int id { get; set; }
-        public string titulo { get; set; }
-        public string subtitulo { get; set; }
         public string descripcion { get; set; }
-        public string fechaSubida { get; set; }
-        public string imagenPortada { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Feedback> Feedback { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Imagen> Imagen { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Publicacion_Categoria> Publicacion_Categoria { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Publicacion_Material> Publicacion_Material { get; set; }
     }
 }
