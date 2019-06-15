@@ -24,10 +24,10 @@ namespace ProyectoAPI.Controllers
         }
         public ActionResult Publicacion()
         {
-            PublicacionService prod = new PublicacionService();
-            List<Publicacion> valor = prod.ObtenerPublicaciones();
-            ViewBag.publicaciones = valor;
-            return View(valor);
+            //PublicacionService prod = new PublicacionService();
+            //List<Publicacion> valor = prod.ObtenerPublicaciones();
+            //ViewBag.publicaciones = valor;
+            return View("");
         }
     }
 }

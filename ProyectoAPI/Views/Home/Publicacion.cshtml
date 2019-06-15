@@ -11,7 +11,7 @@
     <!-- CSS  -->
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    @*@Styles.Render("~/Content/css")*@
+    @Styles.Render("~/Content/css")
     @Styles.Render("~/bundles/materializer")
     @Scripts.Render("~/bundles/modernizr")
     @*<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
@@ -23,7 +23,7 @@
 <body>
     <nav class="color-pagina-1" role="navigation">
         <div class="nav-wrapper container">
-            <a id="logo-container" href="#" class="brand-logo">TodaviaSirve</a>
+            <a id="logo-container" href="#" class="brand-logo"><img class="isologo-header" src="~/img/isologo/logotipo_blanco.png" /></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="#"></a>Login</li>
             </ul>
@@ -81,24 +81,24 @@
         </table>*@
         <ul class="collection with-header">
             <li class="collection-header"><h5>Publicaciones recientes</h5></li>
-            @foreach (var item in (Model))
+            @*@foreach (var item in (Model))
             {
             <li class="collection-item avatar">
-                @*<img src="~/Content/Images/" + @item.imagen alt="" class="circle">*@
+                @*<img src="~/Content/Images/" + @item.imagen alt="" class="circle">
                 <img src="~/Content/Images/@(item.imagen)" alt="" class="circle">
                 <span class="title"> @item.titulo</span>
 
                 @*<p>
                     First Line <br>
                     Second Line
-                </p>*@
+                </p>
                 <a href="#!" class="secondary-content" style="top: 30px;"><i class="material-icons">grade</i></a>
                 <a href="#!" class="secondary-content" style="right : 55px;top: 30px;"><i class="material-icons">send</i></a>
 
 
 
             </li>
-            }
+            }*@
 
 
         </ul>
