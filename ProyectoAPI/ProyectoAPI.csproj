@@ -215,6 +215,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PublicacionController.cs" />
+    <Compile Include="Controllers\PublicacionCRUDController.cs" />
+    <Compile Include="Controllers\UsuarioCRUDController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -326,9 +328,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="img\img0001.jpg" />
-    <Content Include="img\img0002.jpg" />
-    <Content Include="img\img0003.jpg" />
     <Content Include="Models\ModelDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelDB.edmx</DependentUpon>
@@ -480,6 +479,16 @@
     <Content Include="Scripts\package-lock.json" />
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Home\Publicacion.cshtml" />
+    <Content Include="Views\PublicacionCRUD\Create.cshtml" />
+    <Content Include="Views\PublicacionCRUD\Delete.cshtml" />
+    <Content Include="Views\PublicacionCRUD\Details.cshtml" />
+    <Content Include="Views\PublicacionCRUD\Edit.cshtml" />
+    <Content Include="Views\PublicacionCRUD\Index.cshtml" />
+    <Content Include="Views\UsuarioCRUD\Create.cshtml" />
+    <Content Include="Views\UsuarioCRUD\Delete.cshtml" />
+    <Content Include="Views\UsuarioCRUD\Details.cshtml" />
+    <Content Include="Views\UsuarioCRUD\Edit.cshtml" />
+    <Content Include="Views\UsuarioCRUD\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
