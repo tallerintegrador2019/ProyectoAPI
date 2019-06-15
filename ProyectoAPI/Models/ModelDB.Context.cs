@@ -25,6 +25,14 @@ namespace ProyectoAPI.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Categoria> Categoria { get; set; }
+        public virtual DbSet<Feedback> Feedback { get; set; }
+        public virtual DbSet<Imagen> Imagen { get; set; }
+        public virtual DbSet<Material> Material { get; set; }
         public virtual DbSet<Publicacion> Publicacion { get; set; }
+        public virtual DbSet<Publicacion_Categoria> Publicacion_Categoria { get; set; }
+        public virtual DbSet<Publicacion_Material> Publicacion_Material { get; set; }
+        public virtual DbSet<Rango> Rango { get; set; }
+        public virtual DbSet<Usuario> Usuario { get; set; }
     }
 }
