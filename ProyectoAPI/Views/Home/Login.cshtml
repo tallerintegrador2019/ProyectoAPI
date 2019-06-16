@@ -1,0 +1,75 @@
+﻿@model ProyectoAPI.Models.Usuario
+
+@{
+    ViewBag.Title = "Login";
+    var user = Session["idUsuario"];
+    //if (user != null) {
+    //    Layout = "~/Views/Shared/_UsuarioLayout.cshtml";
+    //} else {
+    //    Layout = "~/Views/Shared/_AnonimoLayout.cshtml";
+    //}
+
+
+}
+<style>
+    
+    .login {
+        margin-top: 100px;
+    }
+    .login .card {
+          /*background-color: rgba(0,0,0,.6);*/
+    }
+        .login label {
+        font-size : 16px;
+        }
+
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <br />
+    <br />
+    <div class="row login">
+        <div class="col s12 12 offset-l0">
+            <div class="card">
+                  
+                    <div class="card-action teal green white-text ">
+                            <h4>Login</h4>
+                            <hr />
+                            <span id="errorGeneral" class="text-danger">@ViewBag.msg</span>
+                        @if(ViewBag.nombreUsuario != null) { 
+                            <span class="white-text">@ViewBag.nombreUsuario Se registro correctamente!!! Inicie Sesión</span>
+                        }
+                    </div>
+               
+                    <div class="card-content center-align">
+
+                        <div class="form-field">
+                            @Html.Label("Email")
+                            @Html.EditorFor(model => model.email)
+                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+
+                        </div><br /><br />
+
+                            <div class="form-field">
+                                @Html.Label("Contraseña")
+
+                                @Html.EditorFor(model => model.pass, new { htmlAttributes = new {@type = "Password" } })
+                                @Html.ValidationMessageFor(model => model.pass, "", new { @class = "text-danger" })
+                            </div><br />
+
+                                                 
+                           
+                            <div class="form-field center-align">
+
+                                <input type="submit" id="btnIngresar" name="btnIngresar" value="Ingresar" class="btn-large waves-green" />
+                            </div>
+                    </div>
+                
+
+               
+            </div>
+        </div>
+    </div>
+}
