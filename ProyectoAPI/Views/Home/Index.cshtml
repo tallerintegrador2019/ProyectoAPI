@@ -2,17 +2,38 @@
     <h1>No deseches reutiliza</h1>
     <h3>Piensa en todo lo que puedes llegar a crear y ayudar al medio ambiente.</h3>
 
-    <input type="button" class="btn btn-info" value="Registrar" onclick="location.href='@Url.Action("Create","UsuarioCRUD")'" />
-    @*<form action="/" method="post" class="text-center form-personalizado">
-            <input type="text" name="nombre" placeholder="Nombre" />
-            <br />
-            <input type="text" name="apellido" placeholder="Apellido" />
-            <br />
-            <input type="email" name="email" placeholder="E-Mail" />
-            <br />
-            <input type="text" name="ciudad" placeholder="Ciudad" />
-            <br />
-            <input type="text" name="telefono" placeholder="Número de telefono" />
-        </form>*@
+    <h5>Suscribete a nuestro sitio y recibe una cuenta premium con nuestros beneficios</h5>
+    <form action="/" method="post" class="text-center form-personalizado">
+        <br />
+        <input type="email" name="email" placeholder="E-Mail" />
+        <br />
+        <input type="button" class="btn btn-info" value="Suscribirse" onclick="location.href='@Url.Action("Enviar","SuscriptorCRUD")'" />
+    </form>
+
+    <h2>Beneficios</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Acceso a contenido exclusivo</h5>
+                <p class="grey-text text-lighten-4">
+                    Al tener tu cuenta premium tienes acceso a nuestro contenido exclusivo ántes que nadie.
+                </p>
+            </div>
+            <div class="col l3 s12">
+                <h5 class="white-text">Acceso a funciones exclusivas y betas</h5>
+                <p class="grey-text text-lighten-4">
+                    También tendrás acceso a nuevas y exclusivas funciones como vender tus creaciones y publicaciones
+                    con mayor visibilidad. Haz que tus creaciones tengan valor.
+                </p>
+            </div>
+            <div class="col l3 s12">
+                <h5 class="white-text">Se parte de nuestro staff</h5>
+                <p class="grey-text text-lighten-4">
+                    Tendrás la oportunidad de ser parte de nuestro equipo, creando contenido exclusivo y usar nuestro logo y ser parte de
+                    nuestra comunidad de canales en Youtube.
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
 
