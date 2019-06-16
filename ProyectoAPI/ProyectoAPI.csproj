@@ -369,7 +369,6 @@
     <Content Include="fonts\font-map-unicode-berlin-sans-fb.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-<<<<<<< HEAD
     <Content Include="img\img0001.jpg" />
     <Content Include="img\img0002.jpg" />
     <Content Include="img\img0003.jpg" />
@@ -380,8 +379,6 @@
     <Content Include="img\isologo\logo_blanco.png" />
     <Content Include="img\isologo\logo_negro.png" />
     <Content Include="img\isologo\logo_verde.png" />
-=======
->>>>>>> 626284d59cb2f09c4bc7018b08595d3f64d8bbca
     <Content Include="Models\ModelDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelDB.edmx</DependentUpon>
