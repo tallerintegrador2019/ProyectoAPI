@@ -11,8 +11,25 @@ namespace ProyectoAPI.Controllers
     public class HomeController : Controller
     {
         LoginService login = new LoginService();
-        public ActionResult Login() {
+
+        public ActionResult Registro()
+        {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Registro(Usuario usu)
+        {
+            ViewBag.nombreUsuario = usu.nombre;
+            Session["usuarioLogueado"] = ViewBag.nombreUsuario;
+            int cant = login.RegistrarUsuario(usu);
+            ViewBag.cant = cant;
+            return RedirectToAction("Login");
+        }
+
+        public ActionResult Login() {
+            ViewBag.nombreUsuario = Session["usuarioLogueado"];
+             return View();
         }
 
         [HttpPost]
