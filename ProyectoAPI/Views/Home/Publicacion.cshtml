@@ -41,12 +41,10 @@
                  }
                 else
                 {
-
                     <li>
                         <a class="dropdown-trigger" href="~/Home/Login">
                             Ingresar
                             <i class="material-icons right">account_circle</i>
-                            @*<span class="personal">Sesion</span>*@
                         </a>
                     </li>
                     <li>
@@ -55,7 +53,6 @@
                             <i class="material-icons right">create</i>
                         </a>
                     </li>
-
                 }
 
             </ul>
@@ -84,35 +81,7 @@
         <div class="parallax"><img src="~/Content/Images/gente-plantando4.jpg" alt="Unsplashed background img 1"></div>
     </div>
     <div class="container">
-        @*<table class="table">
-
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.descripcion)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.nombre)
-                </th>
-                <th>
-                    @Html.DisplayName("Publicaciones")
-                </th>
-                <th></th>
-            </tr>
-
-            @foreach (var item in (Model))
-            {
-                <tr>
-                    <td>
-                        <label value=""> @item.nombre</label>
-                        @Html.HiddenFor(modelItem => item.nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.descripcion)
-                    </td>
-                </tr>
-            }
-
-        </table>*@
+     
         <ul class="collection with-header">
             <li class="collection-header"><h5>Publicaciones recientes</h5></li>
             @foreach (var item in (Model))
