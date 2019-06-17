@@ -24,13 +24,14 @@
         <div class="container">
             <div class="white-text">
                 <a id="logo-container" href="#" class="brand-logo"><img class="isologo-header" src="~/img/isologo/logotipo_blanco_completo.png" /></a>
-            <div class=" collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Adm. Publicaciones", "Index", "PublicacionCRUD", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Adm. Usuarios", "Index", "UsuarioCRUD", new { area = "" }, null)</li>
-                </ul>
+                <div class=" collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("Adm. Publicaciones", "Index", "PublicacionCRUD", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("Adm. Usuarios", "Index", "UsuarioCRUD", new { area = "" }, null)</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </header>
@@ -54,7 +55,7 @@
                 <div class="col l3 s12">
                     <h5 class="white-text">Extras</h5>
                     <ul>
-                        <li><a class="white-text" href="#!">Publicaciones</a></li>
+                        <li><a class="white-text" href="~/Home/Publicacion">Publicaciones</a></li>
                         <li><a class="white-text" href="#!">Pinterest</a></li>
                         <li><a class="white-text" href="#!">Youtube</a></li>
                         <li><a class="white-text" href="#!">Reconocimiento Imagenes</a></li>
