@@ -48,17 +48,16 @@ namespace ProyectoAPI.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,username,pass,nombre,apellido,email,idRango")] Usuario usuario)
+        public ActionResult Create([Bind(Include = "id,username,pass,nombre,apellido,email")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
                 db.Usuario.Add(usuario);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Publicacion");
             }
 
-            ViewBag.idRango = new SelectList(db.Rango, "id", "descripcion", usuario.idRango);
-            return View(usuario);
+             return View(usuario);
         }
 
         // GET: UsuarioCRUD/Edit/5
@@ -82,7 +81,7 @@ namespace ProyectoAPI.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,username,pass,nombre,apellido,email,idRango")] Usuario usuario)
+        public ActionResult Edit([Bind(Include = "id,username,pass,nombre,apellido,email")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {

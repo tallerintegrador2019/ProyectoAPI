@@ -26,6 +26,7 @@ namespace ProyectoAPI.Models
         }
     
         public virtual DbSet<Categoria> Categoria { get; set; }
+        public virtual DbSet<Enlace> Enlace { get; set; }
         public virtual DbSet<Feedback> Feedback { get; set; }
         public virtual DbSet<Imagen> Imagen { get; set; }
         public virtual DbSet<Material> Material { get; set; }
@@ -33,6 +34,8 @@ namespace ProyectoAPI.Models
         public virtual DbSet<Publicacion_Categoria> Publicacion_Categoria { get; set; }
         public virtual DbSet<Publicacion_Material> Publicacion_Material { get; set; }
         public virtual DbSet<Rango> Rango { get; set; }
+        public virtual DbSet<Redes> Redes { get; set; }
+        public virtual DbSet<Suscriptor> Suscriptor { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
     }
 }

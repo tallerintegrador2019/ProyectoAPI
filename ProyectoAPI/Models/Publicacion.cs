@@ -18,10 +18,12 @@ namespace ProyectoAPI.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Publicacion()
         {
+            this.Enlace = new HashSet<Enlace>();
             this.Feedback = new HashSet<Feedback>();
             this.Imagen = new HashSet<Imagen>();
             this.Publicacion_Categoria = new HashSet<Publicacion_Categoria>();
             this.Publicacion_Material = new HashSet<Publicacion_Material>();
+            this.Redes = new HashSet<Redes>();
         }
     
         public int id { get; set; }
@@ -33,6 +35,8 @@ namespace ProyectoAPI.Models
         
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Enlace> Enlace { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Feedback> Feedback { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Imagen> Imagen { get; set; }
@@ -40,5 +44,7 @@ namespace ProyectoAPI.Models
         public virtual ICollection<Publicacion_Categoria> Publicacion_Categoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Publicacion_Material> Publicacion_Material { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Redes> Redes { get; set; }
     }
 }

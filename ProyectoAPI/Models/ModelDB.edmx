@@ -12,6 +12,15 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Enlace">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="youtube" Type="varchar" MaxLength="100" />
+          <Property Name="pinterest" Type="varchar" MaxLength="100" />
+          <Property Name="idPublicacion" Type="int" />
+        </EntityType>
         <EntityType Name="Feedback">
           <Key>
             <PropertyRef Name="id" />
@@ -73,6 +82,22 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Redes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="youtube" Type="varchar" MaxLength="100" />
+          <Property Name="Instagram" Type="varchar" MaxLength="100" />
+          <Property Name="idPublicacion" Type="int" />
+        </EntityType>
+        <EntityType Name="Suscriptor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="id" />
@@ -85,6 +110,18 @@
           <Property Name="email" Type="varchar" MaxLength="100" />
           <Property Name="idRango" Type="int" />
         </EntityType>
+        <Association Name="FK_Enlace_Publicacion">
+          <End Role="Publicacion" Type="Self.Publicacion" Multiplicity="0..1" />
+          <End Role="Enlace" Type="Self.Enlace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publicacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Enlace">
+              <PropertyRef Name="idPublicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Feedback_Publicacion">
           <End Role="Publicacion" Type="Self.Publicacion" Multiplicity="0..1" />
           <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
@@ -169,6 +206,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Redes_Publicacion">
+          <End Role="Publicacion" Type="Self.Publicacion" Multiplicity="0..1" />
+          <End Role="Redes" Type="Self.Redes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publicacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Redes">
+              <PropertyRef Name="idPublicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Usuario_Rango">
           <End Role="Rango" Type="Self.Rango" Multiplicity="0..1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
@@ -183,6 +232,7 @@
         </Association>
         <EntityContainer Name="todaviasirveDBModelStoreContainer">
           <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Enlace" EntityType="Self.Enlace" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Imagen" EntityType="Self.Imagen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
@@ -190,7 +240,13 @@
           <EntitySet Name="Publicacion_Categoria" EntityType="Self.Publicacion_Categoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Publicacion_Material" EntityType="Self.Publicacion_Material" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rango" EntityType="Self.Rango" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Redes" EntityType="Self.Redes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suscriptor" EntityType="Self.Suscriptor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Enlace_Publicacion" Association="Self.FK_Enlace_Publicacion">
+            <End Role="Publicacion" EntitySet="Publicacion" />
+            <End Role="Enlace" EntitySet="Enlace" />
+          </AssociationSet>
           <AssociationSet Name="FK_Feedback_Publicacion" Association="Self.FK_Feedback_Publicacion">
             <End Role="Publicacion" EntitySet="Publicacion" />
             <End Role="Feedback" EntitySet="Feedback" />
@@ -219,6 +275,10 @@
             <End Role="Publicacion" EntitySet="Publicacion" />
             <End Role="Publicacion_Material" EntitySet="Publicacion_Material" />
           </AssociationSet>
+          <AssociationSet Name="FK_Redes_Publicacion" Association="Self.FK_Redes_Publicacion">
+            <End Role="Publicacion" EntitySet="Publicacion" />
+            <End Role="Redes" EntitySet="Redes" />
+          </AssociationSet>
           <AssociationSet Name="FK_Usuario_Rango" Association="Self.FK_Usuario_Rango">
             <End Role="Rango" EntitySet="Rango" />
             <End Role="Usuario" EntitySet="Usuario" />
@@ -236,6 +296,16 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Publicacion_Categoria" Relationship="Self.FK_Publicacion_Categoria_Categoria" FromRole="Categoria" ToRole="Publicacion_Categoria" />
+        </EntityType>
+        <EntityType Name="Enlace">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="youtube" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="pinterest" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="idPublicacion" Type="Int32" />
+          <NavigationProperty Name="Publicacion" Relationship="Self.FK_Enlace_Publicacion" FromRole="Enlace" ToRole="Publicacion" />
         </EntityType>
         <EntityType Name="Feedback">
           <Key>
@@ -278,10 +348,12 @@
           <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="fechaSubida" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="imagenPortada" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Enlace" Relationship="Self.FK_Enlace_Publicacion" FromRole="Publicacion" ToRole="Enlace" />
           <NavigationProperty Name="Feedback" Relationship="Self.FK_Feedback_Publicacion" FromRole="Publicacion" ToRole="Feedback" />
           <NavigationProperty Name="Imagen" Relationship="Self.FK_Imagen_Publicacion" FromRole="Publicacion" ToRole="Imagen" />
           <NavigationProperty Name="Publicacion_Categoria" Relationship="Self.FK_Publicacion_Categoria_Publicacion" FromRole="Publicacion" ToRole="Publicacion_Categoria" />
           <NavigationProperty Name="Publicacion_Material" Relationship="Self.FK_Publicacion_Material_Publicacion" FromRole="Publicacion" ToRole="Publicacion_Material" />
+          <NavigationProperty Name="Redes" Relationship="Self.FK_Redes_Publicacion" FromRole="Publicacion" ToRole="Redes" />
         </EntityType>
         <EntityType Name="Publicacion_Categoria">
           <Key>
@@ -311,6 +383,23 @@
           <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_Usuario_Rango" FromRole="Rango" ToRole="Usuario" />
         </EntityType>
+        <EntityType Name="Redes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="youtube" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Instagram" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="idPublicacion" Type="Int32" />
+          <NavigationProperty Name="Publicacion" Relationship="Self.FK_Redes_Publicacion" FromRole="Redes" ToRole="Publicacion" />
+        </EntityType>
+        <EntityType Name="Suscriptor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="id" />
@@ -334,6 +423,18 @@
             </Principal>
             <Dependent Role="Publicacion_Categoria">
               <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enlace_Publicacion">
+          <End Role="Publicacion" Type="Self.Publicacion" Multiplicity="0..1" />
+          <End Role="Enlace" Type="Self.Enlace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publicacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Enlace">
+              <PropertyRef Name="idPublicacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -409,6 +510,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Redes_Publicacion">
+          <End Role="Publicacion" Type="Self.Publicacion" Multiplicity="0..1" />
+          <End Role="Redes" Type="Self.Redes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publicacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Redes">
+              <PropertyRef Name="idPublicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Usuario_Rango">
           <End Role="Rango" Type="Self.Rango" Multiplicity="0..1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
@@ -423,6 +536,7 @@
         </Association>
         <EntityContainer Name="todaviasirveDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+          <EntitySet Name="Enlace" EntityType="Self.Enlace" />
           <EntitySet Name="Feedback" EntityType="Self.Feedback" />
           <EntitySet Name="Imagen" EntityType="Self.Imagen" />
           <EntitySet Name="Material" EntityType="Self.Material" />
@@ -430,10 +544,16 @@
           <EntitySet Name="Publicacion_Categoria" EntityType="Self.Publicacion_Categoria" />
           <EntitySet Name="Publicacion_Material" EntityType="Self.Publicacion_Material" />
           <EntitySet Name="Rango" EntityType="Self.Rango" />
+          <EntitySet Name="Redes" EntityType="Self.Redes" />
+          <EntitySet Name="Suscriptor" EntityType="Self.Suscriptor" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
           <AssociationSet Name="FK_Publicacion_Categoria_Categoria" Association="Self.FK_Publicacion_Categoria_Categoria">
             <End Role="Categoria" EntitySet="Categoria" />
             <End Role="Publicacion_Categoria" EntitySet="Publicacion_Categoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enlace_Publicacion" Association="Self.FK_Enlace_Publicacion">
+            <End Role="Publicacion" EntitySet="Publicacion" />
+            <End Role="Enlace" EntitySet="Enlace" />
           </AssociationSet>
           <AssociationSet Name="FK_Feedback_Publicacion" Association="Self.FK_Feedback_Publicacion">
             <End Role="Publicacion" EntitySet="Publicacion" />
@@ -459,6 +579,10 @@
             <End Role="Publicacion" EntitySet="Publicacion" />
             <End Role="Publicacion_Material" EntitySet="Publicacion_Material" />
           </AssociationSet>
+          <AssociationSet Name="FK_Redes_Publicacion" Association="Self.FK_Redes_Publicacion">
+            <End Role="Publicacion" EntitySet="Publicacion" />
+            <End Role="Redes" EntitySet="Redes" />
+          </AssociationSet>
           <AssociationSet Name="FK_Usuario_Rango" Association="Self.FK_Usuario_Rango">
             <End Role="Rango" EntitySet="Rango" />
             <End Role="Usuario" EntitySet="Usuario" />
@@ -475,6 +599,16 @@
               <MappingFragment StoreEntitySet="Categoria">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Enlace">
+            <EntityTypeMapping TypeName="todaviasirveDBModel.Enlace">
+              <MappingFragment StoreEntitySet="Enlace">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="youtube" ColumnName="youtube" />
+                <ScalarProperty Name="pinterest" ColumnName="pinterest" />
+                <ScalarProperty Name="idPublicacion" ColumnName="idPublicacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -543,6 +677,24 @@
               <MappingFragment StoreEntitySet="Rango">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Redes">
+            <EntityTypeMapping TypeName="todaviasirveDBModel.Redes">
+              <MappingFragment StoreEntitySet="Redes">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="youtube" ColumnName="youtube" />
+                <ScalarProperty Name="Instagram" ColumnName="Instagram" />
+                <ScalarProperty Name="idPublicacion" ColumnName="idPublicacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suscriptor">
+            <EntityTypeMapping TypeName="todaviasirveDBModel.Suscriptor">
+              <MappingFragment StoreEntitySet="Suscriptor">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="email" ColumnName="email" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

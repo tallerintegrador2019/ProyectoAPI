@@ -10,9 +10,63 @@ namespace ProyectoAPI.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Login() {
+        LoginService login = new LoginService();
+
+        public ActionResult Registro()
+        {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Registro(Usuario usu)
+        {
+            ViewBag.nombreUsuario = usu.nombre;
+            Session["usuarioLogueado"] = ViewBag.nombreUsuario;
+            int cant = login.RegistrarUsuario(usu);
+            ViewBag.cant = cant;
+            return RedirectToAction("Login");
+        }
+
+        public ActionResult Login() {
+            ViewBag.nombreUsuario = Session["usuarioLogueado"];
+             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(Usuario usu)
+        {
+            if (ModelState.IsValid)
+            {
+                bool usuarioEncontrado = login.verificarDatos(usu);
+
+                if (!usuarioEncontrado)
+                {
+                    ViewBag.msg = "Usuario y/o Contraseña inválidos.";
+
+                    return View();
+                }
+                else
+                {
+                    if (Request.QueryString["redirigir"] != null)
+                    {
+                        return Redirect(Request.QueryString["redirigir"]);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Publicacion", "Home");
+                    }
+                }
+
+            }
+
+            return View();
+        }
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Publicacion", "Home");
+        }
+
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";

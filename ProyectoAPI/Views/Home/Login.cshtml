@@ -1,0 +1,75 @@
+﻿@model ProyectoAPI.Models.Usuario
+
+@{
+    ViewBag.Title = "Login";
+    var user = Session["idUsuario"];
+    //if (user != null) {
+    //    Layout = "~/Views/Shared/_UsuarioLayout.cshtml";
+    //} else {
+    //    Layout = "~/Views/Shared/_AnonimoLayout.cshtml";
+    //}
+
+
+}
+<style>
+    
+    .login {
+          align-content : center;
+      }
+    .login label {
+        font-size : 16px;
+        }
+    .card {
+           /*margin-left:20px;*/
+    }
+
+</style>
+
+@using (Html.BeginForm("Login", "api/Login", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <br />
+    <br />
+    <div class="container">
+        <div class="row login justify-content-center">
+            <div class="col col-md-8">
+                <div class="card center-align col-md-12">
+
+                    <div class="card-action teal green white-text ">
+                        <h4>Login</h4>
+                        <hr />
+                        <span id="errorGeneral" class="text-danger">@ViewBag.msg</span>
+                        @if (ViewBag.nombreUsuario != null)
+                        {
+                            <span class="white-text">@ViewBag.nombreUsuario Se registro correctamente!!! Inicie Sesión</span>
+                        }
+                    </div>
+
+                    <div class="card-content col-md-12">
+
+                        <div class="form-field">
+                            @Html.Label("Email", new { @class = "" })
+                            @Html.EditorFor(model => model.email, new { @class = "" })
+                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+
+                        </div><br /><br />
+
+                        <div class="form-field">
+                            @Html.Label("Contraseña")
+
+                            @Html.EditorFor(model => model.pass, new { htmlAttributes = new { @type = "Password" } })
+                            @Html.ValidationMessageFor(model => model.pass, "", new { @class = "text-danger" })
+                        </div><br />
+
+                        <div class="form-field">
+                            <input type="submit" id="btnIngresar" name="btnIngresar" value="Ingresar" class="btn-large waves-green" />
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
