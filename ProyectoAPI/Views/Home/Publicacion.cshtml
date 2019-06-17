@@ -23,8 +23,12 @@
 <body>
     <nav class="color-pagina-1" role="navigation">
         <div class="nav-wrapper container">
-            <a id="logo-container" href="#" class="brand-logo"><img class="isologo-header" src="~/img/isologo/logotipo_blanco.png" /></a>
-            <ul class="right hide-on-med-and-down">
+            <div class="container">
+                <a id="logo-container" href="#" class="brand-logo">
+                <img class="isologo-header" src="~/img/isologo/logotipo_blanco.png" />
+                </a>
+            </div>
+                <ul class="right hide-on-med-and-down">
 
                 @if (Session["idUsuario"] != null)
                 {
@@ -55,11 +59,38 @@
                 }
 
             </ul>
-            <ul id="nav-mobile" class="sidenav">
-                @*<li><a href="#">Navbar Link</a></li>*@
-                <li>@Html.ActionLink("Adm. Publicaciones", "Index", "PublicacionCRUD", new { area = "" }, null)</li>
-                <li>@Html.ActionLink("Adm. Usuarios", "Index", "UsuarioCRUD", new { area = "" }, null)</li>
-            </ul>
+                <ul id="nav-mobile" class="sidenav">
+                    @if (Session["idUsuario"] != null)
+                    {
+                        <li>@Html.ActionLink("Adm. Publicaciones", "Index", "PublicacionCRUD", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("Adm. Usuarios", "Index", "UsuarioCRUD", new { area = "" }, null)</li>
+                        <li>
+                            <a class="dropdown-trigger" href="~/Home/Logout">
+                                Salir
+                                <i class="material-icons right">exit_to_app</i>
+                                @*<span class="personal">Sesion</span>*@
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a class="dropdown-trigger" href="~/Home/Login">
+                                Ingresar
+                                <i class="material-icons right">account_circle</i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-trigger" href="~/Home/Registro">
+                                Registrarse
+                                <i class="material-icons right">create</i>
+                            </a>
+                        </li>
+                    }
+                    @*<li><a href="#">Navbar Link</a></li>*@
+                    @*<li>@Html.ActionLink("Adm. Publicaciones", "Index", "PublicacionCRUD", new { area = "" }, null)</li>
+        <li>@Html.ActionLink("Adm. Usuarios", "Index", "UsuarioCRUD", new { area = "" }, null)</li>*@
+                </ul>
             <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         </div>
     </nav>
@@ -69,46 +100,67 @@
                 <br><br>
                 <h1 class="header center teal-text text-lighten-2">No deseches reutiliza</h1>
                 @*<div class="row center">
-                    <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-                </div>
-                <div class="row center">
-                    <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
-                </div>*@
+                        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+                    </div>
+                    <div class="row center">
+                        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
+                    </div>*@
                 <br><br>
             </div>
         </div>
         <div class="parallax"><img src="~/Content/Images/gente-plantando4.jpg" alt="Unsplashed background img 1"></div>
     </div>
+
+
+    @* Listado de Publicaciones Recientes *@
     <div class="container">
-     
         <ul class="collection with-header">
             <li class="collection-header"><h5>Publicaciones recientes</h5></li>
             @foreach (var item in (Model))
             {
-            <li class="collection-item avatar">
-                @*<img src="~/Content/Images/" + @item.imagen alt="" class="circle">
-        <img src="~/Content/Images/@(item.imagen)" alt="" class="circle">
-        @*<img src="~/Content/Images/" + @item.imagen alt="" class="circle">*@
-                <img src="~/Content/Images/@(item.imagenPortada)" alt="" class="circle">
-                <span class="title"> @item.titulo</span>
-                @*<p>
-            First Line <br>
-            Second Line
-        </p>*@
-
-                <a href="#!" class="secondary-content" style="top: 30px;"><i class="material-icons">grade</i></a>
-                <a href="#!" class="secondary-content" style="right : 55px;top: 30px;"><i class="material-icons">send</i></a>
-
-
-
-            </li>
+                <li class="collection-item avatar">
+                    @*<img src="~/Content/Images/" + @item.imagen alt="" class="circle">
+                        <img src="~/Content/Images/@(item.imagen)" alt="" class="circle">
+                        @*<img src="~/Content/Images/" + @item.imagen alt="" class="circle">*@
+                    <img src="~/Content/Images/@(item.imagenPortada)" alt="" class="circle">
+                    <span class="title"> @item.titulo</span>
+                    @*<p>
+                            First Line <br>
+                            Second Line
+                        </p>*@
+                    <a href="#!" class="secondary-content" style="top: 30px;"><i class="material-icons">grade</i></a>
+                    <a href="#!" class="secondary-content" style="right : 55px;top: 30px;"><i class="material-icons">send</i></a>
+                </li>
             }
-
-
         </ul>
-
-
     </div>
+
+    @* Video con parrafo *@
+
+    <section id="vid">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-light">
+                    <h2 class="mb-3 center brown-text">Hazlo tu mismo con todavía sirve</h2>
+                    <p>
+                        <h6>Con TodavíaSirve podras crear tus propias manualidades de manera rápida y sencilla.<br />
+                        Solamente tienes que elegir que materiales quieres reutilizar en que quieres tranformarlo y listo empieza a crear.
+                        </h6>
+                    </p>
+                    <a class="btn btn-info btn-large" href="#" role="button">Ver más</a>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <br />
+                    <br />
+                        <iframe width="340" height="315" src="https://www.youtube.com/embed/NjdxpePIIXc" frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
     <div class="container">
         <div class="section">
             <!--   Icon Section   -->
@@ -117,7 +169,10 @@
                     <div class="icon-block">
                         <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
                         <h5 class="center">Publicaciones rapidas</h5>
-                        <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+                        <p class="light">
+                            We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components.
+                            Additionally, we refined animations and transitions to provide a smoother experience for developers.
+                        </p>
                     </div>
                 </div>
                 <div class="col s12 m4">
@@ -131,7 +186,10 @@
                     <div class="icon-block">
                         <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
                         <h5 class="center">Facil de usar</h5>
-                        <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+                        <p class="light">
+                            We have provided detailed documentation as well as specific code examples to help new users get started.
+                            We are also always open to feedback and can answer any questions a user may have about Materialize.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -154,10 +212,12 @@
                 <div class="col s12 center">
                     <h3><i class="mdi-content-send brown-text"></i></h3>
                     <h4>Reutilización</h4>
-                    <p class="left-align light">Ya sea entendido como proceso de reconstrucción o transformación de productos de desecho en
-                    nuevos materiales a nivel industrial, como si se trata de un reciclaje doméstico, el reciclaje ayuda a prolongar la vida 
-                    y utilidad de los recursos.
-                    Sus beneficios, por lo tanto, serán tanto para los seres humanos como para el medio ambiente.;</p>
+                    <p class="left-align light">
+                        Ya sea entendido como proceso de reconstrucción o transformación de productos de desecho en
+                        nuevos materiales a nivel industrial, como si se trata de un reciclaje doméstico, el reciclaje ayuda a prolongar la vida
+                        y utilidad de los recursos.
+                        Sus beneficios, por lo tanto, serán tanto para los seres humanos como para el medio ambiente.;
+                    </p>
                 </div>
             </div>
         </div>
@@ -181,7 +241,7 @@
                     <p class="grey-text text-lighten-4">
                         Somos un equipo de estudiantes universitarios que trabajamos en este proyecto como si fuera nuestro trabajo de tiempo completo.
                         Buscamos ayudar a construir un mundo mejor a traves de la reutilización y esto nos inspira.
-                       @* Any amount would help support and continue development on this project and is greatly appreciated.*@
+                        @* Any amount would help support and continue development on this project and is greatly appreciated.*@
                     </p>
 
                 </div>
@@ -213,7 +273,7 @@
     </footer>
 
     <!--  Scripts-->
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js" /></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     @Scripts.Render("~/bundles/materialize")
     @*@RenderSection("scripts", required: false)*@
     @*<script src="js/materialize.js"></script>
