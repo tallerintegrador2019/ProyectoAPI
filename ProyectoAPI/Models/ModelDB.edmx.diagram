@@ -4,23 +4,27 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f27a8109acc545ffad90e9b76c8ad2bf" Name="Diagram1">
-        <EntityTypeShape EntityType="todaviasirveDBModel.Categoria" Width="1.5" PointX="1.75" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="todaviasirveDBModel.Feedback" Width="1.5" PointX="2.875" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="todaviasirveDBModel.Imagen" Width="1.5" PointX="4.625" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="todaviasirveDBModel.Material" Width="1.5" PointX="9.875" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="todaviasirveDBModel.Publicacion" Width="1.75" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="todaviasirveDBModel.Publicacion_Categoria" Width="2.25" PointX="4.5" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="todaviasirveDBModel.Publicacion_Material" Width="1.875" PointX="7.125" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="todaviasirveDBModel.Rango" Width="1.5" PointX="0.625" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="todaviasirveDBModel.Usuario" Width="1.5" PointX="0.625" PointY="4.875" IsExpanded="true" />
+      <Diagram DiagramId="a996aaa92ab64e26bd28df3a9110afd2" Name="Diagram1">
+        <EntityTypeShape EntityType="todaviasirveDBModel.Categoria" Width="1.5" PointX="12.875" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Enlace" Width="1.5" PointX="4.625" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Feedback" Width="1.5" PointX="4.375" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Imagen" Width="1.5" PointX="6.5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Material" Width="1.5" PointX="11.375" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Publicacion" Width="1.5" PointX="7.5" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Publicacion_Categoria" Width="1.5" PointX="10.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Publicacion_Material" Width="1.5" PointX="9" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Rango" Width="1.5" PointX="1" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Redes" Width="1.5" PointX="9" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Usuario" Width="1.5" PointX="1.125" PointY="6.875" IsExpanded="true" />
         <AssociationConnector Association="todaviasirveDBModel.FK_Publicacion_Categoria_Categoria" ManuallyRouted="false" />
+        <AssociationConnector Association="todaviasirveDBModel.FK_Enlace_Publicacion" ManuallyRouted="false" />
         <AssociationConnector Association="todaviasirveDBModel.FK_Feedback_Publicacion" ManuallyRouted="false" />
         <AssociationConnector Association="todaviasirveDBModel.FK_Feedback_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="todaviasirveDBModel.FK_Imagen_Publicacion" ManuallyRouted="false" />
         <AssociationConnector Association="todaviasirveDBModel.FK_Publicacion_Material_Material" ManuallyRouted="false" />
         <AssociationConnector Association="todaviasirveDBModel.FK_Publicacion_Categoria_Publicacion" ManuallyRouted="false" />
         <AssociationConnector Association="todaviasirveDBModel.FK_Publicacion_Material_Publicacion" ManuallyRouted="false" />
+        <AssociationConnector Association="todaviasirveDBModel.FK_Redes_Publicacion" ManuallyRouted="false" />
         <AssociationConnector Association="todaviasirveDBModel.FK_Usuario_Rango" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
