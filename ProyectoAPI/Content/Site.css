@@ -1,6 +1,8 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: "Berlin Sans FB";
+    src: "../fonts/BRLNSR.TTF" format("truetype");
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -14,4 +16,46 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.isologo-header {
+    position: inherit;
+    height: 88px;
+}
+
+.ancho-header {
+    max-width: 100% !important;
+}
+
+.container-fluid-mio {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    background-image: url(../Content/Images/plantar-plantulas.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.body-gradiente {
+    background: #39B54A; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #134E5E, #39B54A); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #134E5E, #39B54A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.form-personalizado {
+    background: black;
+    opacity: 0.5;
+    width: 400px !important;
+    height: 150px;
+    border-radius: 5px;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+
+.boton-centrado {
+    margin: 0 auto;
+}
+
+.borde-texto {
+    -webkit-text-stroke: 1px black;
 }

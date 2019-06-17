@@ -22,7 +22,7 @@ namespace ProyectoAPI.Services
             //var respuesta = client.GetAsync("http://localhost:55081/Api/Publicacion/Buscar/tres");
             // publicacion = respuesta.Content.ReadAsAsync<Publicacion>();
             //publicacion =await respuesta.Result.Content.ReadAsAsync<Publicacion>();
-            //return publicacion;
+            //
             List<Publicacion> publicaciones = instanciaBd.Publicacion.ToList();
             return publicaciones;
         }

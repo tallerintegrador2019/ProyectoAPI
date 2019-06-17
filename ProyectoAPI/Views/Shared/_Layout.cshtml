@@ -19,18 +19,12 @@
 
 </head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+<body class="body-gradiente">
+    <header class="navbar navbar-inverse navbar-fixed-top color-pagina-1">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Nombre de aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
+            <div class="white-text">
+                <a id="logo-container" href="#" class="brand-logo"><img class="isologo-header" src="~/img/isologo/logotipo_blanco_completo.png" /></a>
+            <div class=" collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
@@ -39,14 +33,50 @@
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
+    </header>
+    <div class="container-fluid-mio">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
-        </footer>
     </div>
+
+    <hr />
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Biografia</h5>
+                    <p class="grey-text text-lighten-4">
+                        Somos un equipo de estudiantes universitarios que trabajamos en este proyecto como si fuera nuestro trabajo de tiempo completo.
+                        Buscamos ayudar a construir un mundo mejor a traves de la reutilización y esto nos inspira.
+                        @* Any amount would help support and continue development on this project and is greatly appreciated.*@
+                    </p>
+
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Extras</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Publicaciones</a></li>
+                        <li><a class="white-text" href="#!">Pinterest</a></li>
+                        <li><a class="white-text" href="#!">Youtube</a></li>
+                        <li><a class="white-text" href="#!">Reconocimiento Imagenes</a></li>
+                    </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Contacto</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">RoberFernandez@company.co</a></li>
+                        <li><a class="white-text" href="#!">JoseGuinovart@company.co</a></li>
+                        <li><a class="white-text" href="#!">MichaelValencia@company.co</a></li>
+                        <li><a class="white-text" href="#!">LucasRanoni@company.co</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                Made by <a class="brown-text text-lighten-3">TodaviaSirve</a>
+            </div>
+        </div>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
