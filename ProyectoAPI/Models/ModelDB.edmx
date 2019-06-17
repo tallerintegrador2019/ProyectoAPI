@@ -91,6 +91,13 @@
           <Property Name="Instagram" Type="varchar" MaxLength="100" />
           <Property Name="idPublicacion" Type="int" />
         </EntityType>
+        <EntityType Name="Suscriptor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="id" />
@@ -234,6 +241,7 @@
           <EntitySet Name="Publicacion_Material" EntityType="Self.Publicacion_Material" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rango" EntityType="Self.Rango" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Redes" EntityType="Self.Redes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suscriptor" EntityType="Self.Suscriptor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Enlace_Publicacion" Association="Self.FK_Enlace_Publicacion">
             <End Role="Publicacion" EntitySet="Publicacion" />
@@ -385,6 +393,13 @@
           <Property Name="idPublicacion" Type="Int32" />
           <NavigationProperty Name="Publicacion" Relationship="Self.FK_Redes_Publicacion" FromRole="Redes" ToRole="Publicacion" />
         </EntityType>
+        <EntityType Name="Suscriptor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="id" />
@@ -530,6 +545,7 @@
           <EntitySet Name="Publicacion_Material" EntityType="Self.Publicacion_Material" />
           <EntitySet Name="Rango" EntityType="Self.Rango" />
           <EntitySet Name="Redes" EntityType="Self.Redes" />
+          <EntitySet Name="Suscriptor" EntityType="Self.Suscriptor" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
           <AssociationSet Name="FK_Publicacion_Categoria_Categoria" Association="Self.FK_Publicacion_Categoria_Categoria">
             <End Role="Categoria" EntitySet="Categoria" />
@@ -671,6 +687,14 @@
                 <ScalarProperty Name="youtube" ColumnName="youtube" />
                 <ScalarProperty Name="Instagram" ColumnName="Instagram" />
                 <ScalarProperty Name="idPublicacion" ColumnName="idPublicacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suscriptor">
+            <EntityTypeMapping TypeName="todaviasirveDBModel.Suscriptor">
+              <MappingFragment StoreEntitySet="Suscriptor">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="email" ColumnName="email" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

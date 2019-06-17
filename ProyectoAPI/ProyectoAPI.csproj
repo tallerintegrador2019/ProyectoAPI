@@ -270,6 +270,9 @@
     <Compile Include="Models\Redes.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Suscriptor.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Usuario.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>

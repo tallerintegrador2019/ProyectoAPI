@@ -141,16 +141,10 @@ namespace ProyectoAPI.Controllers
         }
 
 
-        /*   Imagga Api
-        Api Key =  acc_0e583cf299e6b14 
-        Api Secret = 0857f1d8b89dcb30afbb8c6c034ebd14
-        Authorization = Basic YWNjXzBlNTgzY2YyOTllNmIxNDowODU3ZjFkOGI4OWRjYjMwYWZiYjhjNmMwMzRlYmQxNA==
-        Api Endpoint = https://api.imagga.com
-        Sample Curl request = curl -u 
-        "acc_0e583cf299e6b14:0857f1d8b89dcb30afbb8c6c034ebd14" 
-        "https://api.imagga.com/v2/tags?image_url=https://imagga.com/static/images/tagging/wind-farm-538576_640.jpg"
-         
-         */
+      
+
+
+
     } // cierre clase
 } // cierre controller
                       
