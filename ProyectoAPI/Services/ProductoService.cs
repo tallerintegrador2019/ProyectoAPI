@@ -17,14 +17,14 @@ namespace ProyectoAPI.Services
 
         todaviasirveDBEntities instanciaBd = new todaviasirveDBEntities();
         public List<Publicacion> ObtenerPublicaciones() {
-            //Publicacion publicacion = new Publicacion();
+            Publicacion publicacion = new Publicacion();
             //HttpClient client = new HttpClient();
             //var respuesta = client.GetAsync("http://localhost:55081/Api/Publicacion/Buscar/tres");
             // publicacion = respuesta.Content.ReadAsAsync<Publicacion>();
             //publicacion =await respuesta.Result.Content.ReadAsAsync<Publicacion>();
-            //return publicacion;
-            //List<Publicacion> publicaciones = instanciaBd.Publicacion.ToList();
-            return null;
+            //
+            List<Publicacion> publicaciones = instanciaBd.Publicacion.ToList();
+            return publicaciones;
         }
 
     
