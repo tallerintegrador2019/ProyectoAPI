@@ -14,15 +14,14 @@
 <style>
     
     .login {
-        margin-top: 100px;
         margin-left:100px;
-    }
-    .login .card {
-          /*background-color: rgba(0,0,0,.6);*/
-    }
-        .login label {
+      }
+    .login label {
         font-size : 16px;
         }
+    .card {
+           margin-left:200px;
+    }
 
 </style>
 
@@ -31,8 +30,8 @@
     @Html.AntiForgeryToken()
     <br />
     <br />
-    <div class="row login">
-        <div class="col s9 9 offset-9">
+    <div class="row login center-align">
+        <div class="col col-md-6">
             <div class="card center-align">
                   
                     <div class="card-action teal green white-text ">
@@ -46,14 +45,14 @@
                
                     <div class="card-content center-align">
 
-                        <div class="form-field">
+                        <div class="form-field center-align">
                             @Html.Label("Email")
                             @Html.EditorFor(model => model.email)
                             @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
 
                         </div><br /><br />
 
-                            <div class="form-field">
+                            <div class="form-field center-align">
                                 @Html.Label("Contraseña")
 
                                 @Html.EditorFor(model => model.pass, new { htmlAttributes = new {@type = "Password" } })
