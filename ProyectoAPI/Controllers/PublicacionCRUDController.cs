@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ProyectoAPI.Models;
@@ -50,6 +52,18 @@ namespace ProyectoAPI.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (Request.Files.Count > 0)
+                {
+                    HttpPostedFileBase file = Request.Files[0];
+                    if (file.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(file.FileName);
+                        var imagenlocal= Path.Combine(
+                            Server.MapPath("~/Content/images"), fileName);
+                        file.SaveAs(imagenlocal);
+                        publicacion.imagenPortada = fileName;
+                    }
+                }  
                 db.Publicacion.Add(publicacion);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -123,5 +137,10 @@ namespace ProyectoAPI.Controllers
             }
             base.Dispose(disposing);
         }
+
+       
+
+        
+
     }
 }
