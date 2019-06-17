@@ -20,7 +20,9 @@ textarea {
 
 .isologo-header {
     position: inherit;
-    height: 88px;
+    height: 70px;
+    margin-left:50%;
+
 }
 
 .ancho-header {
