@@ -290,6 +290,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\0001_a.jpg" />
+    <Content Include="Content\Images\0001_b.jpg" />
+    <Content Include="Content\Images\0001_c.jpg" />
+    <Content Include="Content\Images\0001_d.jpg" />
+    <Content Include="Content\Images\0001_e.jpg" />
+    <Content Include="Content\Images\0001_portada.jpg" />
     <Content Include="Content\Images\10-apps-cuidar-medio-ambiente.jpg" />
     <Content Include="Content\Images\188333.png" />
     <Content Include="Content\Images\9- NOTA 510.jpg" />
@@ -377,9 +383,6 @@
     <Content Include="fonts\font-map-unicode-berlin-sans-fb.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="img\img0001.jpg" />
-    <Content Include="img\img0002.jpg" />
-    <Content Include="img\img0003.jpg" />
     <Content Include="img\isologo\logotipo_blanco.png" />
     <Content Include="img\isologo\logotipo_blanco_completo.png" />
     <Content Include="img\isologo\logotipo_negro.png" />
