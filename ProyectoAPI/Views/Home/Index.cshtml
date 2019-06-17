@@ -1,36 +1,62 @@
-﻿<div class="white-text text-center align-content-center">
+﻿<div class="green-text text-center align-content-center">
     <h1>No deseches reutiliza</h1>
     <h3>Piensa en todo lo que puedes llegar a crear y ayudar al medio ambiente.</h3>
 
     <h5>Suscribete a nuestro sitio y recibe una cuenta premium con nuestros beneficios</h5>
-    <form action="/" method="post" class="text-center form-personalizado">
-        <br />
-        <input type="email" name="email" placeholder="E-Mail" />
-        <br />
-        <input type="button" class="btn btn-info" value="Suscribirse" onclick="location.href='@Url.Action("Enviar","SuscriptorCRUD")'" />
-    </form>
+    <div class="form-personalizado">
+        <form action="/" method="post" class="text-center">
+            <br />
+            <input class="white-text" type="email" name="email" placeholder="E-Mail" />
+            <br />
+            <input type="button" class="btn btn-info" value="Suscribirse" onclick="location.href='@Url.Action("Enviar","SuscriptorCRUD")'" />
+        </form>
+    </div>
 
     <h2>Beneficios</h2>
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
-                <h5 class="white-text">Acceso a contenido exclusivo</h5>
-                <p class="grey-text text-lighten-4">
+                <h5>Acceso a contenido exclusivo</h5>
+                <p class="text-lighten-4">
                     Al tener tu cuenta premium tienes acceso a nuestro contenido exclusivo ántes que nadie.
                 </p>
             </div>
             <div class="col l3 s12">
-                <h5 class="white-text">Acceso a funciones exclusivas y betas</h5>
-                <p class="grey-text text-lighten-4">
+                <h5>Acceso a funciones exclusivas y betas</h5>
+                <p class="text-lighten-4">
                     También tendrás acceso a nuevas y exclusivas funciones como vender tus creaciones y publicaciones
                     con mayor visibilidad. Haz que tus creaciones tengan valor.
                 </p>
             </div>
             <div class="col l3 s12">
-                <h5 class="white-text">Se parte de nuestro staff</h5>
-                <p class="grey-text text-lighten-4">
+                <h5>Se parte de nuestro staff</h5>
+                <p class="text-lighten-4">
                     Tendrás la oportunidad de ser parte de nuestro equipo, creando contenido exclusivo y usar nuestro logo y ser parte de
                     nuestra comunidad de canales en Youtube.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <h2>Experiencias</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5>Marcos (38) - Diseñador gráfico</h5>
+                <img class="left-align" src="~/Content/Images/Experiencia1.png" alt="#" />
+                <p class="text-lighten-4">
+                    Como diseñador gráfico me da ideas para poder maquetar mis diseños y tener una idea de la forma que tendrá
+                    el objeto, además de ayudar al medio ambiente la creación de artesanías es un pasatiempo que me aleja de los
+                    ambientes estresantes.
+                </p>
+            </div>
+            <div class="col l3 s12">
+                <h5>Luciana (29) - Artesana</h5>
+                <img class="left-align" src="~/Content/Images/Experiencia2.png" alt="#" />
+                <p class="text-lighten-4">
+                    Me encanta la aplicación. Los instructivos son muy fáciles de entender y me da muchas ideas con la basura que
+                    genero. No solo me ayudó a reducir mi cantidad de basura, sino también a redecorar mi casa y plantearme la
+                    reconversión de materiales como parte de mi trabajo.
                 </p>
             </div>
         </div>

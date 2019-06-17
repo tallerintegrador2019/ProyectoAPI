@@ -31,7 +31,7 @@ textarea {
     width: 100%;
     margin-right: auto;
     margin-left: auto;
-    background-image: url(../Content/Images/auto-juguete.jpg);
+    background-image: url(../Content/Images/plantar-plantulas.jpg);
     background-attachment: fixed;
     background-size: cover;
 }
@@ -43,8 +43,8 @@ textarea {
 }
 
 .form-personalizado {
-    background: white;
-    border: 1px solid white;
+    background: black;
+    opacity: 0.5;
     width: 400px !important;
     height: 150px;
     border-radius: 5px;
@@ -54,4 +54,8 @@ textarea {
 
 .boton-centrado {
     margin: 0 auto;
+}
+
+.borde-texto {
+    -webkit-text-stroke: 1px black;
 }
