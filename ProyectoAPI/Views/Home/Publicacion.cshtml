@@ -26,19 +26,18 @@
             <a id="logo-container" href="#" class="brand-logo">TodaviaSirve</a>
             <ul class="right hide-on-med-and-down">
 
-                <li>@Html.ActionLink("Adm. Publicaciones", "Index", "PublicacionCRUD", new { area = "" }, null)</li>
-                <li>@Html.ActionLink("Adm. Usuarios", "Index", "UsuarioCRUD", new { area = "" }, null)</li>
-
                 @if (Session["idUsuario"] != null)
                 {
+                    <li>@Html.ActionLink("Adm. Publicaciones", "Index", "PublicacionCRUD", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Adm. Usuarios", "Index", "UsuarioCRUD", new { area = "" }, null)</li>
                     <li>
                         <a class="dropdown-trigger" href="~/Home/Logout">
                             Salir
                             <i class="material-icons right">exit_to_app</i>
                             @*<span class="personal">Sesion</span>*@
                         </a>
-                    </li>        
-                 }
+                    </li>
+                }
                 else
                 {
                     <li>
