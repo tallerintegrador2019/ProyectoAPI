@@ -26,19 +26,18 @@
             <a id="logo-container" href="#" class="brand-logo"><img class="isologo-header" src="~/img/isologo/logotipo_blanco.png" /></a>
             <ul class="right hide-on-med-and-down">
 
-                <li>@Html.ActionLink("Adm. Publicaciones", "Index", "PublicacionCRUD", new { area = "" }, null)</li>
-                <li>@Html.ActionLink("Adm. Usuarios", "Index", "UsuarioCRUD", new { area = "" }, null)</li>
-
                 @if (Session["idUsuario"] != null)
                 {
+                    <li>@Html.ActionLink("Adm. Publicaciones", "Index", "PublicacionCRUD", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Adm. Usuarios", "Index", "UsuarioCRUD", new { area = "" }, null)</li>
                     <li>
                         <a class="dropdown-trigger" href="~/Home/Logout">
                             Salir
                             <i class="material-icons right">exit_to_app</i>
                             @*<span class="personal">Sesion</span>*@
                         </a>
-                    </li>        
-                 }
+                    </li>
+                }
                 else
                 {
                     <li>
@@ -84,26 +83,26 @@
      
         <ul class="collection with-header">
             <li class="collection-header"><h5>Publicaciones recientes</h5></li>
-            @*@foreach (var item in (Model))
+            @foreach (var item in (Model))
             {
             <li class="collection-item avatar">
                 @*<img src="~/Content/Images/" + @item.imagen alt="" class="circle">
-                <img src="~/Content/Images/@(item.imagen)" alt="" class="circle">
-                @*<img src="~/Content/Images/" + @item.imagen alt="" class="circle">*@
+        <img src="~/Content/Images/@(item.imagen)" alt="" class="circle">
+        @*<img src="~/Content/Images/" + @item.imagen alt="" class="circle">*@
                 <img src="~/Content/Images/@(item.imagenPortada)" alt="" class="circle">
                 <span class="title"> @item.titulo</span>
-
                 @*<p>
-                    First Line <br>
-                    Second Line
-                </p>
+            First Line <br>
+            Second Line
+        </p>*@
+
                 <a href="#!" class="secondary-content" style="top: 30px;"><i class="material-icons">grade</i></a>
                 <a href="#!" class="secondary-content" style="right : 55px;top: 30px;"><i class="material-icons">send</i></a>
 
 
 
             </li>
-            }*@
+            }
 
 
         </ul>
