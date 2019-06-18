@@ -3,56 +3,63 @@
 @{
     ViewBag.Title = "Details";
 }
+<div class="container">
+    <div class="card">
+        <h2>Details</h2>
 
-<h2>Details</h2>
+        <div>
+            <h4>Publicacion</h4>
+            <hr />
+            <div class="card-content">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.titulo)
+                    </dt>
 
-<div>
-    <h4>Publicacion</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.titulo)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.titulo)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.titulo)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.subtitulo)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.subtitulo)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.subtitulo)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.subtitulo)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.descripcion)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.descripcion)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.descripcion)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.descripcion)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.fechaSubida)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.fechaSubida)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.fechaSubida)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.fechaSubida)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.imagenPortada)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.imagenPortada)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.imagenPortada)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.imagenPortada)
-        </dd>
+                </dl>
+            </div>
+        </div>
 
-    </dl>
+
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
