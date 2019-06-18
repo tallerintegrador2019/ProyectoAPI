@@ -20,21 +20,94 @@
 </head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <body class="body-gradiente">
-    <header class="navbar navbar-inverse navbar-fixed-top color-pagina-1">
-        <div class="container">
-            <div class="white-text">
-                <a id="logo-container" href="#" class="brand-logo"><img class="isologo-header" src="~/img/isologo/logotipo_blanco_completo.png" /></a>
-                <div class=" collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, null)</li>
-                        <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
-                        <li>@Html.ActionLink("Adm. Publicaciones", "Index", "PublicacionCRUD", new { area = "" }, null)</li>
-                        <li>@Html.ActionLink("Adm. Usuarios", "Index", "UsuarioCRUD", new { area = "" }, null)</li>
-                    </ul>
+    <nav class="color-pagina-1" role="navigation">
+        <div class="nav-wrapper container">
+
+            <a id="logo-container" href="~/Home/Publicacion" class="brand-logo">
+                <img class="isologo-header" src="~/img/isologo/logotipo_blanco_completo.png" />
+            </a>
+
+            <ul class="right hide-on-med-and-down">
+
+                @if (Session["idUsuario"] != null)
+                {
+                    <li>@Html.ActionLink("Adm. Publicaciones", "Index", "PublicacionCRUD", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Adm. Usuarios", "Index", "UsuarioCRUD", new { area = "" }, null)</li>
+                    <li>
+                        <a class="dropdown-trigger" href="~/Home/Logout">
+                            Salir
+                            <i class="material-icons right">exit_to_app</i>
+                            @*<span class="personal">Sesion</span>*@
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a class="dropdown-trigger" href="~/Home/Login">
+                            Ingresar
+                            <i class="material-icons right">account_circle</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-trigger" href="~/Home/Registro">
+                            Registrarse
+                            <i class="material-icons right">create</i>
+                        </a>
+                    </li>
+                }
+
+            </ul>
+            <ul id="nav-mobile" class="sidenav">
+                @if (Session["idUsuario"] != null)
+                {
+                    <li>@Html.ActionLink("Adm. Publicaciones", "Index", "PublicacionCRUD", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Adm. Usuarios", "Index", "UsuarioCRUD", new { area = "" }, null)</li>
+                    <li>
+                        <a class="dropdown-trigger" href="~/Home/Logout">
+                            Salir
+                            <i class="material-icons right">exit_to_app</i>
+                            @*<span class="personal">Sesion</span>*@
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a class="dropdown-trigger" href="~/Home/Login">
+                            Ingresar
+                            <i class="material-icons right">account_circle</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-trigger" href="~/Home/Registro">
+                            Registrarse
+                            <i class="material-icons right">create</i>
+                        </a>
+                    </li>
+                }
+                @*<li><a href="#">Navbar Link</a></li>*@
+                @*<li>@Html.ActionLink("Adm. Publicaciones", "Index", "PublicacionCRUD", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Adm. Usuarios", "Index", "UsuarioCRUD", new { area = "" }, null)</li>*@
+            </ul>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+    @*<header class="navbar navbar-inverse navbar-fixed-top limit-header">
+            <div class="container logo-position">
+                <div class="white-text">
+                    <a id="logo-container" href="~/Home/Publicacion" class="brand-logo"><img class="isologo-header" src="~/img/isologo/logotipo_blanco_completo.png" /></a>
+                    <div class=" collapse">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, null)</li>
+                            <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                            <li>@Html.ActionLink("Adm. Publicaciones", "Index", "PublicacionCRUD", new { area = "" }, null)</li>
+                            <li>@Html.ActionLink("Adm. Usuarios", "Index", "UsuarioCRUD", new { area = "" }, null)</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>*@
     <div class="container-fluid-mio">
         @RenderBody()
     </div>
