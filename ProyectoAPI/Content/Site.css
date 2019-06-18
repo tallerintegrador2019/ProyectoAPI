@@ -22,7 +22,6 @@ textarea {
     position: inherit;
     height: 70px;
     margin-left:50%;
-
 }
 
 .ancho-header {
@@ -31,6 +30,7 @@ textarea {
 
 .container-fluid-mio {
     width: 100%;
+    padding-top: 1px;
     margin-right: auto;
     margin-left: auto;
     background-image: url(../Content/Images/plantar-plantulas.jpg);
