@@ -22,8 +22,7 @@ namespace ProyectoAPI.Controllers
         {
             ViewBag.nombreUsuario = usu.nombre;
             Session["usuarioLogueado"] = ViewBag.nombreUsuario;
-            int cant = login.RegistrarUsuario(usu);
-            ViewBag.cant = cant;
+            login.RegistrarUsuario(usu);
             return RedirectToAction("Login");
         }
 

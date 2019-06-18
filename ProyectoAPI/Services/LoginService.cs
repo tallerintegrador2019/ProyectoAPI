@@ -24,15 +24,9 @@ namespace ProyectoAPI.Services
             return false;
         }
 
-        public int RegistrarUsuario(Usuario usu) {
-            int cantUsuarios=0;
+        public void RegistrarUsuario(Usuario usu) {
             contexto.Usuario.Add(usu);
-            contexto.SaveChanges();
-            foreach (var usuarios in contexto.Usuario)
-            {
-                cantUsuarios++;
-            }
-            return cantUsuarios; 
+            contexto.SaveChanges();       
         }
     }
 }
