@@ -117,31 +117,45 @@ namespace ProyectoAPI.Controllers
             return db.Publicacion.Count(e => e.id == id) > 0;
         }
 
+        // OBSOLETO
+        //// METODO BUSCAR  
+        //[HttpGet]
+        //[Route("Api/Publicacion/Buscar/{nombre}")]
+        //public HttpResponseMessage Buscar(string nombre)
+        //{
+        //    try
+        //    {
+        //        List<Publicacion> publicacion = (from publi in db.Publicacion
+        //                                         where publi.titulo.Contains(nombre)
+        //                                         select publi).ToList();
 
-        // METODO BUSCAR
+        //        var response = new HttpResponseMessage(HttpStatusCode.OK);
+        //        response.Content = new StringContent(JsonConvert.SerializeObject(publicacion));
+        //        response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+        //        return response;
+        //    }
+        //    catch
+        //    {
+        //        return new HttpResponseMessage(HttpStatusCode.BadRequest);
+        //    }
+        //}
+
         [HttpGet]
+        [ResponseType(typeof(Publicacion))]
         [Route("Api/Publicacion/Buscar/{nombre}")]
-        public HttpResponseMessage Buscar(string nombre)
+        public IHttpActionResult Buscar(string nombre)
         {
-            try
-            {
-                List<Publicacion> publicacion = (from publi in db.Publicacion
-                                                 where publi.titulo.Contains(nombre)
-                                                 select publi).ToList();
+            List<Publicacion> publicacion = (from publi in db.Publicacion
+                                             where publi.titulo.Contains(nombre)
+                                             select publi).ToList();
 
-                var response = new HttpResponseMessage(HttpStatusCode.OK);
-                response.Content = new StringContent(JsonConvert.SerializeObject(publicacion));
-                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                return response;
-            }
-            catch
+            if (publicacion == null)
             {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                return NotFound();
             }
+
+            return Ok(publicacion);
         }
-
-
-      
 
 
 
