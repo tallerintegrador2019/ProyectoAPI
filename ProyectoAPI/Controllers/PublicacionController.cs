@@ -18,11 +18,31 @@ namespace ProyectoAPI.Controllers
     {
         private todaviasirveDBEntities db = new todaviasirveDBEntities();
 
+        /*
         // GET: api/Publicacion
         public IQueryable<Publicacion> GetPublicacion()
         {
             return db.Publicacion;
         }
+        */
+
+        [HttpGet]
+        [ResponseType(typeof(Publicacion))]
+        [Route("Api/Publicacion/")]
+        public IHttpActionResult GetPublicacion()
+        {
+            List<Publicacion> publicacion = (from publi in db.Publicacion
+                                             select publi).ToList();
+
+            if (publicacion == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(publicacion);
+        }
+
+
 
         // GET: api/Publicacion/5
         [ResponseType(typeof(Publicacion))]
