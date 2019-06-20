@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="932e03e450f340ee8e4f11baaeb120ce" Name="Diagram1">
+        <EntityTypeShape EntityType="todaviasirveDBModel.Categoria" Width="1.5" PointX="10.5" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Compartir" Width="1.5" PointX="3.875" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Enlace" Width="1.5" PointX="6.5" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Material" Width="1.5" PointX="10" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Paso" Width="1.5" PointX="4.5" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Publicacion" Width="1.5" PointX="5.625" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Publicacion_Categoria" Width="1.5" PointX="8.125" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Publicacion_Material" Width="1.5" PointX="7.875" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Publicacion_Usuario" Width="1.5" PointX="3.125" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Rango" Width="1.5" PointX="0.5" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Suscriptor" Width="1.5" PointX="1.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Usuario" Width="1.5" PointX="0.5" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="todaviasirveDBModel.FK_Publicacion_Categoria_Categoria" ManuallyRouted="false" />
+        <AssociationConnector Association="todaviasirveDBModel.FK_Redes_Publicacion" ManuallyRouted="false" />
+        <AssociationConnector Association="todaviasirveDBModel.FK_Enlace_Publicacion" ManuallyRouted="false" />
+        <AssociationConnector Association="todaviasirveDBModel.FK_Publicacion_Material_Material" ManuallyRouted="false" />
+        <AssociationConnector Association="todaviasirveDBModel.FK_Imagen_Publicacion" ManuallyRouted="false" />
+        <AssociationConnector Association="todaviasirveDBModel.FK_Feedback_Publicacion" ManuallyRouted="false" />
+        <AssociationConnector Association="todaviasirveDBModel.FK_Publicacion_Categoria_Publicacion" ManuallyRouted="false" />
+        <AssociationConnector Association="todaviasirveDBModel.FK_Publicacion_Material_Publicacion" ManuallyRouted="false" />
+        <AssociationConnector Association="todaviasirveDBModel.FK_Feedback_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="todaviasirveDBModel.FK_Usuario_Rango" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
