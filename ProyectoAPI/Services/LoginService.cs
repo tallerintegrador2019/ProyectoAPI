@@ -17,7 +17,7 @@ namespace ProyectoAPI.Services
             if(usuarioEncontrado != null) {
                 HttpContext.Current.Session["idUsuario"] = usuarioEncontrado.id;
                 HttpContext.Current.Session["email"] = usuarioEncontrado.email;
-               if (usuarioEncontrado.id != null && usuarioEncontrado.id == 4)
+               if (usuarioEncontrado.email.Equals("admin@admin"))
                 {
                     HttpContext.Current.Session["esAdmin"] = true;
                 }

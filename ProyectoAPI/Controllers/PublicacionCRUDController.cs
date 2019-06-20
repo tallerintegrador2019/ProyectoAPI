@@ -22,6 +22,51 @@ namespace ProyectoAPI.Controllers
     {
         private todaviasirveDBEntities db = new todaviasirveDBEntities();
         PublicacionService service = new PublicacionService();
+
+        public ActionResult GuardarPublicacionCompleta(Publicacion publi,string[] pasos) {
+
+            int files = Request.Files.Count;
+            bool imagenDePublicacion = true;
+            for (int i = 0; i < files; i++)
+            {
+                var imagen = Request.Files[i];
+                if (imagen.ContentLength != 0)
+                {
+                    if (imagenDePublicacion)
+                    {
+                        var fileName = Path.GetFileName(imagen.FileName);
+                        var imagenlocal = Path.Combine(
+                        Server.MapPath("~/Content/images"), fileName);
+                        imagen.SaveAs(imagenlocal);
+                        publi.imagenPortada = fileName;
+                        imagenDePublicacion = false;
+                        db.Publicacion.Add(publi);
+                        db.SaveChanges();
+                    }
+                    else {
+                        var fileName = Path.GetFileName(imagen.FileName);
+                        var imagenlocal = Path.Combine(
+                        Server.MapPath("~/Content/images"), fileName);
+                        imagen.SaveAs(imagenlocal);
+                        Paso paso = new Paso();
+                        paso.idPublicacion = publi.id;
+                        paso.descripcion = pasos[i];
+                        paso.imagen = fileName;
+                        db.Paso.Add(paso);
+                       // paso.descripcion;
+
+                        // db.Paso.Add
+                    }
+                }
+            
+            }
+                   
+             
+            return View();
+        }
+
+
+
         // GET: PublicacionCRUD
         public ActionResult Index()
         {
@@ -79,18 +124,79 @@ namespace ProyectoAPI.Controllers
 
             return View(publicacion);
         }
-
-        public ActionResult ReconocerImagen() {
-            HttpPostedFileBase file = Request.Files[0];
-            string valor;
-            if (file.ContentLength > 0)
+        [HttpPost]
+        public ActionResult PostReconocerImagen(Publicacion publi , string[] pasos)
+        {
+            int files = Request.Files.Count;
+            bool imagenDePublicacion = true;
+            for (int i = 0; i < files; i++)
             {
-                var fileName = Path.GetFileName(file.FileName);
-                var imagenlocal = Path.Combine(
-                    Server.MapPath("~/Content/images"), fileName);
-                file.SaveAs(imagenlocal);
-               
+                var imagen = Request.Files[i];
+                if (imagen.ContentLength != 0)
+                {
+                    if (imagenDePublicacion)
+                    {
+                        var fileName = Path.GetFileName(imagen.FileName);
+                        var imagenlocal = Path.Combine(
+                        Server.MapPath("~/Content/images"), fileName);
+                        imagen.SaveAs(imagenlocal);
+                        publi.imagenPortada = fileName;
+                        imagenDePublicacion = false;
+                        db.Publicacion.Add(publi);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        var fileName = Path.GetFileName(imagen.FileName);
+                        var imagenlocal = Path.Combine(
+                        Server.MapPath("~/Content/images"), fileName);
+                        imagen.SaveAs(imagenlocal);
+                        Paso paso = new Paso();
+                        paso.idPublicacion = publi.id;
+                        paso.descripcion = pasos[i-1];
+                        paso.imagen = fileName;
+                        db.Paso.Add(paso);
+                        db.SaveChanges();
+                    }
+                }
+
             }
+         
+            //List<HttpPostedFileBase> lista = null;
+            
+
+
+            //var valor = archivos.Files;
+            //foreach (HttpPostedFileBase imagen in lista)
+            //    {
+
+            //        var fileName = Path.GetFileName(imagen.FileName);
+            //        var imagenlocal = Path.Combine(
+            //            Server.MapPath("~/Content/images"), fileName);
+            //        imagen.SaveAs(imagenlocal);
+            //    }
+
+            
+            //List<int> listado = new List<int>();
+            //listado.Add(archivos1.Count);
+            ////listado.Add(valor.Count);
+            //ViewBag.listadoReconocido = listado;
+            return RedirectToAction("ReconocerImagen");
+
+        }
+        public ActionResult ReconocerImagen() {
+
+            //HttpPostedFileBase file = Request.Files[0];
+            //string valor;
+            //if (file.ContentLength > 0)
+            //{
+            //    var fileName = Path.GetFileName(file.FileName);
+            //    var imagenlocal = Path.Combine(
+            //        Server.MapPath("~/Content/images"), fileName);
+            //    file.SaveAs(imagenlocal);
+
+            //}
+
             //Llamada a Imagga
             // Resultados en español : language=es 
             // Limite de resultados : limit=3 -- limit (default: -1 - meaning all tags)	
@@ -140,10 +246,12 @@ namespace ProyectoAPI.Controllers
             //var resultadoImagen = JsonConvert.DeserializeObject<JsonImagga>(resp);
             //Console.WriteLine(resultadoImagen.confidence);
             //Console.Write("valor" + resp);
-            List<string> listado = new List<string>();
-            listado.Add("Botella");
-            listado.Add("Plastico");
-            ViewBag.listadoReconocido = listado;
+            //List<string> listado = new List<string>();
+            //listado.Add("Botella");
+            //listado.Add("Plastico");
+            //ViewBag.listadoReconocido = listado;
+            //TablaPaso tablaPaso = new TablaPaso();
+            //ViewBag.tablaPaso = tablaPaso;
             return View();
         }
 
