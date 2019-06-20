@@ -21,7 +21,29 @@ namespace ProyectoAPI
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Scripts/node_modules/materialize-css/dist/css/materialize.min.css",
+                      "~/Scripts/node_modules/materialize-css/dist/css/materialize.css",
+                      "~/Scripts/node_modules/materialize-css/dist/css/style.css"));
+
+            bundles.Add(new StyleBundle("~/bundles/materializer").Include(
+                "~/Scripts/node_modules/materialize-css/dist/css/materialize.min.css",
+                "~/Scripts/node_modules/materialize-css/dist/css/materialize.css",
+                "~/Scripts/node_modules/materialize-css/dist/css/style.css"
+               ));
+
+            //"~/Scripts/node_modules/materialize-css/sass/components/*.scss",
+            //    "~/Scripts/node_modules/materialize-css/sass/components/forms/*.scss"
+            bundles.Add(new ScriptBundle("~/bundles/materialize").Include(
+                   "~/Scripts/node_modules/materialize-css/dist/js/init.js",
+                   "~/Scripts/node_modules/materialize-css/dist/js/materialize.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/materializerjs").Include(
+                      "~/Scripts/node_modules/materialize-css/dist/js/materialize.*",
+                      "~/Scripts/node_modules/materialize-css/js/*.js",
+                      "~/Scripts/node_modules/materialize-css/*.js"));
+            BundleTable.EnableOptimizations = true;
+
         }
     }
 }

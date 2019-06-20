@@ -49,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -213,27 +214,200 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginApiController.cs" />
+    <Compile Include="Controllers\PublicacionController.cs" />
+    <Compile Include="Controllers\PublicacionCRUDController.cs" />
+    <Compile Include="Controllers\UsuarioCRUDController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Categoria.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Enlace.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feedback.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Imagen.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Material.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Publicacion.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Publicacion_Categoria.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Publicacion_Material.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Rango.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Redes.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Suscriptor.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Usuario.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewModel\JsonImagga.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
+    <Compile Include="Services\LoginService.cs" />
+    <Compile Include="Services\PublicacionService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\0001_a.jpg" />
+    <Content Include="Content\Images\0001_b.jpg" />
+    <Content Include="Content\Images\0001_c.jpg" />
+    <Content Include="Content\Images\0001_d.jpg" />
+    <Content Include="Content\Images\0001_e.jpg" />
+    <Content Include="Content\Images\0001_portada.jpg" />
+    <Content Include="Content\Images\10-apps-cuidar-medio-ambiente.jpg" />
+    <Content Include="Content\Images\188333.png" />
+    <Content Include="Content\Images\9- NOTA 510.jpg" />
+    <Content Include="Content\Images\activista-ambiental.jpg" />
+    <Content Include="Content\Images\auto-juguete.jpg" />
+    <Content Include="Content\Images\background1.jpg" />
+    <Content Include="Content\Images\background2.jpg" />
+    <Content Include="Content\Images\background3.jpg" />
+    <Content Include="Content\Images\ballena-muerta-instalacion-arte.jpg" />
+    <Content Include="Content\Images\basura-reciclable-9.jpg" />
+    <Content Include="Content\Images\basura-reciclable.jpg" />
+    <Content Include="Content\Images\BolsaReciclada.jpg" />
+    <Content Include="Content\Images\botella-agua.jpg" />
+    <Content Include="Content\Images\botella-plantas.jpg" />
+    <Content Include="Content\Images\botella-plastica-vacia.jpg" />
+    <Content Include="Content\Images\botellas-plastico.jpg" />
+    <Content Include="Content\Images\botellas-plastico1.jpg" />
+    <Content Include="Content\Images\botellas.jpeg" />
+    <Content Include="Content\Images\botellin.png" />
+    <Content Include="Content\Images\casco-reciclar.jpg" />
+    <Content Include="Content\Images\cebolleta-reciclaje.jpg" />
+    <Content Include="Content\Images\celular-logo.jpg" />
+    <Content Include="Content\Images\chica-asiatica.jpg" />
+    <Content Include="Content\Images\chicos-reciclaje.jpg" />
+    <Content Include="Content\Images\columpios-parque.jpg" />
+    <Content Include="Content\Images\concepto-diseno.jpg" />
+    <Content Include="Content\Images\concepto-gestion.jpg" />
+    <Content Include="Content\Images\contaminacion-ambiental.jpg" />
+    <Content Include="Content\Images\contaminacion-botellas.jpg" />
+    <Content Include="Content\Images\contaminacion-botellas2.jpg" />
+    <Content Include="Content\Images\contaminacion-botellas3.jpg" />
+    <Content Include="Content\Images\contaminacion-mares-plastico.jpg" />
+    <Content Include="Content\Images\creciente.jpg" />
+    <Content Include="Content\Images\cultivo-botellas.jpg" />
+    <Content Include="Content\Images\descarga.jpg" />
+    <Content Include="Content\Images\descarga.png" />
+    <Content Include="Content\Images\diseno-icono.jpg" />
+    <Content Include="Content\Images\eco84_88_original.jpg" />
+    <Content Include="Content\Images\ecosistema.jpg" />
+    <Content Include="Content\Images\Experiencia1.png" />
+    <Content Include="Content\Images\Experiencia2.png" />
+    <Content Include="Content\Images\favicon_1.png" />
+    <Content Include="Content\Images\gente-plantando.jpg" />
+    <Content Include="Content\Images\gente-plantando2.jpg" />
+    <Content Include="Content\Images\gente-plantando3.jpg" />
+    <Content Include="Content\Images\gente-plantando4.jpg" />
+    <Content Include="Content\Images\guirnaldas-botellas.jpg" />
+    <Content Include="Content\Images\hombre-negocios.jpg" />
+    <Content Include="Content\Images\image.jpg" />
+    <Content Include="Content\Images\istockphoto-610229362-612x612.jpg" />
+    <Content Include="Content\Images\lampara-reciclada-icono.jpg" />
+    <Content Include="Content\Images\lobobasura3.jpg" />
+    <Content Include="Content\Images\masetas-dibujo.jpg" />
+    <Content Include="Content\Images\maxresdefault.jpg" />
+    <Content Include="Content\Images\mujer-sonriente.jpg" />
+    <Content Include="Content\Images\ninos-que-plantan-plantas-semillero-.jpg" />
+    <Content Include="Content\Images\no-utilice-plastico.jpg" />
+    <Content Include="Content\Images\nucleos-rollo.jpg" />
+    <Content Include="Content\Images\Opener plastic.jpg" />
+    <Content Include="Content\Images\personas-sujetando.jpg" />
+    <Content Include="Content\Images\planta-arbol-simbolo.jpg" />
+    <Content Include="Content\Images\planta-botella.jpg" />
+    <Content Include="Content\Images\plantar-plantulas.jpg" />
+    <Content Include="Content\Images\plantas-semillero.jpg" />
+    <Content Include="Content\Images\plantas-semillero2.jpg" />
+    <Content Include="Content\Images\plantulas-crecen.jpg" />
+    <Content Include="Content\Images\plantulas-crecen2.jpg" />
+    <Content Include="Content\Images\plastic_ticker.jpg" />
+    <Content Include="Content\Images\portada22.jpg" />
+    <Content Include="Content\Images\propaganda - Copia.jpg" />
+    <Content Include="Content\Images\propaganda.jpg" />
+    <Content Include="Content\Images\Reciclaje-envase2.jpg" />
+    <Content Include="Content\Images\reciclaje-reutilizacion.jpg" />
+    <Content Include="Content\Images\reciclar-diseno - Copia.jpg" />
+    <Content Include="Content\Images\reciclar-diseno.jpg" />
+    <Content Include="Content\Images\reciclar-diseno2 - Copia.jpg" />
+    <Content Include="Content\Images\reciclar-diseno2.jpg" />
+    <Content Include="Content\Images\rueda maseta.jpg" />
+    <Content Include="Content\Images\siembra-botas.jpg" />
+    <Content Include="Content\Images\trituracion-utiliza.jpg" />
+    <Content Include="Content\Images\two-leaves-hi.png" />
+    <Content Include="Content\Images\varias-botellas.jpg" />
+    <Content Include="Content\Images\varios-tipos-reciclaje.jpg" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\berlin-sans-fb.png" />
+    <Content Include="fonts\font-map-berlin-sans-fb.png" />
+    <Content Include="fonts\font-map-unicode-berlin-sans-fb.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="img\isologo\logotipo_blanco.png" />
+    <Content Include="img\isologo\logotipo_blanco_completo.png" />
+    <Content Include="img\isologo\logotipo_negro.png" />
+    <Content Include="img\isologo\logotipo_verde.png" />
+    <Content Include="img\isologo\logo_blanco.png" />
+    <Content Include="img\isologo\logo_negro.png" />
+    <Content Include="img\isologo\logo_verde.png" />
+    <Content Include="Models\ModelDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelDB.edmx</DependentUpon>
+      <LastGenOutput>ModelDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ModelDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelDB.edmx</DependentUpon>
+      <LastGenOutput>ModelDB.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -255,6 +429,23 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="fonts\BRLNSR.TTF" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Content\Images\elefante.webp" />
+    <EntityDeploy Include="Models\ModelDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ModelDB.edmx.diagram">
+      <DependentUpon>ModelDB.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -266,7 +457,48 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Scripts\node_modules\materialize-css\dist\css\materialize.css" />
+    <Content Include="Scripts\node_modules\materialize-css\dist\css\materialize.min.css" />
+    <Content Include="Scripts\node_modules\materialize-css\dist\css\style.css" />
+    <Content Include="Scripts\node_modules\materialize-css\dist\js\init.js" />
+    <Content Include="Scripts\node_modules\materialize-css\dist\js\materialize.js" />
+    <Content Include="Scripts\node_modules\materialize-css\dist\js\materialize.min.js" />
+    <Content Include="Scripts\node_modules\materialize-css\extras\noUiSlider\nouislider.css" />
+    <Content Include="Scripts\node_modules\materialize-css\extras\noUiSlider\nouislider.js" />
+    <Content Include="Scripts\node_modules\materialize-css\extras\noUiSlider\nouislider.min.js" />
+    <Content Include="Scripts\node_modules\materialize-css\Gruntfile.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\anime.min.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\autocomplete.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\buttons.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\cards.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\carousel.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\cash.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\characterCounter.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\chips.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\collapsible.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\component.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\datepicker.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\dropdown.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\forms.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\global.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\materialbox.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\modal.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\parallax.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\pushpin.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\range.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\scrollspy.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\select.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\sidenav.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\slider.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\tabs.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\tapTarget.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\timepicker.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\toasts.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\tooltip.js" />
+    <Content Include="Scripts\node_modules\materialize-css\js\waves.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -280,6 +512,66 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Scripts\node_modules\materialize-css\CHANGELOG.md" />
+    <Content Include="Scripts\node_modules\materialize-css\LICENSE" />
+    <Content Include="Scripts\node_modules\materialize-css\package.json" />
+    <Content Include="Scripts\node_modules\materialize-css\README.md" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\forms\_checkboxes.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\forms\_file-input.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\forms\_forms.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\forms\_input-fields.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\forms\_radio-buttons.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\forms\_range.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\forms\_select.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\forms\_switches.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_badges.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_buttons.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_cards.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_carousel.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_chips.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_collapsible.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_color-classes.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_color-variables.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_datepicker.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_dropdown.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_global.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_grid.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_icons-material-design.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_materialbox.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_modal.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_navbar.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_normalize.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_preloader.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_pulse.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_sidenav.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_slider.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_table_of_contents.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_tabs.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_tapTarget.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_timepicker.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_toast.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_tooltip.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_transitions.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_typography.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_variables.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\components\_waves.scss" />
+    <Content Include="Scripts\node_modules\materialize-css\sass\materialize.scss" />
+    <Content Include="Scripts\package-lock.json" />
+    <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Home\Publicacion.cshtml" />
+    <Content Include="Views\UsuarioCRUD\Create.cshtml" />
+    <Content Include="Views\UsuarioCRUD\Delete.cshtml" />
+    <Content Include="Views\UsuarioCRUD\Details.cshtml" />
+    <Content Include="Views\UsuarioCRUD\Edit.cshtml" />
+    <Content Include="Views\UsuarioCRUD\Index.cshtml" />
+    <Content Include="Views\PublicacionCRUD\Create.cshtml" />
+    <Content Include="Views\PublicacionCRUD\Delete.cshtml" />
+    <Content Include="Views\PublicacionCRUD\Details.cshtml" />
+    <Content Include="Views\PublicacionCRUD\Edit.cshtml" />
+    <Content Include="Views\PublicacionCRUD\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Registro.cshtml" />
+    <Content Include="Views\PublicacionCRUD\ReconocerImagen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -309,9 +601,14 @@
     <Content Include="Content\bootstrap-theme.css.map" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -346,6 +643,13 @@
       <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <Target Name="CopyRoslynFiles" AfterTargets="AfterBuild" Condition="!$(Disable_CopyWebApplication) And '$(OutDir)' != '$(OutputPath)'">
+    <ItemGroup>
+      <RoslynFiles Include="$(CscToolPath)\*" />
+    </ItemGroup>
+    <MakeDir Directories="$(WebProjectOutputDir)\bin\roslyn" />
+    <Copy SourceFiles="@(RoslynFiles)" DestinationFolder="$(WebProjectOutputDir)\bin\roslyn" SkipUnchangedFiles="true" Retries="$(CopyRetryCount)" RetryDelayMilliseconds="$(CopyRetryDelayMilliseconds)" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
