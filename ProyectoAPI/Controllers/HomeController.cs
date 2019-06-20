@@ -27,7 +27,7 @@ namespace ProyectoAPI.Controllers
         }
 
         public ActionResult Login() {
-            ViewBag.nombreUsuario = Session["usuarioLogueado"];
+             ViewBag.nombreUsuario = Session["usuarioLogueado"];
              return View();
         }
 

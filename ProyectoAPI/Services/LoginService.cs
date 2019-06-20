@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ProyectoAPI;
-
 namespace ProyectoAPI.Services
 {
     public class LoginService
@@ -18,15 +17,28 @@ namespace ProyectoAPI.Services
             if(usuarioEncontrado != null) {
                 HttpContext.Current.Session["idUsuario"] = usuarioEncontrado.id;
                 HttpContext.Current.Session["email"] = usuarioEncontrado.email;
-
+               if (usuarioEncontrado.id != null && usuarioEncontrado.id == 4)
+                {
+                    HttpContext.Current.Session["esAdmin"] = true;
+                }
                 return true;
             }
             return false;
         }
+        public bool verificarDatosApi(Usuario usu)
+        {
+            Usuario usuarioEncontrado = contexto.Usuario.Where(u => u.email.Equals(usu.email) && u.pass.Equals(usu.pass)).FirstOrDefault();
 
-        public void RegistrarUsuario(Usuario usu) {
+            if (usuarioEncontrado != null)
+            {
+                  return true;
+            }
+            return false;
+        }
+        public int RegistrarUsuario(Usuario usu) {
             contexto.Usuario.Add(usu);
-            contexto.SaveChanges();       
+            contexto.SaveChanges();
+            return usu.id;
         }
     }
 }
