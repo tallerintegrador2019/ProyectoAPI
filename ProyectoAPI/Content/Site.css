@@ -36,7 +36,7 @@ textarea {
     background-image: url(../Content/Images/plantar-plantulas.jpg);
     background-attachment: fixed;
     background-size: cover;
-    text-shadow: 2px 2px 2px #333;
+    
 }
 
 .body-gradiente {
@@ -65,4 +65,8 @@ textarea {
 .fondos-varios {
     background-color: rgba(0,0,0,0.8);
     color: #39B54A;
+}
+
+.texto-sombra {
+    text-shadow: 2px 2px 2px #333;
 }

@@ -18,13 +18,13 @@ namespace ProyectoAPI.Controllers
             return View();
         }
 
-        // GET: UsuarioCRUD/Create
+        // GET: Suscriptor/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: UsuarioCRUD/Create
+        // POST: Suscriptor/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
