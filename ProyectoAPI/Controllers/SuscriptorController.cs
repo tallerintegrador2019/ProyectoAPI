@@ -29,13 +29,13 @@ namespace ProyectoAPI.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Suscriptor suscr)
+        public ActionResult Create([Bind(Include = "id,email")]Suscriptor suscr)
         {
             if (ModelState.IsValid)
             {
                 db.Suscriptor.Add(suscr);
                 db.SaveChanges();
-                return RedirectToAction("Publicacion");
+                return RedirectToAction("Index","Suscriptor");
             }
 
             return View(suscr);

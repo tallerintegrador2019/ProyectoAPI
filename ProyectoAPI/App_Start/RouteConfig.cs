@@ -16,7 +16,7 @@ namespace ProyectoAPI
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Publicacion", id = UrlParameter.Optional }
+                defaults: new { controller = "Suscriptor", action = "Create", id = UrlParameter.Optional }
             );
         }
     }

@@ -1,6 +1,6 @@
-﻿@model ProyectoAPI.Models.Suscriptor
+﻿
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Index";
     Layout = null;
 }
 <!DOCTYPE html>
@@ -32,7 +32,7 @@
                 <img class="isologo-header" src="~/img/isologo/logotipo_blanco_completo.png" />
             </a>
 
-            
+
             <ul id="nav-mobile" class="sidenav">
                 @if (Session["idUsuario"] != null)
                 {
@@ -71,64 +71,9 @@
             <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         </div>
     </nav>
-    <div class="green-text text-center texto-sombra">
-        <div class="container-fluid-mio">
-            <h1>No deseches reutiliza</h1>
-            <h3>Piensa en todo lo que puedes llegar a crear y ayudar al medio ambiente.</h3>
-            <div class="row body-suscribir">
-                <div class="col-6">
-
-                </div>
-                <div class="col-6 mitad">
-                    <h4>Suscribete a nuestro sitio y recibe una cuenta premium con nuestros beneficios</h4>
-                    <div class="form-personalizado white-text">
-                        @using (Html.BeginForm())
-                        {
-                            @Html.AntiForgeryToken()
-                            <div class="form-group">
-                                <h6>E-Mail</h6>
-                                <div class="col-md-10 boton-centrado">
-                                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10 boton-centrado">
-                                    <input type="submit" value="Suscribirse" class="btn btn-default" />
-                                </div>
-                            </div>
-                        }
-                    </div>
-                    <h2>Beneficios</h2>
-                    <div>
-                        <div class="row">
-                            <div class="col l6 s12 fondos-varios">
-                                <h4>Acceso a contenido exclusivo</h4>
-                                <h6 class="text-lighten-4">
-                                    Al tener tu cuenta premium tienes acceso a nuestro contenido exclusivo ántes que nadie.
-                                </h6>
-                            </div>
-                            <div class="col l3 s12 fondos-varios">
-                                <h4>Acceso a funciones exclusivas y betas</h4>
-                                <h6 class="text-lighten-4">
-                                    También tendrás acceso a nuevas y exclusivas funciones como vender tus creaciones y publicaciones
-                                    con mayor visibilidad. Haz que tus creaciones tengan valor.
-                                </h6>
-                            </div>
-                            <div class="col l3 s12 fondos-varios">
-                                <h4>Se parte de nuestro staff</h4>
-                                <h6 class="text-lighten-4">
-                                    Tendrás la oportunidad de ser parte de nuestro equipo, creando contenido exclusivo y usar nuestro logo y ser parte de
-                                    nuestra comunidad de canales en Youtube.
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+    <div class="green-text texto-sombra fondo-padding text-center container-fluid-mio">
+        <img src="~/Content/Images/logo_verde.png" class="foquin"/>
+        <h1>Muchas gracias. Ya es parte de TodaviaSirve</h1>
     </div>
     <hr />
     <footer>
@@ -148,3 +93,4 @@
     @*@RenderSection("scripts", required: false)*@
 </body>
 </html>
+
