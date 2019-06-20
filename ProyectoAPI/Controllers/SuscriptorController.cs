@@ -18,6 +18,15 @@ namespace ProyectoAPI.Controllers
             return View();
         }
 
+        // GET: UsuarioCRUD/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: UsuarioCRUD/Create
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Suscriptor suscr)
