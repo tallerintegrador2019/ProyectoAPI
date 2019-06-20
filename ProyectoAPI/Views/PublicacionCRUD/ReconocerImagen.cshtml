@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Reconocer Imagen";
+}
+
+<div class="container">
+    <div class="card">
+        <div class="card-content">
+
+
+            <h2>Reconocimiento de Imagenes</h2>
+            @using (Html.BeginForm("ReconocerImagen", "PublicacionCRUD", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    @Html.Label("Ingresar imagen a reconocer", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBox("Imagen", "ingrese imagen", new { type = "file" })
+                    </div>
+                </div>
+                if (ViewBag.listadoReconocido != null)
+                {
+                    foreach (string item in (List<string>)ViewBag.listadoReconocido)
+                    {
+                        <div class="form-group">
+                            @Html.Label(item, htmlAttributes: new { @class = "control-label col-md-6" })
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="form-group">
+                        @Html.Label("Sin resultados", htmlAttributes: new { @class = "control-label col-md-2" })
+                    </div>
+                }
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Reconocer Imagen" class="btn btn-default" />
+                    </div>
+                </div>
+                <br />
+                <br />
+
+            }
+
+        </div>
+    </div>
+</div>

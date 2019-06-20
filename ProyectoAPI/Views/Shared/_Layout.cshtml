@@ -31,8 +31,11 @@
 
                 @if (Session["idUsuario"] != null)
                 {
+                    if (Session["esAdmin"] != null)
+                    {
                     <li>@Html.ActionLink("Adm. Publicaciones", "Index", "PublicacionCRUD", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("Adm. Usuarios", "Index", "UsuarioCRUD", new { area = "" }, null)</li>
+                    }
                     <li>
                         <a class="dropdown-trigger" href="~/Home/Logout">
                             Salir
@@ -61,8 +64,11 @@
             <ul id="nav-mobile" class="sidenav">
                 @if (Session["idUsuario"] != null)
                 {
+                    if (Session["esAdmin"] != null)
+                    {
                     <li>@Html.ActionLink("Adm. Publicaciones", "Index", "PublicacionCRUD", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("Adm. Usuarios", "Index", "UsuarioCRUD", new { area = "" }, null)</li>
+                    }
                     <li>
                         <a class="dropdown-trigger" href="~/Home/Logout">
                             Salir
