@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ProyectoAPI.Models;
+
 
 namespace ProyectoAPI.Controllers
 {
@@ -78,6 +81,24 @@ namespace ProyectoAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+
+            var request = HttpContext.Current.Request;
+
+            if (Request.Content.IsMimeMultipartContent())
+            {
+                if (request.Files.Count > 0)
+                {
+
+                    var postedFile = request.Files.Get("file");
+                    var title = request.Params["title"];
+                    string root = HttpContext.Current.Server.MapPath("~/Content/Images");
+                    root = root + "/" + postedFile.FileName;
+                    postedFile.SaveAs(root);
+         
+                }
+
+            }
+
 
             db.Usuario.Add(usuario);
             db.SaveChanges();
