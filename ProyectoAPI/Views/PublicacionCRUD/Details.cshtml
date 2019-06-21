@@ -49,9 +49,38 @@
                     </dt>
 
                     <dd>
+                        <img src="~/Content/Images/@Html.DisplayFor(model => model.imagenPortada)" alt="avatar" height="200" width="200" />
                         @Html.DisplayFor(model => model.imagenPortada)
                     </dd>
 
+                    <div class="col-md-12">
+                        <ul class="list-group">
+                            <li class="list-group-item">Pasos</li>
+                            @foreach (var usr in ViewBag.listadoPasos)
+                            {
+                           
+                                <div class="col-md-12">
+                                    <li>
+                                        @usr.descripcion
+                                     <img  src="~/Content/Images/@usr.imagen" alt="avatar" height="200" width="200" />
+                                    </li>
+                                </div>
+                          
+                               
+                            }
+                        </ul>
+                    </div>
+                    @*@foreach (var item in ((List<ProyectoAPI.Models.Paso>)ViewBag.listadoPasos))
+                    {
+                        <dt>
+                            @Html.DisplayName(item.descripcion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayName(item.imagen)
+                        </dd>
+
+                    }*@
                 </dl>
             </div>
         </div>

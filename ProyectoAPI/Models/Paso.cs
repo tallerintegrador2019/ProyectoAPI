@@ -12,11 +12,11 @@ namespace ProyectoAPI.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Redes
+    public partial class Paso
     {
         public int id { get; set; }
-        public string youtube { get; set; }
-        public string Instagram { get; set; }
+        public string descripcion { get; set; }
+        public string imagen { get; set; }
         public Nullable<int> idPublicacion { get; set; }
     
         public virtual Publicacion Publicacion { get; set; }

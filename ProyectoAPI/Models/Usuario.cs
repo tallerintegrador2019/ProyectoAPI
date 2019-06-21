@@ -17,7 +17,7 @@ namespace ProyectoAPI.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Usuario()
         {
-            this.Feedback = new HashSet<Feedback>();
+            this.Publicacion_Usuario = new HashSet<Publicacion_Usuario>();
         }
     
         public int id { get; set; }
@@ -26,10 +26,11 @@ namespace ProyectoAPI.Models
         public string nombre { get; set; }
         public string apellido { get; set; }
         public string email { get; set; }
+        public string imagen { get; set; }
         public Nullable<int> idRango { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Feedback> Feedback { get; set; }
+        public virtual ICollection<Publicacion_Usuario> Publicacion_Usuario { get; set; }
         public virtual Rango Rango { get; set; }
     }
 }
