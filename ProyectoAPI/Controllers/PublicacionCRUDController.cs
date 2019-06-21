@@ -43,25 +43,24 @@ namespace ProyectoAPI.Controllers
                         db.Publicacion.Add(publi);
                         db.SaveChanges();
                     }
-                    else {
+                    else
+                    {
                         var fileName = Path.GetFileName(imagen.FileName);
                         var imagenlocal = Path.Combine(
                         Server.MapPath("~/Content/images"), fileName);
                         imagen.SaveAs(imagenlocal);
                         Paso paso = new Paso();
                         paso.idPublicacion = publi.id;
-                        paso.descripcion = pasos[i];
+                        paso.descripcion = pasos[i - 1];
                         paso.imagen = fileName;
                         db.Paso.Add(paso);
-                       // paso.descripcion;
-
-                        // db.Paso.Add
+                        db.SaveChanges();
                     }
                 }
-            
+
             }
-                   
-             
+
+
             return View();
         }
 
@@ -81,9 +80,13 @@ namespace ProyectoAPI.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Publicacion publicacion = db.Publicacion.Find(id);
+            List<Paso> listadoPasos = db.Paso.Where(val => val.idPublicacion == id).ToList();
             if (publicacion == null)
             {
                 return HttpNotFound();
+            }
+            if (listadoPasos != null) {
+                ViewBag.listadoPasos = listadoPasos;
             }
             return View(publicacion);
         }
