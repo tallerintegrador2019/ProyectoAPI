@@ -9,12 +9,14 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using ProyectoAPI.Models;
 
 
 namespace ProyectoAPI.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UsuarioController : ApiController
     {
         private todaviasirveDBEntities db = new todaviasirveDBEntities();
@@ -84,21 +86,19 @@ namespace ProyectoAPI.Controllers
 
             var request = HttpContext.Current.Request;
 
-            if (Request.Content.IsMimeMultipartContent())
+            if (request.Files.Count > 0)
             {
-                if (request.Files.Count > 0)
+                var file = request.Files[0];
+
+                if (file.ContentLength > 0)
                 {
+                    var fileName = Path.GetFileName(file.FileName);
+                    var imagenlocal = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Images"), fileName);
 
-                    var postedFile = request.Files.Get("file");
-                    var title = request.Params["title"];
-                    string root = HttpContext.Current.Server.MapPath("~/Content/Images");
-                    root = root + "/" + postedFile.FileName;
-                    postedFile.SaveAs(root);
-         
+                    file.SaveAs(imagenlocal);
+                    usuario.imagen = fileName;
                 }
-
             }
-
 
             db.Usuario.Add(usuario);
             db.SaveChanges();

@@ -62,6 +62,7 @@ namespace ProyectoAPI.Controllers
                     {
                         var fileName = Path.GetFileName(file.FileName);
                         var imagenlocal = Path.Combine( Server.MapPath("~/Content/Images"), fileName );
+
                         file.SaveAs(imagenlocal);
                         usuario.imagen = fileName;
                     }
