@@ -61,7 +61,8 @@ namespace ProyectoAPI.Controllers
                     if (file.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(file.FileName);
-                        var imagenlocal = Path.Combine( Server.MapPath("~/Content/Images"), fileName );
+                        var imagenlocal = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
+
                         file.SaveAs(imagenlocal);
                         usuario.imagen = fileName;
                     }
