@@ -11,13 +11,10 @@ namespace ProyectoAPI.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Suscriptor
     {
         public int id { get; set; }
-        [Required(ErrorMessage = "El valor es requerido.")]
-        [EmailAddress(ErrorMessage = "El valor no es un E-Mail valido.")]
         public string email { get; set; }
     }
 }

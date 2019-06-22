@@ -219,6 +219,7 @@
     <Compile Include="Controllers\PublicacionController.cs" />
     <Compile Include="Controllers\PublicacionCRUDController.cs" />
     <Compile Include="Controllers\SuscriptorController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\UsuarioCRUDController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -230,9 +231,6 @@
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Compartir.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\database_firewall_rules.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Enlace.cs">

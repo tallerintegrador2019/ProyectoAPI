@@ -37,6 +37,5 @@ namespace ProyectoAPI.Models
         public virtual DbSet<Rango> Rango { get; set; }
         public virtual DbSet<Suscriptor> Suscriptor { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
-        public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="dccbd81ab8af476f856ea0e5c19ef5e9" Name="Diagram1">
+      <Diagram DiagramId="19e28abd3e324e248b1c2f2f5f837cc1" Name="Diagram1">
         <EntityTypeShape EntityType="todaviasirveDBModel.Categoria" Width="1.5" PointX="3.75" PointY="15" IsExpanded="true" />
         <EntityTypeShape EntityType="todaviasirveDBModel.Compartir" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="todaviasirveDBModel.Enlace" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
@@ -17,7 +17,6 @@
         <EntityTypeShape EntityType="todaviasirveDBModel.Rango" Width="1.5" PointX="1.5" PointY="19" IsExpanded="true" />
         <EntityTypeShape EntityType="todaviasirveDBModel.Suscriptor" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="todaviasirveDBModel.Usuario" Width="1.5" PointX="3.75" PointY="18.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="todaviasirveDBModel.database_firewall_rules" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="todaviasirveDBModel.FK_Publicacion_Categoria_Categoria" ManuallyRouted="false" />
         <AssociationConnector Association="todaviasirveDBModel.FK_Redes_Publicacion" ManuallyRouted="false" />
         <AssociationConnector Association="todaviasirveDBModel.FK_Enlace_Publicacion" ManuallyRouted="false" />
