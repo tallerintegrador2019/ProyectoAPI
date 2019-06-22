@@ -108,7 +108,7 @@
           <Property Name="nombre" Type="varchar" MaxLength="50" />
           <Property Name="apellido" Type="varchar" MaxLength="50" />
           <Property Name="email" Type="varchar" MaxLength="100" />
-          <Property Name="imagen" Type="nchar" MaxLength="500" />
+          <Property Name="imagen" Type="image" />
           <Property Name="idRango" Type="int" />
         </EntityType>
         <Association Name="FK_Enlace_Publicacion">
@@ -411,7 +411,7 @@
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="imagen" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="idRango" Type="Int32" />
           <NavigationProperty Name="Publicacion_Usuario" Relationship="Self.FK_Feedback_Usuario" FromRole="Usuario" ToRole="Publicacion_Usuario" />
           <NavigationProperty Name="Rango" Relationship="Self.FK_Usuario_Rango" FromRole="Usuario" ToRole="Rango" />

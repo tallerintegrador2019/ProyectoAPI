@@ -26,7 +26,7 @@ namespace ProyectoAPI.Models
         public string nombre { get; set; }
         public string apellido { get; set; }
         public string email { get; set; }
-        public string imagen { get; set; }
+        public byte[] imagen { get; set; }
         public Nullable<int> idRango { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

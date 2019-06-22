@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using ProyectoAPI.Models;
-
 
 namespace ProyectoAPI.Controllers
 {
@@ -84,21 +81,21 @@ namespace ProyectoAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var request = HttpContext.Current.Request;
+            //var request = HttpContext.Current.Request;
 
-            if (request.Files.Count > 0)
-            {
-                var file = request.Files[0];
+            //if (request.Files.Count > 0)
+            //{
+            //    var file = request.Files[0];
 
-                if (file.ContentLength > 0)
-                {
-                    var fileName = Path.GetFileName(file.FileName);
-                    var imagenlocal = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Images"), fileName);
+            //    if (file.ContentLength > 0)
+            //    {
+            //        var fileName = Path.GetFileName(file.FileName);
+            //        var imagenlocal = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Images"), fileName);
 
-                    file.SaveAs(imagenlocal);
-                    usuario.imagen = fileName;
-                }
-            }
+            //        file.SaveAs(imagenlocal);
+            //        usuario.imagen = fileName;
+            //    }
+            //}
 
             db.Usuario.Add(usuario);
             db.SaveChanges();
