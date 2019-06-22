@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.Mvc;
 using ProyectoAPI.Models;
 
 
@@ -73,40 +76,130 @@ namespace ProyectoAPI.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+
+        //// POST: api/Usuario    Anterior
+        //[ResponseType(typeof(Usuario))]
+        //public IHttpActionResult PostUsuario(Usuario usuario)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    var request = HttpContext.Current.Request;
+
+        //    if (Request.Content.IsMimeMultipartContent())
+        //    {
+        //        if (request.Files.Count > 0)
+        //        {
+
+        //            var postedFile = request.Files.Get("file");
+        //            var title = request.Params["title"];
+        //            string root = HttpContext.Current.Server.MapPath("~/Content/Images");
+        //            root = root + "/" + postedFile.FileName;
+        //            postedFile.SaveAs(root);
+
+        //        }
+
+        //    }
+
+
+        //    db.Usuario.Add(usuario);
+        //    db.SaveChanges();
+
+        //    return CreatedAtRoute("DefaultApi", new { id = usuario.id }, usuario);
+        //}
+
+
         // POST: api/Usuario
+        [System.Web.Http.HttpPost]
         [ResponseType(typeof(Usuario))]
-        public IHttpActionResult PostUsuario(Usuario usuario)
+        public async Task<IHttpActionResult> PostUsuarioAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
+            Usuario usu = new Usuario();
             var request = HttpContext.Current.Request;
-
+           
             if (Request.Content.IsMimeMultipartContent())
             {
+                string root1 = HttpContext.Current.Server.MapPath("~/Content/Images");
+                var provider = new MultipartFormDataStreamProvider(root1);
+                // Read the form data.
+                await Request.Content.ReadAsMultipartAsync(provider);
+                // This illustrates how to get the file names.
+                foreach (MultipartFileData file in provider.FileData)
+                {
+                    Trace.WriteLine(file.Headers.ContentDisposition.FileName);
+                    Trace.WriteLine("Server file path: " + file.LocalFileName);
+
+                }
+                foreach (var key in provider.FormData.AllKeys)
+                {
+                    if (!key.Equals("__RequestVerificationToken"))
+                    {
+                        switch (key)
+                        {
+                            case "nombre":
+                                usu.nombre = provider.FormData.GetValues(key)[0];
+                                break;
+                            case "apellido":
+                                usu.apellido = provider.FormData.GetValues(key)[0];
+                                break;
+                            case "email":
+                                usu.email = provider.FormData.GetValues(key)[0];
+                                break;
+                            case "pass":
+                                usu.pass = provider.FormData.GetValues(key)[0];
+                                break;
+                            case "username":
+                                usu.username = provider.FormData.GetValues(key)[0];
+                                break;
+                            default:
+                                  break;
+                        }
+                     
+                    }
+                    
+                }
+
                 if (request.Files.Count > 0)
                 {
+                    var imagen = request.Files[0];
+                    var postedFile = request.Files.Get("file");                   
+                    string root = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Images"),imagen.FileName);
+                    //root = root + "/" + imagen.FileName;
+                    imagen.SaveAs(root);
+                    usu.imagen = imagen.FileName;
+                    //try
+                    //{
+                    //    var stream = imagen.InputStream;
+                    //    MemoryStream memoryStream = stream as MemoryStream;
+                    //    if (memoryStream == null)
+                    //    {
+                    //        memoryStream = new MemoryStream();
+                    //        stream.CopyTo(memoryStream);
+                    //    }
 
-                    var postedFile = request.Files.Get("file");
-                    var title = request.Params["title"];
-                    string root = HttpContext.Current.Server.MapPath("~/Content/Images");
-                    root = root + "/" + postedFile.FileName;
-                    postedFile.SaveAs(root);
-         
-                }
+                    //    usu.imagen = memoryStream.ToArray();
+                    //    stream.Close();
+                    //}
+                    //catch {
+                    //    return Ok(HttpStatusCode.OK);
+                    //}
+                    
+                     
+                  }
+               
+               
+                db.Usuario.Add(usu);
+                db.SaveChanges();
+                return Ok(HttpStatusCode.OK);
 
             }
 
-
-            db.Usuario.Add(usuario);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = usuario.id }, usuario);
+            return Ok(HttpStatusCode.OK);
         }
 
-        // DELETE: api/Usuario/5
+            // DELETE: api/Usuario/5
         [ResponseType(typeof(Usuario))]
         public IHttpActionResult DeleteUsuario(int id)
         {
