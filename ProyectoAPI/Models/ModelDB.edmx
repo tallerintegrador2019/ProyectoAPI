@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="todaviasirveDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="todaviasirveDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categoria">
           <Key>
             <PropertyRef Name="id" />
@@ -43,7 +43,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="500" />
-          <Property Name="imagen" Type="varchar" MaxLength="500" />
+          <Property Name="imagen" Type="varchar(max)" />
           <Property Name="idPublicacion" Type="int" />
         </EntityType>
         <EntityType Name="Publicacion">
@@ -53,9 +53,9 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="titulo" Type="varchar" MaxLength="50" />
           <Property Name="subtitulo" Type="varchar" MaxLength="100" />
-          <Property Name="descripcion" Type="varchar(max)" />
+          <Property Name="descripcion" Type="varchar" MaxLength="500" />
           <Property Name="fechaSubida" Type="varchar" MaxLength="50" />
-          <Property Name="imagenPortada" Type="varchar" MaxLength="500" />
+          <Property Name="imagenPortada" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Publicacion_Categoria">
           <Key>
@@ -108,7 +108,7 @@
           <Property Name="nombre" Type="varchar" MaxLength="50" />
           <Property Name="apellido" Type="varchar" MaxLength="50" />
           <Property Name="email" Type="varchar" MaxLength="100" />
-          <Property Name="imagen" Type="image" />
+          <Property Name="imagen" Type="varchar(max)" />
           <Property Name="idRango" Type="int" />
         </EntityType>
         <Association Name="FK_Enlace_Publicacion">
@@ -285,8 +285,7 @@
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="todaviasirveDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -332,7 +331,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="imagen" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="idPublicacion" Type="Int32" />
           <NavigationProperty Name="Publicacion" Relationship="Self.FK_Imagen_Publicacion" FromRole="Paso" ToRole="Publicacion" />
         </EntityType>
@@ -343,9 +342,9 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="titulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="subtitulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="fechaSubida" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="imagenPortada" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="imagenPortada" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Compartir" Relationship="Self.FK_Redes_Publicacion" FromRole="Publicacion" ToRole="Compartir" />
           <NavigationProperty Name="Enlace" Relationship="Self.FK_Enlace_Publicacion" FromRole="Publicacion" ToRole="Enlace" />
           <NavigationProperty Name="Paso" Relationship="Self.FK_Imagen_Publicacion" FromRole="Publicacion" ToRole="Paso" />
@@ -411,7 +410,7 @@
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="imagen" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="idRango" Type="Int32" />
           <NavigationProperty Name="Publicacion_Usuario" Relationship="Self.FK_Feedback_Usuario" FromRole="Usuario" ToRole="Publicacion_Usuario" />
           <NavigationProperty Name="Rango" Relationship="Self.FK_Usuario_Rango" FromRole="Usuario" ToRole="Rango" />

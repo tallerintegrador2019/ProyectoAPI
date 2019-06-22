@@ -54,19 +54,19 @@ namespace ProyectoAPI.Controllers
             if (ModelState.IsValid)
             {
 
-                //if (Request.Files.Count > 0)
-                //{
-                //    HttpPostedFileBase file = Request.Files[0];
+                if (Request.Files.Count > 0)
+                {
+                    HttpPostedFileBase file = Request.Files[0];
 
-                //    if (file.ContentLength > 0)
-                //    {
-                //        var fileName = Path.GetFileName(file.FileName);
-                //        var imagenlocal = Path.Combine( Server.MapPath("~/Content/Images"), fileName );
+                    if (file.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(file.FileName);
+                        var imagenlocal = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
 
-                //        file.SaveAs(imagenlocal);
-                //        usuario.imagen = fileName;
-                //    }
-                //}
+                        file.SaveAs(imagenlocal);
+                        usuario.imagen = fileName;
+                    }
+                }
 
                 db.Usuario.Add(usuario);
                 db.SaveChanges();
