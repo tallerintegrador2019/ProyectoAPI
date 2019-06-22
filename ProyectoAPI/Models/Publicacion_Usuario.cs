@@ -11,13 +11,17 @@ namespace ProyectoAPI.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    public partial class Suscriptor
+    
+    public partial class Publicacion_Usuario
     {
         public int id { get; set; }
-        [Required(ErrorMessage = "El valor es requerido.")]
-        [EmailAddress(ErrorMessage = "El valor no es un E-Mail valido.")]
-        public string email { get; set; }
+        public string comentario { get; set; }
+        public string puntaje { get; set; }
+        public string fecha { get; set; }
+        public Nullable<int> idPublicacion { get; set; }
+        public Nullable<int> idUsuario { get; set; }
+    
+        public virtual Publicacion Publicacion { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

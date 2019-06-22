@@ -1,6 +1,8 @@
 ﻿@{
     ViewBag.Title = "Reconocer Imagen";
 }
+@model ProyectoAPI.Models.Publicacion
+@*@model ProyectoAPI.Models.ViewModel.TablaPaso*@
 
 <div class="container">
     <div class="card">
@@ -8,22 +10,94 @@
 
 
             <h2>Reconocimiento de Imagenes</h2>
-            @using (Html.BeginForm("ReconocerImagen", "PublicacionCRUD", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("PostReconocerImagen", "PublicacionCRUD", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
-
                 <div class="form-group">
-                    @Html.Label("Ingresar imagen a reconocer", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.titulo, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.TextBox("Imagen", "ingrese imagen", new { type = "file" })
+                        @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.titulo, "", new { @class = "text-danger" })
                     </div>
                 </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.subtitulo, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.subtitulo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.subtitulo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.fechaSubida, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.fechaSubida, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.fechaSubida, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.imagenPortada, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.imagenPortada, new { type = "file" })
+                    </div>
+                </div>
+
+                //imagenes de para subir 
+                    <div class="form-group">
+                        @Html.Label("Ingresar imagen a reconocer", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBox("imagen","Examinar Imagen", new { type = "file" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Ingrese Descripcion", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="text" name="pasos" />
+                        </div>
+                    </div>
+
+                                          
+                    <div class="form-group">
+                        @Html.Label("Ingrese otra imagen", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBox("imagen", "Examinar Imagen", new { type = "file" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Ingrese Descripcion", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="text" name="pasos" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Ingrese otra imagen", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBox("imagen", "Examinar Imagen", new { type = "file" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Ingrese Descripcion", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="text" name="pasos" />
+                        </div>
+                    </div>
+
                 if (ViewBag.listadoReconocido != null)
                 {
-                    foreach (string item in (List<string>)ViewBag.listadoReconocido)
+                    foreach (int item in (List<int>)ViewBag.listadoReconocido)
                     {
                         <div class="form-group">
-                            @Html.Label(item, htmlAttributes: new { @class = "control-label col-md-6" })
+                            @Html.Label(item.ToString(), htmlAttributes: new { @class = "control-label col-md-6" })
                         </div>
                     }
                 }

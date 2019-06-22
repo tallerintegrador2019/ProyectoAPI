@@ -229,16 +229,16 @@
     <Compile Include="Models\Categoria.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Compartir.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\database_firewall_rules.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Enlace.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Feedback.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Imagen.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Material.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
@@ -257,6 +257,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Paso.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Publicacion.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
@@ -266,10 +269,10 @@
     <Compile Include="Models\Publicacion_Material.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Rango.cs">
+    <Compile Include="Models\Publicacion_Usuario.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Redes.cs">
+    <Compile Include="Models\Rango.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Suscriptor.cs">
@@ -279,6 +282,7 @@
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModel\JsonImagga.cs" />
+    <Compile Include="Models\ViewModel\TablaPaso.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -358,6 +362,8 @@
     <Content Include="Content\Images\lobobasura3.jpg" />
     <Content Include="Content\Images\imagen1.jpg" />
     <Content Include="Content\Images\imagen2.jpg" />
+    <Content Include="Content\Images\logo_blanco.png" />
+    <Content Include="Content\Images\logo_verde.png" />
     <Content Include="Content\Images\masetas-dibujo.jpg" />
     <Content Include="Content\Images\maxresdefault.jpg" />
     <Content Include="Content\Images\mujer-sonriente.jpg" />
@@ -581,6 +587,7 @@
     <Content Include="Views\Imagen\Imagen.cshtml" />
     <Content Include="Views\Imagen\Index.cshtml" />
     <Content Include="Views\Suscriptor\Create.cshtml" />
+    <Content Include="Views\Suscriptor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
