@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
@@ -97,7 +99,8 @@ namespace ProyectoAPI.Controllers
         {
             Usuario usu = new Usuario();
             var request = HttpContext.Current.Request;
-
+            var tipo = request.GetType();
+         
             if (Request.Content.IsMimeMultipartContent())
             {
                 string root1 = HttpContext.Current.Server.MapPath("~/Content/Images");
