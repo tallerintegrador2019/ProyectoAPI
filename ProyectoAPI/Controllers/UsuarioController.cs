@@ -77,25 +77,6 @@ namespace ProyectoAPI.Controllers
         }
 
 
-
-
-
-        //// POST: api/Usuario
-        //[ResponseType(typeof(Usuario))]
-        //public IHttpActionResult PostUsuario(Usuario usuario)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    db.Usuario.Add(usuario);
-        //    db.SaveChanges();
-
-        //    return CreatedAtRoute("DefaultApi", new { id = usuario.id }, usuario);
-        //}
-
-
         // POST: api/Usuario
         [ResponseType(typeof(Usuario))]
         public async Task<IHttpActionResult> PostUsuario()
@@ -171,11 +152,6 @@ namespace ProyectoAPI.Controllers
         }
 
 
-
-
-
-
-
         // DELETE: api/Usuario/5
         [ResponseType(typeof(Usuario))]
         public IHttpActionResult DeleteUsuario(int id)
@@ -205,5 +181,34 @@ namespace ProyectoAPI.Controllers
         {
             return db.Usuario.Count(e => e.id == id) > 0;
         }
-    }
-}
+
+
+        // GET: api/Usuario/estaRegistrado
+        [HttpGet]
+        [Route("Api/Usuario/estaRegistrado/{email}/{pass}")]
+        [ResponseType(typeof(Usuario))]
+        public IHttpActionResult EstaRegistrado(string email, string pass)
+        {
+
+            Usuario usuario = (from usu in db.Usuario
+                                 where usu.email == email && usu.pass == pass
+                                 select usu).FirstOrDefault();
+                
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(usuario);
+        }
+
+
+
+
+
+
+    } // cierre controller
+
+
+
+} // cierre namespace
