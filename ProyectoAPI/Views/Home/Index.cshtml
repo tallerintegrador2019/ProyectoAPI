@@ -1,39 +1,52 @@
-﻿<div class="green-text text-center align-content-center">
+﻿@model ProyectoAPI.Models.Suscriptor
+
+<div class="green-text text-center align-content-center texto-sombra">
     <h1>No deseches reutiliza</h1>
     <h3>Piensa en todo lo que puedes llegar a crear y ayudar al medio ambiente.</h3>
 
     <h5>Suscribete a nuestro sitio y recibe una cuenta premium con nuestros beneficios</h5>
-    <div class="form-personalizado">
-        <form action="/" method="post" class="text-center">
-            <br />
-            <input class="white-text" type="email" name="email" placeholder="E-Mail" />
-            <br />
-            <input type="button" class="btn btn-info" value="Suscribirse" onclick="location.href='@Url.Action("Enviar","SuscriptorCRUD")'" />
-        </form>
+    <div class="form-personalizado white-text">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <h6>E-Mail</h6>
+                <div class="col-md-10 boton-centrado">
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10 boton-centrado">
+                    <input type="submit" value="Suscribirse" class="btn btn-default" />
+                </div>
+            </div>
+        }
     </div>
 
     <h2>Beneficios</h2>
     <div class="container">
         <div class="row">
-            <div class="col l6 s12">
-                <h5>Acceso a contenido exclusivo</h5>
-                <p class="text-lighten-4">
+            <div class="col l6 s12 fondos-varios">
+                <h4>Acceso a contenido exclusivo</h4>
+                <h6 class="text-lighten-4">
                     Al tener tu cuenta premium tienes acceso a nuestro contenido exclusivo ántes que nadie.
-                </p>
+                </h6>
             </div>
-            <div class="col l3 s12">
-                <h5>Acceso a funciones exclusivas y betas</h5>
-                <p class="text-lighten-4">
+            <div class="col l3 s12 fondos-varios">
+                <h4>Acceso a funciones exclusivas y betas</h4>
+                <h6 class="text-lighten-4">
                     También tendrás acceso a nuevas y exclusivas funciones como vender tus creaciones y publicaciones
                     con mayor visibilidad. Haz que tus creaciones tengan valor.
-                </p>
+                </h6>
             </div>
-            <div class="col l3 s12">
-                <h5>Se parte de nuestro staff</h5>
-                <p class="text-lighten-4">
+            <div class="col l3 s12 fondos-varios">
+                <h4>Se parte de nuestro staff</h4>
+                <h6 class="text-lighten-4">
                     Tendrás la oportunidad de ser parte de nuestro equipo, creando contenido exclusivo y usar nuestro logo y ser parte de
                     nuestra comunidad de canales en Youtube.
-                </p>
+                </h6>
             </div>
         </div>
     </div>
@@ -41,23 +54,23 @@
     <h2>Experiencias</h2>
     <div class="container">
         <div class="row">
-            <div class="col l6 s12">
-                <h5>Marcos (38) - Diseñador gráfico</h5>
+            <div class="col l6 s12 fondos-varios">
+                <h4>Marcos (38) - Diseñador gráfico</h4>
                 <img class="left-align" src="~/Content/Images/Experiencia1.png" alt="#" />
-                <p class="text-lighten-4">
+                <h6 class="text-lighten-4">
                     Como diseñador gráfico me da ideas para poder maquetar mis diseños y tener una idea de la forma que tendrá
                     el objeto, además de ayudar al medio ambiente la creación de artesanías es un pasatiempo que me aleja de los
                     ambientes estresantes.
-                </p>
+                </h6>
             </div>
-            <div class="col l3 s12">
-                <h5>Luciana (29) - Artesana</h5>
+            <div class="col l3 s12 fondos-varios">
+                <h4>Luciana (29) - Artesana</h4>
                 <img class="left-align" src="~/Content/Images/Experiencia2.png" alt="#" />
-                <p class="text-lighten-4">
+                <h6 class="text-lighten-4">
                     Me encanta la aplicación. Los instructivos son muy fáciles de entender y me da muchas ideas con la basura que
                     genero. No solo me ayudó a reducir mi cantidad de basura, sino también a redecorar mi casa y plantearme la
                     reconversión de materiales como parte de mi trabajo.
-                </p>
+                </h6>
             </div>
         </div>
     </div>
