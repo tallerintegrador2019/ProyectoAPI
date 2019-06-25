@@ -214,9 +214,12 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImagenController.cs" />
     <Compile Include="Controllers\LoginApiController.cs" />
     <Compile Include="Controllers\PublicacionController.cs" />
     <Compile Include="Controllers\PublicacionCRUDController.cs" />
+    <Compile Include="Controllers\SuscriptorController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\UsuarioCRUDController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -228,9 +231,6 @@
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Compartir.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\database_firewall_rules.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Enlace.cs">
@@ -306,6 +306,7 @@
     <Content Include="Content\Images\0001_portada.jpg" />
     <Content Include="Content\Images\10-apps-cuidar-medio-ambiente.jpg" />
     <Content Include="Content\Images\188333.png" />
+    <Content Include="Content\Images\2-768x1024.jpg" />
     <Content Include="Content\Images\9- NOTA 510.jpg" />
     <Content Include="Content\Images\activista-ambiental.jpg" />
     <Content Include="Content\Images\auto-juguete.jpg" />
@@ -346,6 +347,7 @@
     <Content Include="Content\Images\Experiencia1.png" />
     <Content Include="Content\Images\Experiencia2.png" />
     <Content Include="Content\Images\favicon_1.png" />
+    <Content Include="Content\Images\FondoPrincipal.png" />
     <Content Include="Content\Images\gente-plantando.jpg" />
     <Content Include="Content\Images\gente-plantando2.jpg" />
     <Content Include="Content\Images\gente-plantando3.jpg" />
@@ -356,6 +358,10 @@
     <Content Include="Content\Images\istockphoto-610229362-612x612.jpg" />
     <Content Include="Content\Images\lampara-reciclada-icono.jpg" />
     <Content Include="Content\Images\lobobasura3.jpg" />
+    <Content Include="Content\Images\imagen1.jpg" />
+    <Content Include="Content\Images\imagen2.jpg" />
+    <Content Include="Content\Images\logo_blanco.png" />
+    <Content Include="Content\Images\logo_verde.png" />
     <Content Include="Content\Images\masetas-dibujo.jpg" />
     <Content Include="Content\Images\maxresdefault.jpg" />
     <Content Include="Content\Images\mujer-sonriente.jpg" />
@@ -575,7 +581,11 @@
     <Content Include="Views\PublicacionCRUD\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Registro.cshtml" />
-    <Content Include="Views\PublicacionCRUD\ReconocerImagen.cshtml" />
+    <Content Include="Views\Home\Imagen.cshtml" />
+    <Content Include="Views\Imagen\Imagen.cshtml" />
+    <Content Include="Views\Imagen\Index.cshtml" />
+    <Content Include="Views\Suscriptor\Create.cshtml" />
+    <Content Include="Views\Suscriptor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -29,28 +29,26 @@ textarea {
 }
 
 .container-fluid-mio {
-    width: 100%;
-    padding-top: 1px;
-    margin-right: auto;
-    margin-left: auto;
     background-image: url(../Content/Images/plantar-plantulas.jpg);
     background-attachment: fixed;
     background-size: cover;
 }
 
+.body-suscribir {
+    padding-left: 15px;
+    padding-right: 30px;
+}
+
 .body-gradiente {
-    background: #39B54A; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #134E5E, #39B54A); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #134E5E, #39B54A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #008000; /* fallback for old browsers */
 }
 
 .form-personalizado {
-    background: black;
-    opacity: 0.5;
+    background-color: rgba(0,0,0,1);
     width: 400px !important;
-    height: 150px;
+    height: 200px;
     border-radius: 5px;
-    margin: 0 auto;
+    margin: 40px auto 0 auto;
     padding-top: 10px;
 }
 
@@ -60,4 +58,31 @@ textarea {
 
 .borde-texto {
     -webkit-text-stroke: 1px black;
+}
+
+.fondos-varios {
+    background-color: rgba(0,0,0,1);
+    color: #39B54A;
+}
+
+.texto-sombra {
+    text-shadow: 2px 2px 2px #333;
+}
+
+h1 {
+    margin-top: 0px !important;
+}
+
+.mitad {
+    background-color: rgba(0,0,0,0.5);
+    padding-top: 100px;
+    padding-bottom: 0px;
+}
+
+.foquin {
+    width: 300px;
+}
+
+.fondo-padding {
+    padding-bottom: 40px;
 }

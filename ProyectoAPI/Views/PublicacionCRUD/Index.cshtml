@@ -1,38 +1,38 @@
 ﻿@model IEnumerable<ProyectoAPI.Models.Publicacion>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista de Publicaciones";
 }
-<div class="container">
-    <div class="card">
-        <h2>Index</h2>
+<div class="micontainer">
+    <div class="micard">
+        <h2>Publicaciones</h2>
 
         <p>
-            @Html.ActionLink("Create New", "Create")
+            @Html.ActionLink("Crear Publicacion", "Create","PublicacionCRUD",null, new { @class = "btn btn-success" } )
         </p>
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.titulo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.subtitulo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.descripcion)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.fechaSubida)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.imagenPortada)
-                </th>
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
+        <table class="table table-striped">
+            <thead class="mitabla">
                 <tr>
+                    
+                    <th>
+                        @Html.Label("TITULO")
+                    </th>
+                    <th>
+                        @Html.Label("SUBTITULO")
+                    </th>
+                    <th>
+                        @Html.Label("DESCRIPCION")
+                    </th>
+                    <th colspan="2" class="tam-opciones">
+                        @Html.Label("OPCIONES")
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="mitabla">
+                @foreach (var item in Model)
+                {
+                <tr>
+
                     <td>
                         @Html.DisplayFor(modelItem => item.titulo)
                     </td>
@@ -42,20 +42,18 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.descripcion)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.fechaSubida)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.imagenPortada)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    
+                    <td colspan="2">
+                        
+                            <a href="Details/@item.id" class="btn btnm-details"><i class="material-icons">info</i></a>
+                            <a href="Edit/@item.id" class="btn"><i class="material-icons">edit</i></a>
+                            <a href="Delete/@item.id" class="btn btnm-deleter"><i class="material-icons">delete</i></a>
+                        
                     </td>
                 </tr>
-            }
-
+                }
+            </tbody>
         </table>
+        <br />
     </div>
 </div>
