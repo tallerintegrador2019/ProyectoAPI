@@ -11,12 +11,14 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using Newtonsoft.Json;
 using ProyectoAPI.Models;
 
 namespace ProyectoAPI.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class PublicacionController : ApiController
     {
         private todaviasirveDBEntities db = new todaviasirveDBEntities();

@@ -12,11 +12,12 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
-
+using System.Web.Http.Cors;
 namespace ProyectoAPI.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UsuarioController : ApiController
-    {
+    {  
         private todaviasirveDBEntities db = new todaviasirveDBEntities();
         // GET: api/Usuario
         public IQueryable<Usuario> GetUsuario()

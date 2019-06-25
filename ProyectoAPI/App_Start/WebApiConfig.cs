@@ -14,6 +14,8 @@ namespace ProyectoAPI
         {
             // Configuración y servicios de Web API
             // Configure Web API para usar solo la autenticación de token de portador.
+            // New code
+            config.EnableCors();
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
