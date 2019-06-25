@@ -339,9 +339,7 @@ namespace ProyectoAPI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Publicacion publicacion = db.Publicacion.Find(id);
-            db.Publicacion.Remove(publicacion);
-            db.SaveChanges();
+            service.EliminarPublicacion(id);
             return RedirectToAction("Index");
         }
 
