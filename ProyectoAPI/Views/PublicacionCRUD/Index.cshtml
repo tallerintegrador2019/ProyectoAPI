@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ProyectoAPI.Models.Publicacion>
+
+@{
+    ViewBag.Title = "Lista de Publicaciones";
+}
+<div class="micontainer">
+    <div class="micard">
+        <h2>Publicaciones</h2>
+
+        <p>
+            @Html.ActionLink("Crear Publicacion", "Create","PublicacionCRUD",null, new { @class = "btn btn-success" } )
+        </p>
+        <table class="table table-striped">
+            <thead class="mitabla">
+                <tr>
+                    
+                    <th>
+                        @Html.Label("TITULO")
+                    </th>
+                    <th>
+                        @Html.Label("SUBTITULO")
+                    </th>
+                    <th>
+                        @Html.Label("DESCRIPCION")
+                    </th>
+                    <th colspan="2" class="tam-opciones">
+                        @Html.Label("OPCIONES")
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="mitabla">
+                @foreach (var item in Model)
+                {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.titulo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.subtitulo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descripcion)
+                    </td>
+                    
+                    <td colspan="2">
+                        
+                            <a href="Details/@item.id" class="btn btnm-details"><i class="material-icons">info</i></a>
+                            <a href="Edit/@item.id" class="btn"><i class="material-icons">edit</i></a>
+                            <a href="Delete/@item.id" class="btn btnm-deleter"><i class="material-icons">delete</i></a>
+                        
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+    </div>
+</div>
