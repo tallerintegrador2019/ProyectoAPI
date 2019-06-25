@@ -168,10 +168,29 @@ namespace ProyectoAPI.Controllers
         }
 
             return Ok(HttpStatusCode.OK);
-}
+    }
 
-            // DELETE: api/Usuario/5
-            [ResponseType(typeof(Usuario))]
+        // GET: api/Usuario/estaRegistrado
+        [HttpGet]
+        [Route("Api/Usuario/estaRegistrado/{email}/{pass}")]
+        [ResponseType(typeof(Usuario))]
+        public IHttpActionResult EstaRegistrado(string email, string pass)
+        {
+
+            Usuario usuario = (from usu in db.Usuario
+                               where usu.email == email && usu.pass == pass
+                               select usu).FirstOrDefault();
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(usuario);
+        }
+
+        // DELETE: api/Usuario/5
+        [ResponseType(typeof(Usuario))]
             public IHttpActionResult DeleteUsuario(int id)
             {
                 Usuario usuario = db.Usuario.Find(id);
