@@ -86,3 +86,17 @@ h1 {
 .fondo-padding {
     padding-bottom: 40px;
 }
+
+.formularios-texto {
+    color: black;
+    font-size: 16px;
+}
+
+.formularios-diseno {
+    background-color: rgb(255, 255, 255);
+    width: 400px !important;
+    height: 200px;
+    border-radius: 5px;
+    margin: 40px auto 0 auto;
+    padding-top: 10px;
+}
