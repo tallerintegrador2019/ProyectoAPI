@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -11,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 using ProyectoAPI.Models;
 using ProyectoAPI.Models.ViewModel;
@@ -297,28 +299,52 @@ namespace ProyectoAPI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Publicacion publicacion = db.Publicacion.Find(id);
-            if (publicacion == null)
+            Publicacion pub = db.Publicacion.Find(id);
+            if (pub == null)
             {
                 return HttpNotFound();
             }
-            return View(publicacion);
+            PopulatePasosDropDownList(pub.Paso);
+            return View(pub);
         }
 
         // POST: PublicacionCRUD/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,titulo,subtitulo,descripcion,fechaSubida,imagenPortada")] Publicacion publicacion)
+        public ActionResult EditPost(Publicacion publicacion)
         {
-            if (ModelState.IsValid)
+            if (publicacion == null)
             {
-                db.Entry(publicacion).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            return View(publicacion);
+            var publicacionActualizar = db.Publicacion.Find(publicacion.id);
+            if (TryUpdateModel(publicacionActualizar, "",
+               new string[] { "titulo", "subtitulo", "descripcion", "fechaSubida", "Paso", "imagenPortada" }))
+            {
+                try
+                {
+                    db.SaveChanges();               
+                    return RedirectToAction("Index");
+                }
+                catch (RetryLimitExceededException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "No se puede editar la publicacion. Pruebe de nuevo o consulte a su administrador.");
+                }
+            }
+            PopulatePasosDropDownList(publicacionActualizar.Paso);
+            return View(publicacionActualizar);
+
+        }
+
+        private void PopulatePasosDropDownList(object selectedPasos = null)
+        {
+            var pasosQuery = from d in db.Paso
+                                   orderby d.id
+                                   select d;
+            ViewBag.PasoId = new SelectList(pasosQuery, "Paso", "id", selectedPasos);
         }
 
         // GET: PublicacionCRUD/Delete/5
