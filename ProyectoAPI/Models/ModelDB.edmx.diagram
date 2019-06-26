@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="19e28abd3e324e248b1c2f2f5f837cc1" Name="Diagram1">
+      <Diagram DiagramId="c74eb813e1154bf7ada8e24bed9afad9" Name="Diagram1">
         <EntityTypeShape EntityType="todaviasirveDBModel.Categoria" Width="1.5" PointX="3.75" PointY="15" IsExpanded="true" />
         <EntityTypeShape EntityType="todaviasirveDBModel.Compartir" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="todaviasirveDBModel.Enlace" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />

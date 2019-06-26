@@ -1,19 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+
+using System.Diagnostics;
+
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+
 using System.Net.Http.Headers;
+
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
-using Newtonsoft.Json;
 using ProyectoAPI.Models;
 
 namespace ProyectoAPI.Controllers
@@ -23,31 +26,11 @@ namespace ProyectoAPI.Controllers
     {
         private todaviasirveDBEntities db = new todaviasirveDBEntities();
 
-        /*
         // GET: api/Publicacion
         public IQueryable<Publicacion> GetPublicacion()
         {
             return db.Publicacion;
         }
-        */
-
-        [HttpGet]
-        [ResponseType(typeof(Publicacion))]
-        [Route("Api/Publicacion/")]
-        public IHttpActionResult GetPublicacion()
-        {
-            List<Publicacion> publicacion = (from publi in db.Publicacion
-                                             select publi).ToList();
-
-            if (publicacion == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(publicacion);
-        }
-
-
 
         // GET: api/Publicacion/5
         [ResponseType(typeof(Publicacion))]
@@ -97,7 +80,13 @@ namespace ProyectoAPI.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+
         //// POST: api/Publicacion
+
+       
+
+        // POST: api/Publicacion
+
         //[ResponseType(typeof(Publicacion))]
         //public IHttpActionResult PostPublicacion(Publicacion publicacion)
         //{
@@ -111,6 +100,7 @@ namespace ProyectoAPI.Controllers
 
         //    return CreatedAtRoute("DefaultApi", new { id = publicacion.id }, publicacion);
         //}
+
 
         // POST: api/Publicacion                    Nuevo Post
         [System.Web.Http.HttpPost]
@@ -175,13 +165,17 @@ namespace ProyectoAPI.Controllers
 
                     }
                 }
-                for (var j = 0; j < request.Files.Count; j++)
+
+   
+                for (var j=0; j < request.Files.Count; j++)
                 {
                     var archivo = request.Files[j];
                     var cantidadArchivos = request.Files.Count;
                     var fileName = "";
                     var imagenlocal = "";
-                    switch (j + 1)
+
+    
+                    switch (j+1)
                     {
                         case 1:
                             var nombre = Path.GetFileName(archivo.FileName);
@@ -257,12 +251,12 @@ namespace ProyectoAPI.Controllers
                 return Ok(HttpStatusCode.OK);
 
             }
-            else
-            {
+            else {
                 return BadRequest();
             }
 
         }
+
 
         // DELETE: api/Publicacion/5
         [ResponseType(typeof(Publicacion))]
@@ -294,29 +288,7 @@ namespace ProyectoAPI.Controllers
             return db.Publicacion.Count(e => e.id == id) > 0;
         }
 
-        // OBSOLETO
-        //// METODO BUSCAR  
-        //[HttpGet]
-        //[Route("Api/Publicacion/Buscar/{nombre}")]
-        //public HttpResponseMessage Buscar(string nombre)
-        //{
-        //    try
-        //    {
-        //        List<Publicacion> publicacion = (from publi in db.Publicacion
-        //                                         where publi.titulo.Contains(nombre)
-        //                                         select publi).ToList();
-
-        //        var response = new HttpResponseMessage(HttpStatusCode.OK);
-        //        response.Content = new StringContent(JsonConvert.SerializeObject(publicacion));
-        //        response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        //        return response;
-        //    }
-        //    catch
-        //    {
-        //        return new HttpResponseMessage(HttpStatusCode.BadRequest);
-        //    }
-        //}
-
+        // metodo buscar
         [HttpGet]
         [ResponseType(typeof(Publicacion))]
         [Route("Api/Publicacion/Buscar/{nombre}")]
@@ -335,7 +307,5 @@ namespace ProyectoAPI.Controllers
         }
 
 
-
-    } // cierre clase
-} // cierre controller
-                      
+    } // cierre controller
+}

@@ -1,6 +1,6 @@
-﻿using ProyectoAPI.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
@@ -11,19 +11,26 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.Description;
 using System.Web.Http.Cors;
+using System.Web.Http.Description;
+
+using System.Web.Http.Cors;
+
+using ProyectoAPI.Models;
+
 namespace ProyectoAPI.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UsuarioController : ApiController
     {  
         private todaviasirveDBEntities db = new todaviasirveDBEntities();
+
         // GET: api/Usuario
         public IQueryable<Usuario> GetUsuario()
         {
             return db.Usuario;
         }
+
         // GET: api/Usuario/5
         [ResponseType(typeof(Usuario))]
         public IHttpActionResult GetUsuario(int id)
@@ -33,8 +40,10 @@ namespace ProyectoAPI.Controllers
             {
                 return NotFound();
             }
+
             return Ok(usuario);
         }
+
         // PUT: api/Usuario/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutUsuario(int id, Usuario usuario)
@@ -43,11 +52,14 @@ namespace ProyectoAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+
             if (id != usuario.id)
             {
                 return BadRequest();
             }
+
             db.Entry(usuario).State = EntityState.Modified;
+
             try
             {
                 db.SaveChanges();
@@ -63,10 +75,10 @@ namespace ProyectoAPI.Controllers
                     throw;
                 }
             }
+
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Usuario
         //// POST: api/Usuario
         //[ResponseType(typeof(Usuario))]
         //public IHttpActionResult PostUsuario(Usuario usuario)
@@ -88,85 +100,86 @@ namespace ProyectoAPI.Controllers
         [ResponseType(typeof(Usuario))]
         public async Task<IHttpActionResult> PostUsuarioAsync()
         {
-                Usuario usu = new Usuario();
+            Usuario usu = new Usuario();
             var request = HttpContext.Current.Request;
-
+            var tipo = request.GetType();
+         
             if (Request.Content.IsMimeMultipartContent())
             {
-
                 string root1 = HttpContext.Current.Server.MapPath("~/Content/Images");
-            var provider = new MultipartFormDataStreamProvider(root1);
-            // Read the form data.
-            await Request.Content.ReadAsMultipartAsync(provider);
-            // This illustrates how to get the file names.
-            foreach (MultipartFileData file in provider.FileData)
-            {
-                Trace.WriteLine(file.Headers.ContentDisposition.FileName);
-                Trace.WriteLine("Server file path: " + file.LocalFileName);
-            }
-            foreach (var key in provider.FormData.AllKeys)
-            {
-                if (!key.Equals("__RequestVerificationToken"))
+                var provider = new MultipartFormDataStreamProvider(root1);
+                // Read the form data.
+                await Request.Content.ReadAsMultipartAsync(provider);
+                // This illustrates how to get the file names.
+                foreach (MultipartFileData file in provider.FileData)
                 {
-                    switch (key)
+                    Trace.WriteLine(file.Headers.ContentDisposition.FileName);
+                    Trace.WriteLine("Server file path: " + file.LocalFileName);
+
+                }
+                foreach (var key in provider.FormData.AllKeys)
+                {
+                    if (!key.Equals("__RequestVerificationToken"))
                     {
-                        case "nombre":
-                            usu.nombre = provider.FormData.GetValues(key)[0];
-                            break;
-                        case "apellido":
-                            usu.apellido = provider.FormData.GetValues(key)[0];
-                            break;
-                        case "email":
-                            usu.email = provider.FormData.GetValues(key)[0];
-                            break;
-                        case "pass":
-                            usu.pass = provider.FormData.GetValues(key)[0];
-                            break;
-                        case "username":
-                            usu.username = provider.FormData.GetValues(key)[0];
-                            break;
-                        default:
-                            break;
+                        switch (key)
+                        {
+                            case "nombre":
+                                usu.nombre = provider.FormData.GetValues(key)[0];
+                                break;
+                            case "apellido":
+                                usu.apellido = provider.FormData.GetValues(key)[0];
+                                break;
+                            case "email":
+                                usu.email = provider.FormData.GetValues(key)[0];
+                                break;
+                            case "pass":
+                                usu.pass = provider.FormData.GetValues(key)[0];
+                                break;
+                            case "username":
+                                usu.username = provider.FormData.GetValues(key)[0];
+                                break;
+                            default:
+                                break;
+                        }
+
                     }
 
                 }
 
+                if (request.Files.Count > 0)
+                {
+                    var imagen = request.Files[0];
+                    var postedFile = request.Files.Get("file");
+                    string root = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Images"), imagen.FileName);
+                    //root = root + "/" + imagen.FileName;
+                    imagen.SaveAs(root);
+                    usu.imagen = imagen.FileName;
+                    //try
+                    //{
+                    //    var stream = imagen.InputStream;
+                    //    MemoryStream memoryStream = stream as MemoryStream;
+                    //    if (memoryStream == null)
+                    //    {
+                    //        memoryStream = new MemoryStream();
+                    //        stream.CopyTo(memoryStream);
+                    //    }
+
+                    //    usu.imagen = memoryStream.ToArray();
+                    //    stream.Close();
+                    //}
+                    //catch {
+                    //    return Ok(HttpStatusCode.OK);
+                    //}
+
+
+                }
+
+
+                db.Usuario.Add(usu);
+                db.SaveChanges();
+                return Ok(HttpStatusCode.OK);
+
             }
-
-            if (request.Files.Count > 0)
-            {
-                var imagen = request.Files[0];
-                var postedFile = request.Files.Get("file");
-                string root = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Images"), imagen.FileName);
-                //root = root + "/" + imagen.FileName;
-                imagen.SaveAs(root);
-                usu.imagen = imagen.FileName;
-                //try
-                //{
-                //    var stream = imagen.InputStream;
-                //    MemoryStream memoryStream = stream as MemoryStream;
-                //    if (memoryStream == null)
-                //    {
-                //        memoryStream = new MemoryStream();
-                //        stream.CopyTo(memoryStream);
-                //    }
-
-                //    usu.imagen = memoryStream.ToArray();
-                //    stream.Close();
-                //}
-                //catch {
-                //    return Ok(HttpStatusCode.OK);
-                //}
-
-
-            }
-
-
-            db.Usuario.Add(usu);
-            db.SaveChanges();
-            return Ok(HttpStatusCode.OK);
-
-        }
 
             return Ok(HttpStatusCode.OK);
     }
@@ -190,20 +203,22 @@ namespace ProyectoAPI.Controllers
             return Ok(usuario);
         }
 
+   
         // DELETE: api/Usuario/5
         [ResponseType(typeof(Usuario))]
-            public IHttpActionResult DeleteUsuario(int id)
+        public IHttpActionResult DeleteUsuario(int id)
+        {
+            Usuario usuario = db.Usuario.Find(id);
+            if (usuario == null)
             {
-                Usuario usuario = db.Usuario.Find(id);
-                if (usuario == null)
-                {
-                    return NotFound();
-                }
-                db.Usuario.Remove(usuario);
-                db.SaveChanges();
-                return Ok(usuario);
+                return NotFound();
             }
 
+            db.Usuario.Remove(usuario);
+            db.SaveChanges();
+
+            return Ok(usuario);
+        }
 
         protected override void Dispose(bool disposing)
         {
@@ -218,6 +233,5 @@ namespace ProyectoAPI.Controllers
         {
             return db.Usuario.Count(e => e.id == id) > 0;
         }
-
-     }
- }
+    }
+}
