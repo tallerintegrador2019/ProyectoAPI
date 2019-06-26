@@ -115,7 +115,7 @@ namespace ProyectoAPI.Controllers
             Paso paso5 = new Paso();
 
             var request = HttpContext.Current.Request;
-            bool imagenDePublicacion = true;
+            //bool imagenDePublicacion = true;
 
             if (Request.Content.IsMimeMultipartContent())
             {
