@@ -2,19 +2,26 @@
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+
 using System.Diagnostics;
+
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+
+using System.Net.Http.Headers;
+
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using ProyectoAPI.Models;
 
 namespace ProyectoAPI.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class PublicacionController : ApiController
     {
         private todaviasirveDBEntities db = new todaviasirveDBEntities();
@@ -73,9 +80,13 @@ namespace ProyectoAPI.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+
+        //// POST: api/Publicacion
+
        
 
         // POST: api/Publicacion
+
         //[ResponseType(typeof(Publicacion))]
         //public IHttpActionResult PostPublicacion(Publicacion publicacion)
         //{
@@ -154,12 +165,16 @@ namespace ProyectoAPI.Controllers
 
                     }
                 }
+
+   
                 for (var j=0; j < request.Files.Count; j++)
                 {
                     var archivo = request.Files[j];
                     var cantidadArchivos = request.Files.Count;
                     var fileName = "";
                     var imagenlocal = "";
+
+    
                     switch (j+1)
                     {
                         case 1:

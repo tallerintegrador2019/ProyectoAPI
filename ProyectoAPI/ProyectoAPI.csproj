@@ -592,6 +592,7 @@
     <Content Include="Views\Imagen\Index.cshtml" />
     <Content Include="Views\Suscriptor\Create.cshtml" />
     <Content Include="Views\Suscriptor\Index.cshtml" />
+    <Content Include="Views\PublicacionCRUD\ReconocerImagen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
