@@ -100,35 +100,35 @@ namespace ProyectoAPI.Controllers
         // POST: PublicacionCRUD/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,titulo,subtitulo,descripcion,fechaSubida,imagenPortada")] Publicacion publicacion)
-        {
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "id,titulo,subtitulo,descripcion,fechaSubida,imagenPortada")] Publicacion publicacion)
+        //{
                          
-            if (ModelState.IsValid)
-            {
-                if (Request.Files.Count > 0)
-                {
-                    HttpPostedFileBase file = Request.Files[0];
-                    if (file.ContentLength > 0)
-                    {
-                        var fileName = Path.GetFileName(file.FileName);
-                        var imagenlocal = Path.Combine(
-                            Server.MapPath("~/Content/images"), fileName);
-                        file.SaveAs(imagenlocal);
-                        publicacion.imagenPortada = fileName;
-                    }
-                }
-                db.Publicacion.Add(publicacion);
-                db.SaveChanges();
+        //    if (ModelState.IsValid)
+        //    {
+        //        if (Request.Files.Count > 0)
+        //        {
+        //            HttpPostedFileBase file = Request.Files[0];
+        //            if (file.ContentLength > 0)
+        //            {
+        //                var fileName = Path.GetFileName(file.FileName);
+        //                var imagenlocal = Path.Combine(
+        //                    Server.MapPath("~/Content/images"), fileName);
+        //                file.SaveAs(imagenlocal);
+        //                publicacion.imagenPortada = fileName;
+        //            }
+        //        }
+        //        db.Publicacion.Add(publicacion);
+        //        db.SaveChanges();
 
-                return RedirectToAction("Index");
-            }
+        //        return RedirectToAction("Index");
+        //    }
 
-            return View(publicacion);
-        }
+        //    return View(publicacion);
+        //}
         [HttpPost]
-        public ActionResult PostReconocerImagen(Publicacion publi , string[] pasos)
+        public ActionResult Create(Publicacion publi , string[] pasos)
         {
             int files = Request.Files.Count;
             bool imagenDePublicacion = true;
@@ -184,9 +184,11 @@ namespace ProyectoAPI.Controllers
             //listado.Add(archivos1.Count);
             ////listado.Add(valor.Count);
             //ViewBag.listadoReconocido = listado;
-            return RedirectToAction("ReconocerImagen");
+            return RedirectToAction("Index");
 
         }
+
+        [HttpPost]
         public ActionResult ReconocerImagen() {
 
             //HttpPostedFileBase file = Request.Files[0];
