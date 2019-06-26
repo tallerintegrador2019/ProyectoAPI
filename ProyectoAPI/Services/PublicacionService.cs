@@ -28,6 +28,23 @@ namespace ProyectoAPI.Services
             return publicaciones;
         }
 
+        public void EliminarPublicacion(int idPublicacion) {
+            // Trae las invitaciones que tiene un pedido
+            var listaPasos = instanciaBd.Paso.Where(paso => paso.idPublicacion == idPublicacion).ToList();
+            foreach (var item in listaPasos)
+            {
+                Paso pasoEliminar = instanciaBd.Paso.Find(item.id);
+                if (pasoEliminar != null)
+                {
+                    instanciaBd.Paso.Remove(pasoEliminar);
+                    instanciaBd.SaveChanges();
+                }
+            }
+            Publicacion publicacion = instanciaBd.Publicacion.Find(idPublicacion);
+            instanciaBd.Publicacion.Remove(publicacion);
+            instanciaBd.SaveChanges();
+        }
+
         public async Task<JsonImagga> LeerJson()
         {
             using (var client = new HttpClient())
@@ -55,6 +72,8 @@ namespace ProyectoAPI.Services
                 //}
             }
         }
+
+
 
 
     }
