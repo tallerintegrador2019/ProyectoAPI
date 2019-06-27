@@ -66,11 +66,15 @@ namespace ProyectoAPI.Controllers
             return View();
         }
 
-
+        public ActionResult PublicacionesUsuario() {
+            var publicacionesUsuario = service.ObtenerPublicacionesUsuario();
+            return View("Index",publicacionesUsuario);
+        }
 
         // GET: PublicacionCRUD
         public ActionResult Index()
         {
+
             return View(db.Publicacion.ToList());
         }
 

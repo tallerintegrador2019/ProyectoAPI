@@ -39,6 +39,9 @@
                             <li>@Html.ActionLink("Adm. Usuarios", "Index", "UsuarioCRUD", new { area = "" }, null)</li>
                             @*<li>@Html.ActionLink("Reconocimiento", "ReconocerImagen", "PublicacionCRUD", new { area = "" }, null)</li>*@
                         }
+                        else {
+                            <li>@Html.ActionLink("Mis Publicaciones", "PublicacionesUsuario", "PublicacionCRUD", new { area = "" }, null)</li>
+                        }
                         <li>
                             <a class="dropdown-trigger" href="~/Home/Logout">
                                 Salir

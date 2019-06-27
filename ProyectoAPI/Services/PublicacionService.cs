@@ -14,9 +14,8 @@ namespace ProyectoAPI.Services
 {
     public class PublicacionService
     {
-        
-
         todaviasirveDBEntities instanciaBd = new todaviasirveDBEntities();
+
         public List<Publicacion> ObtenerPublicaciones() {
             Publicacion publicacion = new Publicacion();
             //HttpClient client = new HttpClient();
@@ -25,6 +24,20 @@ namespace ProyectoAPI.Services
             //publicacion =await respuesta.Result.Content.ReadAsAsync<Publicacion>();
             //
             List<Publicacion> publicaciones = instanciaBd.Publicacion.ToList();
+            return publicaciones;
+        }
+
+        public List<Publicacion> ObtenerPublicacionesUsuario() {
+            int idUsuario = (int)HttpContext.Current.Session["idUsuario"];
+            var listaPublicacionUsuario = instanciaBd.Publicacion_Usuario.Where(usuPubli => usuPubli.idUsuario == idUsuario).ToList();
+            var listaId = new List<int>();
+            var publicaciones = new List<Publicacion>();
+            foreach (var item in listaPublicacionUsuario) {
+                listaId.Add((int)item.idPublicacion);
+            }
+            foreach (var item2 in listaId) {
+                publicaciones.Add(instanciaBd.Publicacion.Find(item2));
+            }
             return publicaciones;
         }
 
