@@ -81,6 +81,10 @@ namespace ProyectoAPI.Controllers
         }
 
 
+        //// POST: api/Publicacion
+
+       
+
         // POST: api/Publicacion
 
         //[ResponseType(typeof(Publicacion))]
@@ -96,7 +100,6 @@ namespace ProyectoAPI.Controllers
 
         //    return CreatedAtRoute("DefaultApi", new { id = publicacion.id }, publicacion);
         //}
-
 
 
         // POST: api/Publicacion                    Nuevo Post
@@ -163,16 +166,16 @@ namespace ProyectoAPI.Controllers
                     }
                 }
 
-
-                for (var j = 0; j < request.Files.Count; j++)
+   
+                for (var j=0; j < request.Files.Count; j++)
                 {
                     var archivo = request.Files[j];
                     var cantidadArchivos = request.Files.Count;
                     var fileName = "";
                     var imagenlocal = "";
 
-
-                    switch (j + 1)
+    
+                    switch (j+1)
                     {
                         case 1:
                             var nombre = Path.GetFileName(archivo.FileName);
@@ -248,149 +251,11 @@ namespace ProyectoAPI.Controllers
                 return Ok(HttpStatusCode.OK);
 
             }
-            else
-            {
+            else {
                 return BadRequest();
             }
 
         }
-
-
-        //[System.Web.Http.HttpPost]
-        //[ResponseType(typeof(Publicacion))]
-        //public IHttpActionResult PostPublicacionProfe(Publicacion publicacion)
-        //{
-        //    var request = HttpContext.Current.Request;
-
-        //    List<Paso> pasos = publicacion.Paso.ToList();
-
-
-        //    //bool imagenDePublicacion = true;
-
-        //    if (Request.Content.IsMimeMultipartContent())
-        //    {
-        //        string root1 = HttpContext.Current.Server.MapPath("~/Content/Images");
-        //        var provider = new MultipartFormDataStreamProvider(root1);
-        //        // Read the form data.
-        //        //await Request.Content.ReadAsMultipartAsync(provider);
-        //        // This illustrates how to get the file names.
-        //        //foreach (MultipartFileData file in provider.FileData)
-        //        //{
-        //        //    Trace.WriteLine(file.Headers.ContentDisposition.FileName);
-        //        //    Trace.WriteLine("Server file path: " + file.LocalFileName);
-        //        //}
-        //        var archivo = request.Files[0];
-        //        var nombre = Path.GetFileName(archivo.FileName);
-        //        string root = Path.Combine(root1, nombre);
-        //        archivo.SaveAs(root);
-        //        publicacion.imagenPortada = nombre;
-        //        db.Publicacion.Add(publicacion);
-        //        db.SaveChanges();
-        //        for (int i = 0; i < pasos.Count; i++)
-        //        {
-        //            Paso p = pasos[i];
-        //            archivo = request.Files[i + 1];
-        //            var fileName = Path.GetFileName(archivo.FileName);
-        //            var imagenlocal = Path.Combine(root1, fileName);
-        //            archivo.SaveAs(imagenlocal);
-        //            p.idPublicacion = publicacion.id;
-        //            p.imagen = fileName;
-        //            db.Paso.Add(p);
-        //            db.SaveChanges();
-        //            //request.Files[i + 1]; // el primero es de la publicacion 
-        //            //HttpContext.Current.pos
-        //        }
-        //        //foreach (var key in provider.FormData.AllKeys)
-        //        //{
-        //        //    if (!key.Equals("__RequestVerificationToken"))
-        //        //    {
-        //        //        switch (key)
-        //        //        {
-        //        //            case "titulo":
-        //        //                publicacion.titulo = provider.FormData.GetValues(key)[0];
-        //        //                break;
-        //        //            case "subtitulo":
-        //        //                publicacion.subtitulo = provider.FormData.GetValues(key)[0];
-        //        //                break;
-        //        //            case "descripcion":
-        //        //                publicacion.descripcion = provider.FormData.GetValues(key)[0];
-        //        //                break;
-        //        //            case "descripcion1":
-        //        //                paso1.descripcion = provider.FormData.GetValues(key)[0];
-        //        //                break;
-        //        //            case "descripcion2":
-        //        //                paso2.descripcion = provider.FormData.GetValues(key)[0];
-        //        //                break;
-        //        //            case "descripcion3":
-        //        //                paso3.descripcion = provider.FormData.GetValues(key)[0];
-        //        //                break;
-        //        //            case "descripcion4":
-        //        //                paso4.descripcion = provider.FormData.GetValues(key)[0];
-        //        //                break;
-        //        //            case "descripcion5":
-        //        //                paso5.descripcion = provider.FormData.GetValues(key)[0];
-        //        //                break;
-        //        //            default:
-        //        //                break;
-        //        //        }
-
-        //        //    }
-        //        //}
-
-
-        //        //for (var j = 0; j < request.Files.Count; j++)
-        //        //{
-        //        //    var archivo = request.Files[j];
-        //        //    var cantidadArchivos = request.Files.Count;
-        //        //    var fileName = "";
-        //        //    var imagenlocal = "";
-
-
-        //        //    switch (j + 1)
-        //        //    {
-        //        //        case 1:
-        //        //            var nombre = Path.GetFileName(archivo.FileName);
-        //        //            string root = Path.Combine(root1, nombre);
-        //        //            archivo.SaveAs(root);
-        //        //            publicacion.imagenPortada = nombre;
-        //        //            db.Publicacion.Add(publicacion);
-        //        //            db.SaveChanges();
-        //        //            break;
-        //        //        default:
-        //        //            // cualquier nro distinto de 1 sera un paso, pueden ser N
-        //        //            fileName = Path.GetFileName(archivo.FileName);
-        //        //            imagenlocal = Path.Combine(root1, fileName);
-        //        //            archivo.SaveAs(imagenlocal);
-        //        //            paso1.idPublicacion = publicacion.id;
-        //        //            paso1.imagen = fileName;
-        //        //            db.Paso.Add(paso1);
-        //        //            db.SaveChanges();
-        //        //            break;
-        //        //    }
-        //        //}
-
-
-        //        //if (request.Files.Count > 0)
-        //        //{
-        //        //    var imagen = request.Files[0];
-        //        //    var postedFile = request.Files.Get("file");
-        //        //    string root = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Images"), imagen.FileName);
-        //        //    //root = root + "/" + imagen.FileName;
-        //        //    imagen.SaveAs(root);
-        //        //    publicacion.imagen = imagen.FileName;
-
-
-        //        //}
-
-        //        return Ok(HttpStatusCode.OK);
-
-        //    }
-        //    else
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //}
 
 
         // DELETE: api/Publicacion/5
