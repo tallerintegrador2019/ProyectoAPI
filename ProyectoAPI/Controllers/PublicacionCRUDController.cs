@@ -134,9 +134,11 @@ namespace ProyectoAPI.Controllers
         //    return View(publicacion);
         //}
         [HttpPost]
-        public ActionResult Create(Publicacion publi , string[] pasos)
+        public ActionResult Create(Publicacion publi)
         {
             int files = Request.Files.Count;
+            var idUsuario = (int)HttpContext.Session["idUsuario"];
+            Publicacion_Usuario publicacionUsuario = new Publicacion_Usuario();
             bool imagenDePublicacion = true;
             for (int i = 0; i < files; i++)
             {
@@ -153,20 +155,25 @@ namespace ProyectoAPI.Controllers
                         imagenDePublicacion = false;
                         db.Publicacion.Add(publi);
                         db.SaveChanges();
-                    }
-                    else
-                    {
-                        var fileName = Path.GetFileName(imagen.FileName);
-                        var imagenlocal = Path.Combine(
-                        Server.MapPath("~/Content/images"), fileName);
-                        imagen.SaveAs(imagenlocal);
-                        Paso paso = new Paso();
-                        paso.idPublicacion = publi.id;
-                        paso.descripcion = pasos[i-1];
-                        paso.imagen = fileName;
-                        db.Paso.Add(paso);
+                        publicacionUsuario.idPublicacion = publi.id;
+                        publicacionUsuario.idUsuario = idUsuario;
+                        publicacionUsuario.fecha = new DateTime().ToString();
+                        db.Publicacion_Usuario.Add(publicacionUsuario);
                         db.SaveChanges();
                     }
+                    //else
+                    //{
+                    //    var fileName = Path.GetFileName(imagen.FileName);
+                    //    var imagenlocal = Path.Combine(
+                    //    Server.MapPath("~/Content/images"), fileName);
+                    //    imagen.SaveAs(imagenlocal);
+                    //    Paso paso = new Paso();
+                    //    paso.idPublicacion = publi.id;
+                    //    paso.descripcion = pasos[i-1];
+                    //    paso.imagen = fileName;
+                    //    db.Paso.Add(paso);
+                    //    db.SaveChanges();
+                    //}
                 }
 
             }
