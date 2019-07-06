@@ -4,19 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c74eb813e1154bf7ada8e24bed9afad9" Name="Diagram1">
-        <EntityTypeShape EntityType="todaviasirveDBModel.Categoria" Width="1.5" PointX="3.75" PointY="15" IsExpanded="true" />
-        <EntityTypeShape EntityType="todaviasirveDBModel.Compartir" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="todaviasirveDBModel.Enlace" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="todaviasirveDBModel.Material" Width="1.5" PointX="3.75" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="todaviasirveDBModel.Paso" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="todaviasirveDBModel.Publicacion" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="todaviasirveDBModel.Publicacion_Categoria" Width="1.5" PointX="6" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="todaviasirveDBModel.Publicacion_Material" Width="1.5" PointX="6" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="todaviasirveDBModel.Publicacion_Usuario" Width="1.5" PointX="6" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="todaviasirveDBModel.Rango" Width="1.5" PointX="1.5" PointY="19" IsExpanded="true" />
-        <EntityTypeShape EntityType="todaviasirveDBModel.Suscriptor" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="todaviasirveDBModel.Usuario" Width="1.5" PointX="3.75" PointY="18.25" IsExpanded="true" />
+      <Diagram DiagramId="5051fdd705404a92862e17479ccb438e" Name="Diagram1">
+        <EntityTypeShape EntityType="todaviasirveDBModel.Categoria" Width="1.5" PointX="12.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Compartir" Width="1.5" PointX="7.625" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Enlace" Width="1.5" PointX="5.625" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Material" Width="1.5" PointX="9.375" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Paso" Width="1.5" PointX="9.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Publicacion" Width="1.5" PointX="7.125" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Publicacion_Categoria" Width="1.5" PointX="9.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Publicacion_Material" Width="1.5" PointX="7.125" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Publicacion_Usuario" Width="1.5" PointX="4.375" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Rango" Width="1.5" PointX="1.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Suscriptor" Width="1.5" PointX="2.875" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Tips" Width="1.5" PointX="4.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="todaviasirveDBModel.Usuario" Width="1.5" PointX="1.875" PointY="5.25" IsExpanded="true" />
         <AssociationConnector Association="todaviasirveDBModel.FK_Publicacion_Categoria_Categoria" ManuallyRouted="false" />
         <AssociationConnector Association="todaviasirveDBModel.FK_Redes_Publicacion" ManuallyRouted="false" />
         <AssociationConnector Association="todaviasirveDBModel.FK_Enlace_Publicacion" ManuallyRouted="false" />

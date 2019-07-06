@@ -18,44 +18,44 @@ using ProyectoAPI.Models;
 namespace ProyectoAPI.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class PublicacionController : ApiController
+    public class PasoController : ApiController
     {
         private todaviasirveDBEntities db = new todaviasirveDBEntities();
 
-        // GET: api/Publicacion
-        public IQueryable<Publicacion> GetPublicacion()
+        // GET: api/Paso
+        public IQueryable<Paso> GetPaso()
         {
-            return db.Publicacion;
+            return db.Paso;
         }
 
-        // GET: api/Publicacion/5
-        [ResponseType(typeof(Publicacion))]
-        public IHttpActionResult GetPublicacion(int id)
+        // GET: api/Paso/5
+        [ResponseType(typeof(Paso))]
+        public IHttpActionResult GetPaso(int id)
         {
-            Publicacion publicacion = db.Publicacion.Find(id);
-            if (publicacion == null)
+            Paso paso = db.Paso.Find(id);
+            if (paso == null)
             {
                 return NotFound();
             }
 
-            return Ok(publicacion);
+            return Ok(paso);
         }
 
-        // PUT: api/Publicacion/5
+        // PUT: api/Paso/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutPublicacion(int id, Publicacion publicacion)
+        public IHttpActionResult PutPaso(int id, Paso paso)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != publicacion.id)
+            if (id != paso.id)
             {
                 return BadRequest();
             }
 
-            db.Entry(publicacion).State = EntityState.Modified;
+            db.Entry(paso).State = EntityState.Modified;
 
             try
             {
@@ -63,7 +63,7 @@ namespace ProyectoAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PublicacionExists(id))
+                if (!PasoExists(id))
                 {
                     return NotFound();
                 }
@@ -76,16 +76,16 @@ namespace ProyectoAPI.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Publicacion
-        [ResponseType(typeof(Publicacion))]
-        public async Task<IHttpActionResult> PostPublicacion()
+        // POST: api/Paso
+        [ResponseType(typeof(Paso))]
+        public async Task<IHttpActionResult> PostPaso()
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            Publicacion publi = new Publicacion();
+            Paso paso = new Paso();
             var request = HttpContext.Current.Request;
 
             if (Request.Content.IsMimeMultipartContent())
@@ -107,17 +107,14 @@ namespace ProyectoAPI.Controllers
                     {
                         switch (key)
                         {
-                            case "titulo":
-                                publi.titulo = provider.FormData.GetValues(key)[0];
-                                break;
-                            case "subtitulo":
-                                publi.subtitulo = provider.FormData.GetValues(key)[0];
+                            case "numero":
+                                paso.numero = Int32.Parse(provider.FormData.GetValues(key)[0]);
                                 break;
                             case "descripcion":
-                                publi.descripcion = provider.FormData.GetValues(key)[0];
+                                paso.descripcion = provider.FormData.GetValues(key)[0];
                                 break;
-                            case "fechaSubida":
-                                publi.fechaSubida = provider.FormData.GetValues(key)[0];
+                            case "idPublicacion":
+                                paso.idPublicacion = Int32.Parse(provider.FormData.GetValues(key)[0]);
                                 break;
                             default:
                                 break;
@@ -134,34 +131,30 @@ namespace ProyectoAPI.Controllers
                     string root = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Images"), imagen.FileName);
                     //root = root + "/" + imagen.FileName;
                     imagen.SaveAs(root);
-                    publi.imagenPortada = imagen.FileName;
+                    paso.imagen = imagen.FileName;
                 }
 
-                db.Publicacion.Add(publi);
+                db.Paso.Add(paso);
                 db.SaveChanges();
-
-                //return Ok(HttpStatusCode.OK);
-                return Content(HttpStatusCode.OK, publi.id);
-
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = publi.id }, publi);
+            return CreatedAtRoute("DefaultApi", new { id = paso.id }, paso);
         }
 
-        // DELETE: api/Publicacion/5
-        [ResponseType(typeof(Publicacion))]
-        public IHttpActionResult DeletePublicacion(int id)
+        // DELETE: api/Paso/5
+        [ResponseType(typeof(Paso))]
+        public IHttpActionResult DeletePaso(int id)
         {
-            Publicacion publicacion = db.Publicacion.Find(id);
-            if (publicacion == null)
+            Paso paso = db.Paso.Find(id);
+            if (paso == null)
             {
                 return NotFound();
             }
 
-            db.Publicacion.Remove(publicacion);
+            db.Paso.Remove(paso);
             db.SaveChanges();
 
-            return Ok(publicacion);
+            return Ok(paso);
         }
 
         protected override void Dispose(bool disposing)
@@ -173,29 +166,9 @@ namespace ProyectoAPI.Controllers
             base.Dispose(disposing);
         }
 
-        private bool PublicacionExists(int id)
+        private bool PasoExists(int id)
         {
-            return db.Publicacion.Count(e => e.id == id) > 0;
+            return db.Paso.Count(e => e.id == id) > 0;
         }
-
-        // metodo buscar
-        [HttpGet]
-        [ResponseType(typeof(Publicacion))]
-        [Route("Api/Publicacion/Buscar/{nombre}")]
-        public IHttpActionResult Buscar(string nombre)
-        {
-            List<Publicacion> publicacion = (from publi in db.Publicacion
-                                             where publi.titulo.Contains(nombre)
-                                             select publi).ToList();
-
-            if (publicacion == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(publicacion);
-        }
-
-
-    } // cierre controller
+    }
 }

@@ -4,13 +4,13 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="todaviasirveDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="todaviasirveDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categoria">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="descripcion" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Compartir">
           <Key>
@@ -42,6 +42,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numero" Type="int" />
           <Property Name="descripcion" Type="varchar" MaxLength="500" />
           <Property Name="imagen" Type="varchar(max)" />
           <Property Name="idPublicacion" Type="int" />
@@ -97,6 +98,13 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Tips">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -243,6 +251,7 @@
           <EntitySet Name="Publicacion_Usuario" EntityType="Self.Publicacion_Usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rango" EntityType="Self.Rango" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Suscriptor" EntityType="Self.Suscriptor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tips" EntityType="Self.Tips" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Enlace_Publicacion" Association="Self.FK_Enlace_Publicacion">
             <End Role="Publicacion" EntitySet="Publicacion" />
@@ -285,7 +294,8 @@
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="todaviasirveDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -294,7 +304,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Publicacion_Categoria" Relationship="Self.FK_Publicacion_Categoria_Categoria" FromRole="Categoria" ToRole="Publicacion_Categoria" />
         </EntityType>
         <EntityType Name="Compartir">
@@ -330,6 +340,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numero" Type="Int32" />
           <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="idPublicacion" Type="Int32" />
@@ -400,6 +411,13 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="Tips">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="id" />
@@ -410,7 +428,7 @@
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="imagen" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="idRango" Type="Int32" />
           <NavigationProperty Name="Publicacion_Usuario" Relationship="Self.FK_Feedback_Usuario" FromRole="Usuario" ToRole="Publicacion_Usuario" />
           <NavigationProperty Name="Rango" Relationship="Self.FK_Usuario_Rango" FromRole="Usuario" ToRole="Rango" />
@@ -547,6 +565,7 @@
           <EntitySet Name="Publicacion_Usuario" EntityType="Self.Publicacion_Usuario" />
           <EntitySet Name="Rango" EntityType="Self.Rango" />
           <EntitySet Name="Suscriptor" EntityType="Self.Suscriptor" />
+          <EntitySet Name="Tips" EntityType="Self.Tips" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
           <AssociationSet Name="FK_Publicacion_Categoria_Categoria" Association="Self.FK_Publicacion_Categoria_Categoria">
             <End Role="Categoria" EntitySet="Categoria" />
@@ -635,6 +654,7 @@
             <EntityTypeMapping TypeName="todaviasirveDBModel.Paso">
               <MappingFragment StoreEntitySet="Paso">
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
                 <ScalarProperty Name="idPublicacion" ColumnName="idPublicacion" />
@@ -696,6 +716,14 @@
               <MappingFragment StoreEntitySet="Suscriptor">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tips">
+            <EntityTypeMapping TypeName="todaviasirveDBModel.Tips">
+              <MappingFragment StoreEntitySet="Tips">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
