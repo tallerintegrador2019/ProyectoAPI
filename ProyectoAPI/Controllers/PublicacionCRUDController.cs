@@ -67,7 +67,8 @@ namespace ProyectoAPI.Controllers
         }
 
         public ActionResult PublicacionesUsuario() {
-            var publicacionesUsuario = service.ObtenerPublicacionesUsuario();
+            int idUsuario = (int)HttpContext.Session["idUsuario"];
+            var publicacionesUsuario = service.ObtenerPublicacionesUsuario(idUsuario);
             return View("Index",publicacionesUsuario);
         }
 

@@ -115,34 +115,34 @@ namespace ProyectoAPI.Controllers
                     Trace.WriteLine("Server file path: " + file.LocalFileName);
 
                 }
-                foreach (var key in provider.FormData.AllKeys)
-                {
-                    if (!key.Equals("__RequestVerificationToken"))
-                    {
-                        switch (key)
-                        {
-                            case "nombre":
-                                usu.nombre = provider.FormData.GetValues(key)[0];
-                                break;
-                            case "apellido":
-                                usu.apellido = provider.FormData.GetValues(key)[0];
-                                break;
-                            case "email":
-                                usu.email = provider.FormData.GetValues(key)[0];
-                                break;
-                            case "pass":
-                                usu.pass = provider.FormData.GetValues(key)[0];
-                                break;
-                            case "username":
-                                usu.username = provider.FormData.GetValues(key)[0];
-                                break;
-                            default:
-                                break;
-                        }
+                //foreach (var key in provider.FormData.AllKeys)
+                //{
+                //    if (!key.Equals("__RequestVerificationToken"))
+                //    {
+                //        switch (key)
+                //        {
+                //            case "nombre":
+                //                usu.nombre = provider.FormData.GetValues(key)[0];
+                //                break;
+                //            case "apellido":
+                //                usu.apellido = provider.FormData.GetValues(key)[0];
+                //                break;
+                //            case "email":
+                //                usu.email = provider.FormData.GetValues(key)[0];
+                //                break;
+                //            case "pass":
+                //                usu.pass = provider.FormData.GetValues(key)[0];
+                //                break;
+                //            case "username":
+                //                usu.username = provider.FormData.GetValues(key)[0];
+                //                break;
+                //            default:
+                //                break;
+                //        }
 
-                    }
+                //    }
 
-                }
+                //}
 
                 if (request.Files.Count > 0)
                 {

@@ -18,6 +18,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using ProyectoAPI.Models;
+using ProyectoAPI.Services;
 
 namespace ProyectoAPI.Controllers
 {
@@ -25,7 +26,7 @@ namespace ProyectoAPI.Controllers
     public class PublicacionController : ApiController
     {
         private todaviasirveDBEntities db = new todaviasirveDBEntities();
-
+        PublicacionService service = new PublicacionService();
         // GET: api/Publicacion
         public IQueryable<Publicacion> GetPublicacion()
         {
@@ -440,6 +441,23 @@ namespace ProyectoAPI.Controllers
 
             return Ok(publicacion);
         }
+
+        // metodo Obtener publicaciones de un usuario
+        [HttpGet]
+        [ResponseType(typeof(Publicacion))]
+        [Route("Api/Publicacion/PublicacionesUsuario/{idUsuario}")]
+        public IHttpActionResult PublicacionesUsuario(int idUsuario)
+        {
+            List<Publicacion> publicacion = service.ObtenerPublicacionesUsuario(idUsuario);
+
+            if (publicacion == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(publicacion);
+        }
+
 
 
     } // cierre controller

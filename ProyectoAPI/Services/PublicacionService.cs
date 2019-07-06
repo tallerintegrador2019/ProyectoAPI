@@ -27,8 +27,7 @@ namespace ProyectoAPI.Services
             return publicaciones;
         }
 
-        public List<Publicacion> ObtenerPublicacionesUsuario() {
-            int idUsuario = (int)HttpContext.Current.Session["idUsuario"];
+        public List<Publicacion> ObtenerPublicacionesUsuario(int idUsuario) {
             var listaPublicacionUsuario = instanciaBd.Publicacion_Usuario.Where(usuPubli => usuPubli.idUsuario == idUsuario).ToList();
             var listaId = new List<int>();
             var publicaciones = new List<Publicacion>();
