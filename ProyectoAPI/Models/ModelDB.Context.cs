@@ -36,6 +36,7 @@ namespace ProyectoAPI.Models
         public virtual DbSet<Publicacion_Usuario> Publicacion_Usuario { get; set; }
         public virtual DbSet<Rango> Rango { get; set; }
         public virtual DbSet<Suscriptor> Suscriptor { get; set; }
+        public virtual DbSet<Tips> Tips { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
     }
 }
