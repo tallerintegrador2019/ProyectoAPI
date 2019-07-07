@@ -26,5 +26,31 @@ namespace ProyectoAPI.Service
             }
             return publicaciones;
         }
+        public void EliminarPublicacion(int idPublicacion)
+        {
+            // Trae los pasos que tiene una publicacion 
+            var listaPasos = instanciaBd.Paso.Where(paso => paso.idPublicacion == idPublicacion).ToList();
+            foreach (var item in listaPasos)
+            {
+                Paso pasoEliminar = instanciaBd.Paso.Find(item.id);
+                if (pasoEliminar != null)
+                {
+                    instanciaBd.Paso.Remove(pasoEliminar);
+                    instanciaBd.SaveChanges();
+                }
+            }
+            //Trae la asociacion de publicacion a usuario y la elimina
+            var publicacionUsuario = instanciaBd.Publicacion_Usuario.Where(publiUsu => publiUsu.idPublicacion == idPublicacion).FirstOrDefault();
+            if (publicacionUsuario != null)
+            {
+                instanciaBd.Publicacion_Usuario.Remove(publicacionUsuario);
+                instanciaBd.SaveChanges();
+            }
+
+            Publicacion publicacion = instanciaBd.Publicacion.Find(idPublicacion);
+            instanciaBd.Publicacion.Remove(publicacion);
+            instanciaBd.SaveChanges();
+        }
+
     }
 }
