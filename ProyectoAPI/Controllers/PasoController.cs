@@ -28,6 +28,31 @@ namespace ProyectoAPI.Controllers
             return db.Paso;
         }
 
+        // GET: api/Paso/Publicacion
+        [HttpGet]
+        [Route("Api/Paso/Publicacion/{idPublicacion}")]
+        public IHttpActionResult GetPasoPorPublicacion(int idPublicacion)
+        {
+            var pasos = (from pa in db.Paso
+                                where pa.idPublicacion == idPublicacion
+                                select new {
+                                    pa.id,
+                                    pa.numero,
+                                    pa.descripcion,
+                                    pa.imagen,
+                                    pa.idPublicacion
+                                })
+                                .ToList();
+
+            if (pasos == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(pasos);
+        }
+
+
         // GET: api/Paso/5
         [ResponseType(typeof(Paso))]
         public IHttpActionResult GetPaso(int id)
