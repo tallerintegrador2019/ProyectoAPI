@@ -14,6 +14,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using ProyectoAPI.Models;
+using ProyectoAPI.Service;
 
 namespace ProyectoAPI.Controllers
 {
@@ -21,7 +22,7 @@ namespace ProyectoAPI.Controllers
     public class PublicacionController : ApiController
     {
         private todaviasirveDBEntities db = new todaviasirveDBEntities();
-
+        public PublicacionService service = new PublicacionService();
         // GET: api/Publicacion
         public IQueryable<Publicacion> GetPublicacion()
         {
@@ -86,6 +87,7 @@ namespace ProyectoAPI.Controllers
             }
 
             Publicacion publi = new Publicacion();
+            Publicacion_Usuario publiUsu = new Publicacion_Usuario();
             var request = HttpContext.Current.Request;
 
             if (Request.Content.IsMimeMultipartContent())
@@ -119,6 +121,10 @@ namespace ProyectoAPI.Controllers
                             case "fechaSubida":
                                 publi.fechaSubida = provider.FormData.GetValues(key)[0];
                                 break;
+                            case "usuarioPublicacion":
+                                var valor = provider.FormData.GetValues(key)[0];
+                                 publiUsu.idUsuario = Convert.ToInt32(valor); 
+                                break;
                             default:
                                 break;
                         }
@@ -140,6 +146,10 @@ namespace ProyectoAPI.Controllers
                 db.Publicacion.Add(publi);
                 db.SaveChanges();
 
+                publiUsu.idPublicacion = publi.id;
+                publiUsu.fecha = new DateTime().ToString();
+                db.Publicacion_Usuario.Add(publiUsu);
+                db.SaveChanges();
                 //return Ok(HttpStatusCode.OK);
                 return Content(HttpStatusCode.OK, publi);
 
@@ -196,6 +206,21 @@ namespace ProyectoAPI.Controllers
             return Ok(publicacion);
         }
 
+        // metodo Obtener publicaciones de un usuario
+        [HttpGet]
+        [ResponseType(typeof(Publicacion))]
+        [Route("Api/Publicacion/PublicacionesUsuario/{idUsuario}")]
+        public IHttpActionResult PublicacionesUsuario(int idUsuario)
+        {
+           List<Publicacion> publicacion = service.ObtenerPublicacionesUsuario(idUsuario);
+           
+            if (publicacion == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(publicacion);
+        }
 
     } // cierre controller
 }
