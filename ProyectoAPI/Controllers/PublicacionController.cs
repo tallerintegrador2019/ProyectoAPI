@@ -24,7 +24,6 @@ namespace ProyectoAPI.Controllers
         private todaviasirveDBEntities db = new todaviasirveDBEntities();
         public PublicacionService service = new PublicacionService();
         // GET: api/Publicacion
-        [Route("Api/Publicacion/Lucas")]
         public IQueryable<Publicacion> GetPublicacion()
         {
             return db.Publicacion;
