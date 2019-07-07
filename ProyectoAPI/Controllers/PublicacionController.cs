@@ -87,6 +87,7 @@ namespace ProyectoAPI.Controllers
             }
 
             Publicacion publi = new Publicacion();
+            Publicacion_Usuario publiUsu = new Publicacion_Usuario();
             var request = HttpContext.Current.Request;
 
             if (Request.Content.IsMimeMultipartContent())
@@ -120,6 +121,10 @@ namespace ProyectoAPI.Controllers
                             case "fechaSubida":
                                 publi.fechaSubida = provider.FormData.GetValues(key)[0];
                                 break;
+                            case "usuarioPublicacion":
+                                var valor = provider.FormData.GetValues(key)[0];
+                                 publiUsu.idUsuario = Convert.ToInt32(valor); 
+                                break;
                             default:
                                 break;
                         }
@@ -141,6 +146,10 @@ namespace ProyectoAPI.Controllers
                 db.Publicacion.Add(publi);
                 db.SaveChanges();
 
+                publiUsu.idPublicacion = publi.id;
+                publiUsu.fecha = new DateTime().ToString();
+                db.Publicacion_Usuario.Add(publiUsu);
+                db.SaveChanges();
                 //return Ok(HttpStatusCode.OK);
                 return Content(HttpStatusCode.OK, publi.id);
 
