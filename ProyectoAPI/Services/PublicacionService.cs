@@ -41,7 +41,7 @@ namespace ProyectoAPI.Services
         }
 
         public void EliminarPublicacion(int idPublicacion) {
-            // Trae las invitaciones que tiene un pedido
+            // Trae los pasos que tiene una publicacion 
             var listaPasos = instanciaBd.Paso.Where(paso => paso.idPublicacion == idPublicacion).ToList();
             foreach (var item in listaPasos)
             {
@@ -52,6 +52,14 @@ namespace ProyectoAPI.Services
                     instanciaBd.SaveChanges();
                 }
             }
+            //Trae la asociacion de publicacion a usuario y la elimina
+            var publicacionUsuario = instanciaBd.Publicacion_Usuario.Where(publiUsu => publiUsu.idPublicacion == idPublicacion).FirstOrDefault();
+            if (publicacionUsuario != null)
+            {
+                instanciaBd.Publicacion_Usuario.Remove(publicacionUsuario);
+                instanciaBd.SaveChanges();
+            }
+
             Publicacion publicacion = instanciaBd.Publicacion.Find(idPublicacion);
             instanciaBd.Publicacion.Remove(publicacion);
             instanciaBd.SaveChanges();

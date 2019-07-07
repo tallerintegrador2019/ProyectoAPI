@@ -476,7 +476,29 @@ namespace ProyectoAPI.Controllers
             return Ok(publicacion);
         }
 
+        
+        [HttpGet]
+        [ResponseType(typeof(int))]
+        [Route("Api/Publicacion/DeletePublicacionUsuario/{id}/{idUsuario}")]
+        public IHttpActionResult DeletePublicacionUsuario(int id, int idUsuario)
+        {
+            //Publicacion publicacion = db.Publicacion.Find(id);
+            service.EliminarPublicacion(id);
+            List<Publicacion> publicacion = service.ObtenerPublicacionesUsuario(idUsuario);
+            if (publicacion == null)
+            {
+                return NotFound();
+            }
+            //if (publicacion == null)
+            //{
+            //    return NotFound();
+            //}
 
+            //db.Publicacion.Remove(publicacion);
+            //db.SaveChanges();
+
+            return Ok(publicacion);
+        }
 
     } // cierre controller
 }
