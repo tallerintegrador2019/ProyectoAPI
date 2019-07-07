@@ -141,7 +141,7 @@ namespace ProyectoAPI.Controllers
                 db.SaveChanges();
 
                 //return Ok(HttpStatusCode.OK);
-                return Content(HttpStatusCode.OK, publi.id);
+                return Content(HttpStatusCode.OK, publi);
 
             }
 
