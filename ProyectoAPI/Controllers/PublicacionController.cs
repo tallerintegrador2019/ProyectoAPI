@@ -151,7 +151,8 @@ namespace ProyectoAPI.Controllers
                 db.Publicacion_Usuario.Add(publiUsu);
                 db.SaveChanges();
                 //return Ok(HttpStatusCode.OK);
-                return Content(HttpStatusCode.OK, publi);
+                //return Content(HttpStatusCode.OK, publi);
+                return Ok(publi.id);
 
             }
 
