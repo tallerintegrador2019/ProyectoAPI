@@ -17,10 +17,8 @@ namespace ProyectoAPI.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Publicacion()
         {
-            this.Compartir = new HashSet<Compartir>();
-            this.Enlace = new HashSet<Enlace>();
+            this.Feedback = new HashSet<Feedback>();
             this.Paso = new HashSet<Paso>();
-            this.Publicacion_Usuario = new HashSet<Publicacion_Usuario>();
             this.Publicacion_Categoria = new HashSet<Publicacion_Categoria>();
             this.Publicacion_Material = new HashSet<Publicacion_Material>();
         }
@@ -31,18 +29,16 @@ namespace ProyectoAPI.Models
         public string descripcion { get; set; }
         public string fechaSubida { get; set; }
         public string imagenPortada { get; set; }
+        public Nullable<int> idUsuario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Compartir> Compartir { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Enlace> Enlace { get; set; }
+        public virtual ICollection<Feedback> Feedback { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Paso> Paso { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Publicacion_Usuario> Publicacion_Usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Publicacion_Categoria> Publicacion_Categoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Publicacion_Material> Publicacion_Material { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

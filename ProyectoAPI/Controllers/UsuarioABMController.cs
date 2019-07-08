@@ -18,8 +18,7 @@ namespace ProyectoAPI.Controllers
         // GET: UsuarioABM
         public ActionResult Index()
         {
-            var usuario = db.Usuario.Include(u => u.Rango);
-            return View(usuario.ToList());
+            return View(db.Usuario.ToList());
         }
 
         // GET: UsuarioABM/Details/5
@@ -40,7 +39,6 @@ namespace ProyectoAPI.Controllers
         // GET: UsuarioABM/Create
         public ActionResult Create()
         {
-            ViewBag.idRango = new SelectList(db.Rango, "id", "descripcion");
             return View();
         }
 
@@ -49,11 +47,10 @@ namespace ProyectoAPI.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,username,pass,nombre,apellido,email,imagen,idRango")] Usuario usuario)
+        public ActionResult Create([Bind(Include = "id,username,pass,nombre,apellido,email,imagen")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
-
                 if (Request.Files.Count > 0)
                 {
                     HttpPostedFileBase file = Request.Files[0];
@@ -67,13 +64,12 @@ namespace ProyectoAPI.Controllers
                         usuario.imagen = fileName;
                     }
                 }
-
+                               
                 db.Usuario.Add(usuario);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idRango = new SelectList(db.Rango, "id", "descripcion", usuario.idRango);
             return View(usuario);
         }
 
@@ -89,7 +85,6 @@ namespace ProyectoAPI.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.idRango = new SelectList(db.Rango, "id", "descripcion", usuario.idRango);
             return View(usuario);
         }
 
@@ -98,7 +93,7 @@ namespace ProyectoAPI.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,username,pass,nombre,apellido,email,imagen,idRango")] Usuario usuario)
+        public ActionResult Edit([Bind(Include = "id,username,pass,nombre,apellido,email,imagen")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -106,7 +101,6 @@ namespace ProyectoAPI.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.idRango = new SelectList(db.Rango, "id", "descripcion", usuario.idRango);
             return View(usuario);
         }
 
