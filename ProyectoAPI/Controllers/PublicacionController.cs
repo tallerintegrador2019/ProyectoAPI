@@ -19,6 +19,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using ProyectoAPI.Models;
+using ProyectoAPI.Models.ViewModel;
 using ProyectoAPI.Services;
 
 namespace ProyectoAPI.Controllers
@@ -545,14 +546,14 @@ namespace ProyectoAPI.Controllers
         [Route("Api/Publicacion/obtenerComentarioPublicacion/{idPublicacion}")]
         public IHttpActionResult ObtenerComentarioPublicacion(int idPublicacion)
         {
-            List<string> comentarios = service.ObtenerComentariosPublicacion(idPublicacion);
+            List<ComentarioUsuario> comentarioUsuario = service.ObtenerComentariosPublicacion(idPublicacion);
 
-            if (comentarios == null)
+            if (comentarioUsuario == null)
             {
                 return Ok("sin resltados");
             }
 
-            return Ok(comentarios);
+            return Ok(comentarioUsuario);
         }
 
     } // cierre controller

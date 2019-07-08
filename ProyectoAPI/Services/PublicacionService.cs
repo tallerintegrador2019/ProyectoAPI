@@ -41,13 +41,18 @@ namespace ProyectoAPI.Services
         }
 
         //Obtener comentarios de una publicacion
-        public List<string> ObtenerComentariosPublicacion(int idPublicacion) {
+        public List<ComentarioUsuario> ObtenerComentariosPublicacion(int idPublicacion) {
             var publicaciones = instanciaBd.Feedback.Where(usuPubli => usuPubli.idPublicacion == idPublicacion).ToList();
             var comentarios = new List<string>();
+            var listadoComentarioUsuario = new List<ComentarioUsuario>();
             foreach (var item in publicaciones) {
-                comentarios.Add(item.comentario);
+                var comentarioUsuario = new ComentarioUsuario();
+                var imagenUsuario = instanciaBd.Usuario.Where(usuImagen => usuImagen.id == item.idUsuario).FirstOrDefault();
+                comentarioUsuario.comentario = item.comentario;
+                comentarioUsuario.imagen = imagenUsuario.imagen;
+                listadoComentarioUsuario.Add(comentarioUsuario);
             }
-            return comentarios;
+            return listadoComentarioUsuario;
         }
 
         public void EliminarPublicacion(int idPublicacion) {
