@@ -161,6 +161,8 @@ namespace ProyectoAPI.Controllers
 
                 db.Paso.Add(paso);
                 db.SaveChanges();
+
+                return Ok();
             }
 
             return CreatedAtRoute("DefaultApi", new { id = paso.id }, paso);

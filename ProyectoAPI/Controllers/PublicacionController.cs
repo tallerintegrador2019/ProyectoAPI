@@ -183,16 +183,22 @@ namespace ProyectoAPI.Controllers
         [Route("Api/Publicacion/Buscar/{nombre}")]
         public IHttpActionResult Buscar(string nombre)
         {
-            List<Publicacion> publicacion = (from publi in db.Publicacion
-                                             where publi.titulo.Contains(nombre)
-                                             select publi).ToList();
-
-            if (publicacion == null)
+            if (!String.IsNullOrEmpty(nombre))
             {
-                return NotFound();
+                List<Publicacion> publicaciones = (from publi in db.Publicacion
+                                                 where publi.titulo.Contains(nombre.Trim())
+                                                 select publi).ToList();
+
+                if (publicaciones == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(publicaciones);
             }
 
-            return Ok(publicacion);
+            return Ok("No ha ingresado elemento a la busqueda");
+
         }
 
 
