@@ -28,7 +28,7 @@ namespace ProyectoAPI.Services
         }
 
         public List<Publicacion> ObtenerPublicacionesUsuario(int idUsuario) {
-            var listaPublicacionUsuario = instanciaBd.Publicacion_Usuario.Where(usuPubli => usuPubli.idUsuario == idUsuario).ToList();
+            var listaPublicacionUsuario = instanciaBd.Feedback.Where(usuPubli => usuPubli.idUsuario == idUsuario).ToList();
             var listaId = new List<int>();
             var publicaciones = new List<Publicacion>();
             foreach (var item in listaPublicacionUsuario) {
@@ -38,6 +38,16 @@ namespace ProyectoAPI.Services
                 publicaciones.Add(instanciaBd.Publicacion.Find(item2));
             }
             return publicaciones;
+        }
+
+        //Obtener comentarios de una publicacion
+        public List<string> ObtenerComentariosPublicacion(int idPublicacion) {
+            var publicaciones = instanciaBd.Feedback.Where(usuPubli => usuPubli.idPublicacion == idPublicacion).ToList();
+            var comentarios = new List<string>();
+            foreach (var item in publicaciones) {
+                comentarios.Add(item.comentario);
+            }
+            return comentarios;
         }
 
         public void EliminarPublicacion(int idPublicacion) {
@@ -53,10 +63,10 @@ namespace ProyectoAPI.Services
                 }
             }
             //Trae la asociacion de publicacion a usuario y la elimina
-            var publicacionUsuario = instanciaBd.Publicacion_Usuario.Where(publiUsu => publiUsu.idPublicacion == idPublicacion).FirstOrDefault();
+            var publicacionUsuario = instanciaBd.Feedback.Where(publiUsu => publiUsu.idPublicacion == idPublicacion).FirstOrDefault();
             if (publicacionUsuario != null)
             {
-                instanciaBd.Publicacion_Usuario.Remove(publicacionUsuario);
+                instanciaBd.Feedback.Remove(publicacionUsuario);
                 instanciaBd.SaveChanges();
             }
 

@@ -11,12 +11,11 @@ namespace ProyectoAPI.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Paso
     {
         public int id { get; set; }
-        [DataType(DataType.MultilineText)]
+        public Nullable<int> numero { get; set; }
         public string descripcion { get; set; }
         public string imagen { get; set; }
         public Nullable<int> idPublicacion { get; set; }

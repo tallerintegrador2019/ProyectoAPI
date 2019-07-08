@@ -139,7 +139,7 @@ namespace ProyectoAPI.Controllers
         {
             int files = Request.Files.Count;
             var idUsuario = (int)HttpContext.Session["idUsuario"];
-            Publicacion_Usuario publicacionUsuario = new Publicacion_Usuario();
+            Feedback publicacionUsuario = new Feedback();
             bool imagenDePublicacion = true;
             for (int i = 0; i < files; i++)
             {
@@ -159,7 +159,7 @@ namespace ProyectoAPI.Controllers
                         publicacionUsuario.idPublicacion = publi.id;
                         publicacionUsuario.idUsuario = idUsuario;
                         publicacionUsuario.fecha = new DateTime().ToString();
-                        db.Publicacion_Usuario.Add(publicacionUsuario);
+                        db.Feedback.Add(publicacionUsuario);
                         db.SaveChanges();
                     }
                     //else

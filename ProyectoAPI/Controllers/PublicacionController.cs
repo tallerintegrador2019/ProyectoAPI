@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -498,6 +499,60 @@ namespace ProyectoAPI.Controllers
             //db.SaveChanges();
 
             return Ok(publicacion);
+        }
+
+        [HttpPost]
+        [ResponseType(typeof(Publicacion))]
+        [Route("Api/Publicacion/subirComentario")]
+        public async Task<IHttpActionResult> SubirComentario()
+        {
+            var feedback = new Feedback();
+            string root1 = HttpContext.Current.Server.MapPath("~/Content/Images");
+            var provider = new MultipartFormDataStreamProvider(root1);
+            // Read the form data.
+            await Request.Content.ReadAsMultipartAsync(provider);
+            foreach (var key in provider.FormData.AllKeys)
+            {
+                if (!key.Equals("__RequestVerificationToken"))
+                {
+                    switch (key)
+                    {
+                        case "comentario":
+                            feedback.comentario = provider.FormData.GetValues(key)[0];
+                            break;
+                        case "idUsuario":
+                            var valor = provider.FormData.GetValues(key)[0];
+                            feedback.idUsuario = Convert.ToInt32(valor);
+                            break;
+                        case "idPublicacion":
+                            var valor1 = provider.FormData.GetValues(key)[0];
+                            feedback.idPublicacion = Convert.ToInt32(valor1);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            db.Feedback.Add(feedback);
+            db.SaveChanges();
+            return Ok(HttpStatusCode.OK);
+            //return Ok(HttpStatusCode.OK);
+        }
+
+        // controlador Obtener comentario de un publicacion
+        [HttpGet]
+        [ResponseType(typeof(Publicacion))]
+        [Route("Api/Publicacion/obtenerComentarioPublicacion/{idPublicacion}")]
+        public IHttpActionResult ObtenerComentarioPublicacion(int idPublicacion)
+        {
+            List<string> comentarios = service.ObtenerComentariosPublicacion(idPublicacion);
+
+            if (comentarios == null)
+            {
+                return Ok("sin resltados");
+            }
+
+            return Ok(comentarios);
         }
 
     } // cierre controller

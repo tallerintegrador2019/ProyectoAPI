@@ -12,13 +12,16 @@ namespace ProyectoAPI.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Enlace
+    public partial class Feedback
     {
         public int id { get; set; }
-        public string youtube { get; set; }
-        public string pinterest { get; set; }
+        public string comentario { get; set; }
+        public string puntaje { get; set; }
+        public string fecha { get; set; }
         public Nullable<int> idPublicacion { get; set; }
+        public Nullable<int> idUsuario { get; set; }
     
         public virtual Publicacion Publicacion { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

@@ -12,13 +12,9 @@ namespace ProyectoAPI.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Compartir
+    public partial class Tips
     {
         public int id { get; set; }
-        public string youtube { get; set; }
-        public string instagram { get; set; }
-        public Nullable<int> idPublicacion { get; set; }
-    
-        public virtual Publicacion Publicacion { get; set; }
+        public string descripcion { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace ProyectoAPI.Controllers
         // GET: UsuarioCRUD
         public ActionResult Index()
         {
-            var usuario = db.Usuario.Include(u => u.Rango);
+            var usuario = db.Usuario;
             return View(usuario.ToList());
         }
 
@@ -39,7 +39,7 @@ namespace ProyectoAPI.Controllers
         // GET: UsuarioCRUD/Create
         public ActionResult Create()
         {
-            ViewBag.idRango = new SelectList(db.Rango, "id", "descripcion");
+            
             return View();
         }
 
@@ -72,7 +72,7 @@ namespace ProyectoAPI.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.idRango = new SelectList(db.Rango, "id", "descripcion", usuario.idRango);
+            
             return View(usuario);
         }
 
@@ -89,7 +89,7 @@ namespace ProyectoAPI.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.idRango = new SelectList(db.Rango, "id", "descripcion", usuario.idRango);
+            
             return View(usuario);
         }
 
