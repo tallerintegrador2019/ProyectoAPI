@@ -24,9 +24,22 @@ namespace ProyectoAPI.Controllers
         private todaviasirveDBEntities db = new todaviasirveDBEntities();
         public PublicacionService service = new PublicacionService();
         // GET: api/Publicacion
-        public IQueryable<Publicacion> GetPublicacion()
+        //public IQueryable<Publicacion> GetPublicacion()
+        //{
+        //    return db.Publicacion;
+        //}
+        [HttpGet]
+        [ResponseType(typeof(Publicacion))]
+        [Route("Api/Publicacion/")]
+        public IHttpActionResult GetPublicacion()
         {
-            return db.Publicacion;
+            List<Publicacion> publicacion = (from publi in db.Publicacion
+                                             select publi).ToList();
+            if (publicacion == null)
+            {
+                return NotFound();
+            }
+            return Ok(publicacion);
         }
 
         // GET: api/Publicacion/5
@@ -87,7 +100,7 @@ namespace ProyectoAPI.Controllers
             }
 
             Publicacion publi = new Publicacion();
-            Publicacion_Usuario publiUsu = new Publicacion_Usuario();
+            Feedback publiUsu = new Feedback();
             var request = HttpContext.Current.Request;
 
             if (Request.Content.IsMimeMultipartContent())
@@ -123,7 +136,7 @@ namespace ProyectoAPI.Controllers
                                 break;
                             case "usuarioPublicacion":
                                 var valor = provider.FormData.GetValues(key)[0];
-                                 publiUsu.idUsuario = Convert.ToInt32(valor); 
+                                publiUsu.idUsuario = Convert.ToInt32(valor);
                                 break;
                             default:
                                 break;
@@ -148,7 +161,7 @@ namespace ProyectoAPI.Controllers
 
                 publiUsu.idPublicacion = publi.id;
                 publiUsu.fecha = new DateTime().ToString();
-                db.Publicacion_Usuario.Add(publiUsu);
+                db.Feedback.Add(publiUsu);
                 db.SaveChanges();
                 //return Ok(HttpStatusCode.OK);
                 //return Content(HttpStatusCode.OK, publi);
@@ -213,8 +226,8 @@ namespace ProyectoAPI.Controllers
         [Route("Api/Publicacion/PublicacionesUsuario/{idUsuario}")]
         public IHttpActionResult PublicacionesUsuario(int idUsuario)
         {
-           List<Publicacion> publicacion = service.ObtenerPublicacionesUsuario(idUsuario);
-           
+            List<Publicacion> publicacion = service.ObtenerPublicacionesUsuario(idUsuario);
+
             if (publicacion == null)
             {
                 return NotFound();
@@ -246,5 +259,45 @@ namespace ProyectoAPI.Controllers
             return Ok(publicacion);
         }
 
-    } // cierre controller
+        [HttpPost]
+        [ResponseType(typeof(Publicacion))]
+        [Route("Api/Publicacion/subirComentario")]
+        public async Task<IHttpActionResult> SubirComentario()
+        {
+            var feedback = new Feedback();
+            string root1 = HttpContext.Current.Server.MapPath("~/Content/Images");
+            var provider = new MultipartFormDataStreamProvider(root1);
+            // Read the form data.
+            await Request.Content.ReadAsMultipartAsync(provider);
+            foreach (var key in provider.FormData.AllKeys)
+            {
+                if (!key.Equals("__RequestVerificationToken"))
+                {
+                    switch (key)
+                    {
+                        case "comentario":
+                            feedback.comentario = provider.FormData.GetValues(key)[0];
+                            break;
+                        case "idUsuario":
+                            var valor = provider.FormData.GetValues(key)[0];
+                            feedback.idUsuario = Convert.ToInt32(valor);
+                            break;
+                        case "idPublicacion":
+                            var valor1 = provider.FormData.GetValues(key)[0];
+                            feedback.idPublicacion = Convert.ToInt32(valor1);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            db.Feedback.Add(feedback);
+            db.SaveChanges();
+            return Ok(HttpStatusCode.OK);
+            //return Ok(HttpStatusCode.OK);
+        }
+
+
+        // cierre controller
+    }
 }

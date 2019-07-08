@@ -13,7 +13,7 @@ namespace ProyectoAPI.Service
 
         public List<Publicacion> ObtenerPublicacionesUsuario(int idUsuario)
         {
-            var listaPublicacionUsuario = instanciaBd.Publicacion_Usuario.Where(usuPubli => usuPubli.idUsuario == idUsuario).ToList();
+            var listaPublicacionUsuario = instanciaBd.Feedback.Where(usuPubli => usuPubli.idUsuario == idUsuario).ToList();
             var listaId = new List<int>();
             var publicaciones = new List<Publicacion>();
             foreach (var item in listaPublicacionUsuario)
@@ -40,10 +40,10 @@ namespace ProyectoAPI.Service
                 }
             }
             //Trae la asociacion de publicacion a usuario y la elimina
-            var publicacionUsuario = instanciaBd.Publicacion_Usuario.Where(publiUsu => publiUsu.idPublicacion == idPublicacion).FirstOrDefault();
+            var publicacionUsuario = instanciaBd.Feedback.Where(publiUsu => publiUsu.idPublicacion == idPublicacion).FirstOrDefault();
             if (publicacionUsuario != null)
             {
-                instanciaBd.Publicacion_Usuario.Remove(publicacionUsuario);
+                instanciaBd.Feedback.Remove(publicacionUsuario);
                 instanciaBd.SaveChanges();
             }
 

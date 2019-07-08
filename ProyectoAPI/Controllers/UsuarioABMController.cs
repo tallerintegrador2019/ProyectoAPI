@@ -18,7 +18,7 @@ namespace ProyectoAPI.Controllers
         // GET: UsuarioABM
         public ActionResult Index()
         {
-            var usuario = db.Usuario.Include(u => u.Rango);
+            var usuario = db.Usuario;
             return View(usuario.ToList());
         }
 
@@ -40,8 +40,7 @@ namespace ProyectoAPI.Controllers
         // GET: UsuarioABM/Create
         public ActionResult Create()
         {
-            ViewBag.idRango = new SelectList(db.Rango, "id", "descripcion");
-            return View();
+              return View();
         }
 
         // POST: UsuarioABM/Create
@@ -73,8 +72,7 @@ namespace ProyectoAPI.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idRango = new SelectList(db.Rango, "id", "descripcion", usuario.idRango);
-            return View(usuario);
+                return View(usuario);
         }
 
         // GET: UsuarioABM/Edit/5
@@ -89,7 +87,7 @@ namespace ProyectoAPI.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.idRango = new SelectList(db.Rango, "id", "descripcion", usuario.idRango);
+            
             return View(usuario);
         }
 
@@ -106,7 +104,7 @@ namespace ProyectoAPI.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.idRango = new SelectList(db.Rango, "id", "descripcion", usuario.idRango);
+            
             return View(usuario);
         }
 

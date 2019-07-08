@@ -203,8 +203,8 @@ namespace ProyectoAPI.Controllers
                 return Ok(HttpStatusCode.OK);
 
             }
-
-            return CreatedAtRoute("DefaultApi", new { id = usu.id }, usu);
+            return Ok(HttpStatusCode.OK);
+            // return CreatedAtRoute("DefaultApi", new { id = usu.id }, usu);
         }
 
 
