@@ -27,7 +27,7 @@ namespace ProyectoAPI.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class PublicacionController : ApiController
     {
-        private todaviasirveDBEntities db = new todaviasirveDBEntities();
+     private todaviasirveDBEntities db = new todaviasirveDBEntities();
         PublicacionService service = new PublicacionService();
         // GET: api/Publicacion
         //[HttpGet]
@@ -546,8 +546,7 @@ namespace ProyectoAPI.Controllers
         [Route("Api/Publicacion/obtenerComentarioPublicacion/{idPublicacion}")]
         public IHttpActionResult ObtenerComentarioPublicacion(int idPublicacion)
         {
-            List<ComentarioUsuario> comentarioUsuario = service.ObtenerComentariosPublicacion(idPublicacion);
-
+            ComentarioCantidad comentarioUsuario = service.ObtenerComentariosPublicacion(idPublicacion);
             if (comentarioUsuario == null)
             {
                 return Ok("sin resltados");
