@@ -29,9 +29,7 @@
         <th>
             @Html.DisplayNameFor(model => model.imagen)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rango.descripcion)
-        </th>
+       
         <th></th>
     </tr>
 
@@ -55,9 +53,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.imagen)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Rango.descripcion)
-        </td>
+    
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
             @Html.ActionLink("Details", "Details", new { id=item.id }) |
