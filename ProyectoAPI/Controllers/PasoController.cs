@@ -68,25 +68,71 @@ namespace ProyectoAPI.Controllers
 
         // PUT: api/Paso/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutPaso(int id, Paso paso)
+        public async Task<IHttpActionResult> PutPaso(int id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+
+            Paso paso = db.Paso.Find(id);
 
             if (id != paso.id)
             {
                 return BadRequest();
             }
 
-            db.Entry(paso).State = EntityState.Modified;
+            var request = HttpContext.Current.Request;
+
+            if (Request.Content.IsMimeMultipartContent())
+            {
+                string root1 = HttpContext.Current.Server.MapPath("~/Content/Images");
+                var provider = new MultipartFormDataStreamProvider(root1);
+                // Read the form data.
+                await Request.Content.ReadAsMultipartAsync(provider);
+                // This illustrates how to get the file names.
+                foreach (MultipartFileData file in provider.FileData)
+                {
+                    Trace.WriteLine(file.Headers.ContentDisposition.FileName);
+                    Trace.WriteLine("Server file path: " + file.LocalFileName);
+
+                }
+                foreach (var key in provider.FormData.AllKeys)
+                {
+                    if (!key.Equals("__RequestVerificationToken"))
+                    {
+                        switch (key)
+                        {
+                            case "numero":
+                                paso.numero = Int32.Parse(provider.FormData.GetValues(key)[0]);
+                                break;
+                            case "descripcion":
+                                paso.descripcion = provider.FormData.GetValues(key)[0];
+                                break;
+                            default:
+                                break;
+                        }
+
+                    }
+
+                }
+
+                if (request.Files.Count > 0)
+                {
+                    var imagen = request.Files[0];
+                    var postedFile = request.Files.Get("file");
+                    string root = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Images"), imagen.FileName);
+                    //root = root + "/" + imagen.FileName;
+                    imagen.SaveAs(root);
+                    paso.imagen = imagen.FileName;
+                }
+
+                db.Entry(paso).State = EntityState.Modified;
+            }
 
             try
             {
                 db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
+                return Ok();
+
+                }
+                catch (DbUpdateConcurrencyException)
             {
                 if (!PasoExists(id))
                 {
@@ -98,7 +144,7 @@ namespace ProyectoAPI.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            //return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/Paso
