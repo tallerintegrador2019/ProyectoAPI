@@ -297,6 +297,20 @@ namespace ProyectoAPI.Controllers
             //return Ok(HttpStatusCode.OK);
         }
 
+        // controlador Obtener comentario de un publicacion
+        [HttpGet]
+        [ResponseType(typeof(Publicacion))]
+        [Route("Api/Publicacion/obtenerComentarioPublicacion/{idPublicacion}")]
+        public IHttpActionResult ObtenerComentarioPublicacion(int idPublicacion)
+        {
+            ComentarioCantidad comentarioUsuario = service.ObtenerComentariosPublicacion(idPublicacion);
+            if (comentarioUsuario == null)
+            {
+                return Ok("sin resltados");
+            }
+
+            return Ok(comentarioUsuario);
+        }
 
         // cierre controller
     }
