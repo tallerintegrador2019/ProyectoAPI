@@ -47,6 +47,7 @@ namespace ProyectoAPI.Services
             var comentarios = new List<string>();
             var listadoComentarioUsuario = new List<ComentarioUsuario>();
             var comentarioCantidad = new ComentarioCantidad();
+            comentarioCantidad.cantidad = cantidad.ToString();
             foreach (var item in publicaciones) {
                 var comentarioUsuario = new ComentarioUsuario();
                 var imagenUsuario = instanciaBd.Usuario.Where(usuImagen => usuImagen.id == item.idUsuario).FirstOrDefault();
@@ -55,7 +56,7 @@ namespace ProyectoAPI.Services
                 listadoComentarioUsuario.Add(comentarioUsuario);
             }
             comentarioCantidad.comentarioUsuarios = listadoComentarioUsuario;
-            comentarioCantidad.cantidad = cantidad.ToString();
+            
 
             return (comentarioCantidad);
         }
