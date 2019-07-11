@@ -1,4 +1,5 @@
 ﻿using ProyectoAPI.Models;
+using ProyectoAPI.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
