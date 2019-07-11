@@ -14,6 +14,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using ProyectoAPI.Models;
+using ProyectoAPI.Models.ViewModel;
 using ProyectoAPI.Service;
 
 namespace ProyectoAPI.Controllers
@@ -294,17 +295,20 @@ namespace ProyectoAPI.Controllers
             if (!String.IsNullOrEmpty(nombre))
             {
                 List<Publicacion> publicaciones = (from publi in db.Publicacion
-                                                 where publi.titulo.Contains(nombre)
-                                                 select publi).ToList();
+                                                   where publi.titulo.Contains(nombre)
+                                                   select publi).ToList();
 
-            if (publicacion == null)
-            {
+                if (publicaciones == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(publicaciones);
+            }
+            else {
                 return NotFound();
             }
-
-            return Ok(publicacion);
         }
-
         // metodo Obtener publicaciones de un usuario
         [HttpGet]
         [ResponseType(typeof(Publicacion))]
