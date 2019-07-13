@@ -12,6 +12,15 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="500" />
         </EntityType>
+        <EntityType Name="Favorito">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estado" Type="bit" />
+          <Property Name="idUsuario" Type="int" />
+          <Property Name="idPublicacion" Type="int" />
+        </EntityType>
         <EntityType Name="Feedback">
           <Key>
             <PropertyRef Name="id" />
@@ -22,6 +31,15 @@
           <Property Name="fecha" Type="varchar" MaxLength="50" />
           <Property Name="idPublicacion" Type="int" />
           <Property Name="idUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="Like">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estado" Type="bit" />
+          <Property Name="idUsuario" Type="int" />
+          <Property Name="idPublicacion" Type="int" />
         </EntityType>
         <EntityType Name="Material">
           <Key>
@@ -94,6 +112,48 @@
           <Property Name="email" Type="varchar" MaxLength="100" />
           <Property Name="imagen" Type="varchar(max)" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'todaviasirveDB.sys.database_firewall_rules' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="create_date" Type="datetime" Nullable="false" />
+          <Property Name="modify_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Favorito_Publicacion">
+          <End Role="Publicacion" Type="Self.Publicacion" Multiplicity="0..1" />
+          <End Role="Favorito" Type="Self.Favorito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publicacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Favorito">
+              <PropertyRef Name="idPublicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Favorito_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Favorito" Type="Self.Favorito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Favorito">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Feedback_Publicacion">
           <End Role="Publicacion" Type="Self.Publicacion" Multiplicity="0..1" />
           <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
@@ -127,6 +187,30 @@
             </Principal>
             <Dependent Role="Paso">
               <PropertyRef Name="idPublicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Like_Publicacion">
+          <End Role="Publicacion" Type="Self.Publicacion" Multiplicity="0..1" />
+          <End Role="Like" Type="Self.Like" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publicacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Like">
+              <PropertyRef Name="idPublicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Like_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Like" Type="Self.Like" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Like">
+              <PropertyRef Name="idUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -192,7 +276,9 @@
         </Association>
         <EntityContainer Name="todaviasirveDBModelStoreContainer">
           <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Favorito" EntityType="Self.Favorito" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Like" EntityType="Self.Like" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Paso" EntityType="Self.Paso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Publicacion" EntityType="Self.Publicacion" Schema="dbo" store:Type="Tables" />
@@ -201,6 +287,24 @@
           <EntitySet Name="Suscriptor" EntityType="Self.Suscriptor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tips" EntityType="Self.Tips" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [database_firewall_rules].[id] AS [id], 
+    [database_firewall_rules].[name] AS [name], 
+    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
+    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
+    [database_firewall_rules].[create_date] AS [create_date], 
+    [database_firewall_rules].[modify_date] AS [modify_date]
+    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Favorito_Publicacion" Association="Self.FK_Favorito_Publicacion">
+            <End Role="Publicacion" EntitySet="Publicacion" />
+            <End Role="Favorito" EntitySet="Favorito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Favorito_Usuario" Association="Self.FK_Favorito_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Favorito" EntitySet="Favorito" />
+          </AssociationSet>
           <AssociationSet Name="FK_Feedback_Publicacion" Association="Self.FK_Feedback_Publicacion">
             <End Role="Publicacion" EntitySet="Publicacion" />
             <End Role="Feedback" EntitySet="Feedback" />
@@ -212,6 +316,14 @@
           <AssociationSet Name="FK_Imagen_Publicacion" Association="Self.FK_Imagen_Publicacion">
             <End Role="Publicacion" EntitySet="Publicacion" />
             <End Role="Paso" EntitySet="Paso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Like_Publicacion" Association="Self.FK_Like_Publicacion">
+            <End Role="Publicacion" EntitySet="Publicacion" />
+            <End Role="Like" EntitySet="Like" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Like_Usuario" Association="Self.FK_Like_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Like" EntitySet="Like" />
           </AssociationSet>
           <AssociationSet Name="FK_Publicacion_Categoria_Categoria" Association="Self.FK_Publicacion_Categoria_Categoria">
             <End Role="Categoria" EntitySet="Categoria" />
@@ -247,6 +359,17 @@
           <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Publicacion_Categoria" Relationship="Self.FK_Publicacion_Categoria_Categoria" FromRole="Categoria" ToRole="Publicacion_Categoria" />
         </EntityType>
+        <EntityType Name="Favorito">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estado" Type="Boolean" />
+          <Property Name="idUsuario" Type="Int32" />
+          <Property Name="idPublicacion" Type="Int32" />
+          <NavigationProperty Name="Publicacion" Relationship="Self.FK_Favorito_Publicacion" FromRole="Favorito" ToRole="Publicacion" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Favorito_Usuario" FromRole="Favorito" ToRole="Usuario" />
+        </EntityType>
         <EntityType Name="Feedback">
           <Key>
             <PropertyRef Name="id" />
@@ -259,6 +382,17 @@
           <Property Name="idUsuario" Type="Int32" />
           <NavigationProperty Name="Publicacion" Relationship="Self.FK_Feedback_Publicacion" FromRole="Feedback" ToRole="Publicacion" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_Feedback_Usuario" FromRole="Feedback" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Like">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estado" Type="Boolean" />
+          <Property Name="idUsuario" Type="Int32" />
+          <Property Name="idPublicacion" Type="Int32" />
+          <NavigationProperty Name="Publicacion" Relationship="Self.FK_Like_Publicacion" FromRole="Like" ToRole="Publicacion" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Like_Usuario" FromRole="Like" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Material">
           <Key>
@@ -290,7 +424,9 @@
           <Property Name="fechaSubida" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="imagenPortada" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="idUsuario" Type="Int32" />
+          <NavigationProperty Name="Favorito" Relationship="Self.FK_Favorito_Publicacion" FromRole="Publicacion" ToRole="Favorito" />
           <NavigationProperty Name="Feedback" Relationship="Self.FK_Feedback_Publicacion" FromRole="Publicacion" ToRole="Feedback" />
+          <NavigationProperty Name="Like" Relationship="Self.FK_Like_Publicacion" FromRole="Publicacion" ToRole="Like" />
           <NavigationProperty Name="Paso" Relationship="Self.FK_Imagen_Publicacion" FromRole="Publicacion" ToRole="Paso" />
           <NavigationProperty Name="Publicacion_Categoria" Relationship="Self.FK_Publicacion_Categoria_Publicacion" FromRole="Publicacion" ToRole="Publicacion_Categoria" />
           <NavigationProperty Name="Publicacion_Material" Relationship="Self.FK_Publicacion_Material_Publicacion" FromRole="Publicacion" ToRole="Publicacion_Material" />
@@ -341,8 +477,26 @@
           <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Favorito" Relationship="Self.FK_Favorito_Usuario" FromRole="Usuario" ToRole="Favorito" />
           <NavigationProperty Name="Feedback" Relationship="Self.FK_Feedback_Usuario" FromRole="Usuario" ToRole="Feedback" />
+          <NavigationProperty Name="Like" Relationship="Self.FK_Like_Usuario" FromRole="Usuario" ToRole="Like" />
           <NavigationProperty Name="Publicacion" Relationship="Self.FK_Publicacion_Usuario" FromRole="Usuario" ToRole="Publicacion" />
+        </EntityType>
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="FK_Publicacion_Categoria_Categoria">
           <End Role="Categoria" Type="Self.Categoria" Multiplicity="0..1" />
@@ -353,6 +507,30 @@
             </Principal>
             <Dependent Role="Publicacion_Categoria">
               <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Favorito_Publicacion">
+          <End Role="Publicacion" Type="Self.Publicacion" Multiplicity="0..1" />
+          <End Role="Favorito" Type="Self.Favorito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publicacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Favorito">
+              <PropertyRef Name="idPublicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Favorito_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Favorito" Type="Self.Favorito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Favorito">
+              <PropertyRef Name="idUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -376,6 +554,30 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Feedback">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Like_Publicacion">
+          <End Role="Publicacion" Type="Self.Publicacion" Multiplicity="0..1" />
+          <End Role="Like" Type="Self.Like" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publicacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Like">
+              <PropertyRef Name="idPublicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Like_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Like" Type="Self.Like" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Like">
               <PropertyRef Name="idUsuario" />
             </Dependent>
           </ReferentialConstraint>
@@ -442,7 +644,9 @@
         </Association>
         <EntityContainer Name="todaviasirveDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+          <EntitySet Name="Favorito" EntityType="Self.Favorito" />
           <EntitySet Name="Feedback" EntityType="Self.Feedback" />
+          <EntitySet Name="Like" EntityType="Self.Like" />
           <EntitySet Name="Material" EntityType="Self.Material" />
           <EntitySet Name="Paso" EntityType="Self.Paso" />
           <EntitySet Name="Publicacion" EntityType="Self.Publicacion" />
@@ -451,9 +655,18 @@
           <EntitySet Name="Suscriptor" EntityType="Self.Suscriptor" />
           <EntitySet Name="Tips" EntityType="Self.Tips" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
           <AssociationSet Name="FK_Publicacion_Categoria_Categoria" Association="Self.FK_Publicacion_Categoria_Categoria">
             <End Role="Categoria" EntitySet="Categoria" />
             <End Role="Publicacion_Categoria" EntitySet="Publicacion_Categoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Favorito_Publicacion" Association="Self.FK_Favorito_Publicacion">
+            <End Role="Publicacion" EntitySet="Publicacion" />
+            <End Role="Favorito" EntitySet="Favorito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Favorito_Usuario" Association="Self.FK_Favorito_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Favorito" EntitySet="Favorito" />
           </AssociationSet>
           <AssociationSet Name="FK_Feedback_Publicacion" Association="Self.FK_Feedback_Publicacion">
             <End Role="Publicacion" EntitySet="Publicacion" />
@@ -462,6 +675,14 @@
           <AssociationSet Name="FK_Feedback_Usuario" Association="Self.FK_Feedback_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Like_Publicacion" Association="Self.FK_Like_Publicacion">
+            <End Role="Publicacion" EntitySet="Publicacion" />
+            <End Role="Like" EntitySet="Like" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Like_Usuario" Association="Self.FK_Like_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Like" EntitySet="Like" />
           </AssociationSet>
           <AssociationSet Name="FK_Publicacion_Material_Material" Association="Self.FK_Publicacion_Material_Material">
             <End Role="Material" EntitySet="Material" />
@@ -498,6 +719,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Favorito">
+            <EntityTypeMapping TypeName="todaviasirveDBModel.Favorito">
+              <MappingFragment StoreEntitySet="Favorito">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idPublicacion" ColumnName="idPublicacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Feedback">
             <EntityTypeMapping TypeName="todaviasirveDBModel.Feedback">
               <MappingFragment StoreEntitySet="Feedback">
@@ -507,6 +738,16 @@
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="idPublicacion" ColumnName="idPublicacion" />
                 <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Like">
+            <EntityTypeMapping TypeName="todaviasirveDBModel.Like">
+              <MappingFragment StoreEntitySet="Like">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idPublicacion" ColumnName="idPublicacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -586,6 +827,18 @@
                 <ScalarProperty Name="apellido" ColumnName="apellido" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="database_firewall_rules">
+            <EntityTypeMapping TypeName="todaviasirveDBModel.database_firewall_rules">
+              <MappingFragment StoreEntitySet="database_firewall_rules">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+                <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
