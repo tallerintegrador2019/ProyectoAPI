@@ -1,4 +1,5 @@
 ﻿using ProyectoAPI.Models;
+using ProyectoAPI.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +53,28 @@ namespace ProyectoAPI.Service
             instanciaBd.SaveChanges();
         }
 
+        //Obtener comentarios de una publicacion
+        public ComentarioCantidad ObtenerComentariosPublicacion(int idPublicacion)
+        {
+            var publicaciones = instanciaBd.Feedback.Where(usuPubli => usuPubli.idPublicacion == idPublicacion).ToList();
+            var cantidad = publicaciones.Count();
+            var comentarios = new List<string>();
+            var listadoComentarioUsuario = new List<ComentarioUsuario>();
+            var comentarioCantidad = new ComentarioCantidad();
+            comentarioCantidad.cantidad = cantidad.ToString();
+            foreach (var item in publicaciones)
+            {
+                var comentarioUsuario = new ComentarioUsuario();
+                var imagenUsuario = instanciaBd.Usuario.Where(usuImagen => usuImagen.id == item.idUsuario).FirstOrDefault();
+                comentarioUsuario.comentario = item.comentario;
+                comentarioUsuario.imagen = imagenUsuario.imagen;
+                listadoComentarioUsuario.Add(comentarioUsuario);
+            }
+            comentarioCantidad.comentarioUsuarios = listadoComentarioUsuario;
+
+
+            return (comentarioCantidad);
+        }
 
 
 

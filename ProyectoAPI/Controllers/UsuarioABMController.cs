@@ -48,11 +48,10 @@ namespace ProyectoAPI.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,username,pass,nombre,apellido,email,imagen,idRango")] Usuario usuario)
+        public ActionResult Create([Bind(Include = "id,username,pass,nombre,apellido,email,imagen")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
-
                 if (Request.Files.Count > 0)
                 {
                     HttpPostedFileBase file = Request.Files[0];
@@ -66,7 +65,7 @@ namespace ProyectoAPI.Controllers
                         usuario.imagen = fileName;
                     }
                 }
-
+                               
                 db.Usuario.Add(usuario);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -96,7 +95,7 @@ namespace ProyectoAPI.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,username,pass,nombre,apellido,email,imagen,idRango")] Usuario usuario)
+        public ActionResult Edit([Bind(Include = "id,username,pass,nombre,apellido,email,imagen")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {

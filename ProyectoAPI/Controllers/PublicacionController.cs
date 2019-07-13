@@ -14,6 +14,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using ProyectoAPI.Models;
+using ProyectoAPI.Models.ViewModel;
 using ProyectoAPI.Service;
 
 namespace ProyectoAPI.Controllers
@@ -57,23 +58,76 @@ namespace ProyectoAPI.Controllers
 
         // PUT: api/Publicacion/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutPublicacion(int id, Publicacion publicacion)
+        public async Task<IHttpActionResult> PutPublicacion(int id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
-            if (id != publicacion.id)
+            Publicacion publi = db.Publicacion.Find(id);
+
+            if (id != publi.id)
             {
                 return BadRequest();
             }
 
-            db.Entry(publicacion).State = EntityState.Modified;
+
+            var request = HttpContext.Current.Request;
+
+            if (Request.Content.IsMimeMultipartContent())
+            {
+                string root1 = HttpContext.Current.Server.MapPath("~/Content/Images");
+                var provider = new MultipartFormDataStreamProvider(root1);
+                // Read the form data.
+                await Request.Content.ReadAsMultipartAsync(provider);
+                // This illustrates how to get the file names.
+                foreach (MultipartFileData file in provider.FileData)
+                {
+                    Trace.WriteLine(file.Headers.ContentDisposition.FileName);
+                    Trace.WriteLine("Server file path: " + file.LocalFileName);
+
+                }
+                foreach (var key in provider.FormData.AllKeys)
+                {
+                    if (!key.Equals("__RequestVerificationToken"))
+                    {
+                        switch (key)
+                        {
+                            case "titulo":
+                                publi.titulo = provider.FormData.GetValues(key)[0];
+                                break;
+                            case "subtitulo":
+                                publi.subtitulo = provider.FormData.GetValues(key)[0];
+                                break;
+                            case "descripcion":
+                                publi.descripcion = provider.FormData.GetValues(key)[0];
+                                break;
+                            case "fechaSubida":
+                                publi.fechaSubida = provider.FormData.GetValues(key)[0];
+                                break;
+                            default:
+                                break;
+                        }
+
+                    }
+
+                }
+
+                if (request.Files.Count > 0)
+                {
+                    var imagen = request.Files[0];
+                    var postedFile = request.Files.Get("file");
+                    string root = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Images"), imagen.FileName);
+                    //root = root + "/" + imagen.FileName;
+                    imagen.SaveAs(root);
+                    publi.imagenPortada = imagen.FileName;
+                }
+
+                db.Entry(publi).State = EntityState.Modified;
+               
+            }
 
             try
             {
                 db.SaveChanges();
+                return Ok();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -87,7 +141,7 @@ namespace ProyectoAPI.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            //return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/Publicacion
@@ -172,7 +226,25 @@ namespace ProyectoAPI.Controllers
             return CreatedAtRoute("DefaultApi", new { id = publi.id }, publi);
         }
 
+
+
         // DELETE: api/Publicacion/5
+        //[ResponseType(typeof(Publicacion))]
+        //public IHttpActionResult DeletePublicacion(int id)
+        //{
+        //    Publicacion publicacion = db.Publicacion.Find(id);
+        //    if (publicacion == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    db.Publicacion.Remove(publicacion);
+        //    db.SaveChanges();
+
+        //    return Ok(publicacion);
+        //}
+
+
         [ResponseType(typeof(Publicacion))]
         public IHttpActionResult DeletePublicacion(int id)
         {
@@ -182,11 +254,23 @@ namespace ProyectoAPI.Controllers
                 return NotFound();
             }
 
+            List<Paso> pasos = (from p in db.Paso
+                         where p.idPublicacion == id
+                         select p).ToList();
+
+            if (pasos != null)
+            {
+                db.Paso.RemoveRange(pasos);
+            }
+            
             db.Publicacion.Remove(publicacion);
             db.SaveChanges();
 
             return Ok(publicacion);
         }
+
+
+
 
         protected override void Dispose(bool disposing)
         {
@@ -208,18 +292,23 @@ namespace ProyectoAPI.Controllers
         [Route("Api/Publicacion/Buscar/{nombre}")]
         public IHttpActionResult Buscar(string nombre)
         {
-            List<Publicacion> publicacion = (from publi in db.Publicacion
-                                             where publi.titulo.Contains(nombre)
-                                             select publi).ToList();
-
-            if (publicacion == null)
+            if (!String.IsNullOrEmpty(nombre))
             {
+                List<Publicacion> publicaciones = (from publi in db.Publicacion
+                                                   where publi.titulo.Contains(nombre)
+                                                   select publi).ToList();
+
+                if (publicaciones == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(publicaciones);
+            }
+            else {
                 return NotFound();
             }
-
-            return Ok(publicacion);
         }
-
         // metodo Obtener publicaciones de un usuario
         [HttpGet]
         [ResponseType(typeof(Publicacion))]
@@ -297,6 +386,20 @@ namespace ProyectoAPI.Controllers
             //return Ok(HttpStatusCode.OK);
         }
 
+        // controlador Obtener comentario de un publicacion
+        [HttpGet]
+        [ResponseType(typeof(Publicacion))]
+        [Route("Api/Publicacion/obtenerComentarioPublicacion/{idPublicacion}")]
+        public IHttpActionResult ObtenerComentarioPublicacion(int idPublicacion)
+        {
+            ComentarioCantidad comentarioUsuario = service.ObtenerComentariosPublicacion(idPublicacion);
+            if (comentarioUsuario == null)
+            {
+                return Ok("sin resltados");
+            }
+
+            return Ok(comentarioUsuario);
+        }
 
         // cierre controller
     }
