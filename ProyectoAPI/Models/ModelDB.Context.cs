@@ -26,7 +26,9 @@ namespace ProyectoAPI.Models
         }
     
         public virtual DbSet<Categoria> Categoria { get; set; }
+        public virtual DbSet<Favorito> Favorito { get; set; }
         public virtual DbSet<Feedback> Feedback { get; set; }
+        public virtual DbSet<Like> Like { get; set; }
         public virtual DbSet<Material> Material { get; set; }
         public virtual DbSet<Paso> Paso { get; set; }
         public virtual DbSet<Publicacion> Publicacion { get; set; }
