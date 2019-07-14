@@ -58,11 +58,13 @@ namespace ProyectoAPI.Service
         public ComentarioCantidad ObtenerComentariosPublicacion(int idPublicacion, int idUsuario)
         {
             var publicaciones = instanciaBd.Feedback.Where(usuPubli => usuPubli.idPublicacion == idPublicacion).ToList();
-            var cantidad = publicaciones.Count();
+            var cantLike = instanciaBd.Like.Where(usuPubli => usuPubli.idPublicacion == idPublicacion).ToList().Count;
+            var cantidad = publicaciones.Count(); 
             var comentarios = new List<string>();
             var listadoComentarioUsuario = new List<ComentarioUsuario>();
             var comentarioCantidad = new ComentarioCantidad();
             comentarioCantidad.cantidad = cantidad.ToString();
+            comentarioCantidad.cantLike = cantLike;
             foreach (var item in publicaciones)
             {
                 var comentarioUsuario = new ComentarioUsuario();
@@ -79,6 +81,15 @@ namespace ProyectoAPI.Service
             }else {
                 comentarioCantidad.favorito = false;
              }
+            var meGusta = instanciaBd.Like.Where(usuFavorito => usuFavorito.idPublicacion == idPublicacion && usuFavorito.idUsuario == idUsuario).FirstOrDefault();
+            if (meGusta != null)
+            {
+                comentarioCantidad.meGusta = true;
+            }
+            else
+            {
+                comentarioCantidad.meGusta = false;
+            }
             //var algo = (from fav in instanciaBd.Favorito
             //            where fav.idPublicacion = idPublicacion && fav.idUsuario = idUsuario
             //             select fav);
@@ -100,12 +111,35 @@ namespace ProyectoAPI.Service
             return (ok);
         }
 
+        //Subir Like
+        public string SeleccionarLike(int idPublicacion, int idUsuario)
+        {
+            Like like = new Like
+            {
+                idPublicacion = idPublicacion,
+                idUsuario = idUsuario
+            };
+            instanciaBd.Like.Add(like);
+            instanciaBd.SaveChanges();
+            string ok = "OK";
+            return (ok);
+        }
+
         internal void EliminarFavorito(int idPublicacion, int idUsuario)
         {
             var favorito = instanciaBd.Favorito.Where(fav => fav.idPublicacion == idPublicacion && fav.idUsuario ==idUsuario).ToList();
             foreach (var item in favorito) {
-                var result = instanciaBd.Favorito.Find(item.id);
                 instanciaBd.Favorito.Remove(item);
+                instanciaBd.SaveChanges();
+            }
+        }
+
+        internal void EliminarLike(int idPublicacion, int idUsuario)
+        {
+            var likes = instanciaBd.Like.Where(like => like.idPublicacion == idPublicacion && like.idUsuario == idUsuario).ToList();
+            foreach (var item in likes)
+            {
+                instanciaBd.Like.Remove(item);
                 instanciaBd.SaveChanges();
             }
         }
