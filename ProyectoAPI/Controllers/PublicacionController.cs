@@ -28,7 +28,7 @@ namespace ProyectoAPI.Controllers
             return db.Publicacion;
         }
 
-        // GET: api/Publicacion/5
+        // GET: api/Publicacion/5 
         [ResponseType(typeof(Publicacion))]
         public IHttpActionResult GetPublicacion(int id)
         {
@@ -53,7 +53,6 @@ namespace ProyectoAPI.Controllers
                 return BadRequest();
             }
 
-
             var request = HttpContext.Current.Request;
 
             if (Request.Content.IsMimeMultipartContent())
@@ -69,6 +68,7 @@ namespace ProyectoAPI.Controllers
                     Trace.WriteLine("Server file path: " + file.LocalFileName);
 
                 }
+
                 foreach (var key in provider.FormData.AllKeys)
                 {
                     if (!key.Equals("__RequestVerificationToken"))
@@ -86,6 +86,9 @@ namespace ProyectoAPI.Controllers
                                 break;
                             case "fechaSubida":
                                 publi.fechaSubida = provider.FormData.GetValues(key)[0];
+                                break;
+                            case "idUsuario":
+                                publi.idUsuario = Int32.Parse(provider.FormData.GetValues(key)[0]);
                                 break;
                             default:
                                 break;
@@ -133,10 +136,6 @@ namespace ProyectoAPI.Controllers
         [ResponseType(typeof(Publicacion))]
         public async Task<IHttpActionResult> PostPublicacion()
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
             Publicacion publi = new Publicacion();
             var request = HttpContext.Current.Request;
@@ -171,6 +170,9 @@ namespace ProyectoAPI.Controllers
                                 break;
                             case "fechaSubida":
                                 publi.fechaSubida = provider.FormData.GetValues(key)[0];
+                                break;
+                            case "idUsuario":
+                                publi.idUsuario = Int32.Parse(provider.FormData.GetValues(key)[0]);
                                 break;
                             default:
                                 break;
@@ -264,6 +266,28 @@ namespace ProyectoAPI.Controllers
             return NotFound();
 
         }
+
+
+        // GET: api/Publicacion/Usuario/5               // LISTA LAS PUBLICACIONES DEL USUARIO
+        [HttpGet]
+        [ResponseType(typeof(Publicacion))]
+        [Route("Api/Publicacion/Usuario/{idUsuario}")]
+        public IHttpActionResult GetPublicacionesUsuario(int idUsuario)
+        {
+            Usuario usuario = db.Usuario.Find(idUsuario);
+            if(usuario == null)
+            {
+                return NotFound();
+            }
+
+            List<Publicacion> listPubliUsu = (from publi in db.Publicacion
+                                              where publi.idUsuario == idUsuario
+                                              select publi).ToList();
+
+            return Ok(listPubliUsu); 
+        }
+
+
 
 
     } // cierre controller
