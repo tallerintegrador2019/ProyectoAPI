@@ -301,6 +301,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\000-Portada Luces.jpg" />
     <Content Include="Content\Images\000-Portada Masetero.jpg" />
     <Content Include="Content\Images\0001_a.jpg" />
     <Content Include="Content\Images\0001_b.jpg" />
@@ -308,10 +309,16 @@
     <Content Include="Content\Images\0001_d.jpg" />
     <Content Include="Content\Images\0001_e.jpg" />
     <Content Include="Content\Images\0001_portada.jpg" />
+    <Content Include="Content\Images\001-Luces carton.jpg" />
     <Content Include="Content\Images\001-masetero.jpg" />
+    <Content Include="Content\Images\002- Luces carton.jpg" />
     <Content Include="Content\Images\002-masetero.jpg" />
+    <Content Include="Content\Images\003-Luces carton.jpg" />
     <Content Include="Content\Images\003-masetero.jpg" />
+    <Content Include="Content\Images\004-Luces carton.jpg" />
     <Content Include="Content\Images\004-masetero.jpg" />
+    <Content Include="Content\Images\005-Luces carton.jpg" />
+    <Content Include="Content\Images\005-masetero.jpg" />
     <Content Include="Content\Images\10-apps-cuidar-medio-ambiente.jpg" />
     <Content Include="Content\Images\188333.png" />
     <Content Include="Content\Images\9- NOTA 510.jpg" />
