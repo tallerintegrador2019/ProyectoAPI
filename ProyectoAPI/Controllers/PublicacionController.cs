@@ -121,7 +121,7 @@ namespace ProyectoAPI.Controllers
                 }
 
                 db.Entry(publi).State = EntityState.Modified;
-               
+
             }
 
             try
@@ -154,7 +154,7 @@ namespace ProyectoAPI.Controllers
             }
 
             Publicacion publi = new Publicacion();
-            Feedback publiUsu = new Feedback();
+            //Feedback publiUsu = new Feedback();
             var request = HttpContext.Current.Request;
 
             if (Request.Content.IsMimeMultipartContent())
@@ -190,7 +190,8 @@ namespace ProyectoAPI.Controllers
                                 break;
                             case "usuarioPublicacion":
                                 var valor = provider.FormData.GetValues(key)[0];
-                                publiUsu.idUsuario = Convert.ToInt32(valor);
+                                //publiUsu.idUsuario = Convert.ToInt32(valor);
+                                publi.idUsuario = Convert.ToInt32(valor);
                                 break;
                             default:
                                 break;
@@ -213,10 +214,10 @@ namespace ProyectoAPI.Controllers
                 db.Publicacion.Add(publi);
                 db.SaveChanges();
 
-                publiUsu.idPublicacion = publi.id;
-                publiUsu.fecha = new DateTime().ToString();
-                db.Feedback.Add(publiUsu);
-                db.SaveChanges();
+                //publiUsu.idPublicacion = publi.id;
+                //publiUsu.fecha = new DateTime().ToString();
+                //db.Feedback.Add(publiUsu);
+                //db.SaveChanges();
                 //return Ok(HttpStatusCode.OK);
                 //return Content(HttpStatusCode.OK, publi);
                 return Ok(publi.id);
@@ -255,14 +256,14 @@ namespace ProyectoAPI.Controllers
             }
 
             List<Paso> pasos = (from p in db.Paso
-                         where p.idPublicacion == id
-                         select p).ToList();
+                                where p.idPublicacion == id
+                                select p).ToList();
 
             if (pasos != null)
             {
                 db.Paso.RemoveRange(pasos);
             }
-            
+
             db.Publicacion.Remove(publicacion);
             db.SaveChanges();
 
@@ -348,6 +349,37 @@ namespace ProyectoAPI.Controllers
             return Ok(publicacion);
         }
 
+        [HttpGet]
+        [Route("Api/Publicacion/seleccionarFavorito/{idPublicacion}/{idUsuario}")]
+        public IHttpActionResult SeleccionarFavorito(int idPublicacion, int idUsuario)
+        {
+            //Publicacion publicacion = db.Publicacion.Find(id);
+
+            //List<Publicacion> 
+            var publicacion = service.SeleccionarFavoritos(idPublicacion, idUsuario);
+            if (publicacion == null)
+            {
+                return NotFound();
+            }
+            //if (publicacion == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //db.Publicacion.Remove(publicacion);
+            //db.SaveChanges();
+
+            return Ok(publicacion);
+        }
+
+        [HttpDelete]
+        [Route("Api/Publicacion/eliminarFavorito/{idPublicacion}/{idUsuario}")]
+        public IHttpActionResult EliminarFavorito(int idPublicacion, int idUsuario)
+        {
+            service.EliminarFavorito(idPublicacion, idUsuario);
+            return Ok();
+        }
+
         [HttpPost]
         [ResponseType(typeof(Publicacion))]
         [Route("Api/Publicacion/subirComentario")]
@@ -389,10 +421,10 @@ namespace ProyectoAPI.Controllers
         // controlador Obtener comentario de un publicacion
         [HttpGet]
         [ResponseType(typeof(Publicacion))]
-        [Route("Api/Publicacion/obtenerComentarioPublicacion/{idPublicacion}")]
-        public IHttpActionResult ObtenerComentarioPublicacion(int idPublicacion)
+        [Route("Api/Publicacion/obtenerComentarioPublicacion/{idPublicacion}/{idUsuario}")]
+        public IHttpActionResult ObtenerComentarioPublicacion(int idPublicacion, int idUsuario)
         {
-            ComentarioCantidad comentarioUsuario = service.ObtenerComentariosPublicacion(idPublicacion);
+            ComentarioCantidad comentarioUsuario = service.ObtenerComentariosPublicacion(idPublicacion, idUsuario);
             if (comentarioUsuario == null)
             {
                 return Ok("sin resltados");
@@ -400,6 +432,22 @@ namespace ProyectoAPI.Controllers
 
             return Ok(comentarioUsuario);
         }
+
+        // controlador Obtener comentario de un publicacion
+        [HttpGet]
+        [ResponseType(typeof(Publicacion))]
+        [Route("Api/Publicacion/ObtenerFavoritos/{idUsuario}")]
+        public IHttpActionResult ObtenerFavoritos(int idUsuario)
+        {
+            List<Publicacion> favoritos = service.ObtenerFavoritos(idUsuario);
+            if (favoritos == null)
+            {
+                return Ok("sin resltados");
+            }
+
+            return Ok(favoritos);
+        }
+
 
         // cierre controller
     }

@@ -9,5 +9,6 @@ namespace ProyectoAPI.Models.ViewModel
     {
         public List<ComentarioUsuario> comentarioUsuarios { get; set; }
         public string cantidad { get; set; }
+        public bool favorito { get; set; }
     }
 }
