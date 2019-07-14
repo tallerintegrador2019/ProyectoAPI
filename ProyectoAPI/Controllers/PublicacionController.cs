@@ -374,11 +374,33 @@ namespace ProyectoAPI.Controllers
             return Ok(publicacion);
         }
 
+        [HttpGet]
+        [Route("Api/Publicacion/seleccionarLike/{idPublicacion}/{idUsuario}")]
+        public IHttpActionResult SeleccionarLike(int idPublicacion, int idUsuario)
+        {
+            
+            var cargarLike = service.SeleccionarLike(idPublicacion, idUsuario);
+            if (cargarLike == null)
+            {
+                return NotFound();
+            }
+ 
+            return Ok(cargarLike);
+        }
+
         [HttpDelete]
         [Route("Api/Publicacion/eliminarFavorito/{idPublicacion}/{idUsuario}")]
         public IHttpActionResult EliminarFavorito(int idPublicacion, int idUsuario)
         {
             service.EliminarFavorito(idPublicacion, idUsuario);
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route("Api/Publicacion/eliminarLike/{idPublicacion}/{idUsuario}")]
+        public IHttpActionResult EliminarLike(int idPublicacion, int idUsuario)
+        {
+            service.EliminarLike(idPublicacion, idUsuario);
             return Ok();
         }
 
