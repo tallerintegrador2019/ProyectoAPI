@@ -201,36 +201,20 @@ namespace ProyectoAPI.Controllers
         }
 
 
-
         // DELETE: api/Publicacion/5
-        //[ResponseType(typeof(Publicacion))]
-        //public IHttpActionResult DeletePublicacion(int id)
-        //{
-        //    Publicacion publicacion = db.Publicacion.Find(id);
-        //    if (publicacion == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    db.Publicacion.Remove(publicacion);
-        //    db.SaveChanges();
-
-        //    return Ok(publicacion);
-        //}
-
-
         [ResponseType(typeof(Publicacion))]
         public IHttpActionResult DeletePublicacion(int id)
         {
             Publicacion publicacion = db.Publicacion.Find(id);
+
             if (publicacion == null)
             {
                 return NotFound();
             }
 
-            List<Paso> pasos = (from p in db.Paso
-                         where p.idPublicacion == id
-                         select p).ToList();
+            List<Paso> pasos = ( from p in db.Paso
+                                 where p.idPublicacion == id
+                                 select p).ToList();
 
             if (pasos != null)
             {
@@ -242,9 +226,6 @@ namespace ProyectoAPI.Controllers
 
             return Ok(publicacion);
         }
-
-
-
 
         protected override void Dispose(bool disposing)
         {
