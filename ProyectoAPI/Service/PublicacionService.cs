@@ -100,6 +100,15 @@ namespace ProyectoAPI.Service
             return (ok);
         }
 
-
+        internal void EliminarFavorito(int idPublicacion, int idUsuario)
+        {
+            var favorito = instanciaBd.Favorito.Where(fav => fav.idPublicacion == idPublicacion && fav.idUsuario ==idUsuario).ToList();
+            foreach (var item in favorito) {
+                var result = instanciaBd.Favorito.Find(item.id);
+                instanciaBd.Favorito.Remove(item);
+                instanciaBd.SaveChanges();
+            }
+            throw new NotImplementedException();
+        }
     }
 }

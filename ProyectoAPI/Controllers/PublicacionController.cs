@@ -372,6 +372,14 @@ namespace ProyectoAPI.Controllers
             return Ok(publicacion);
         }
 
+        [HttpDelete]
+        [Route("Api/Publicacion/eliminarFavorito/{idPublicacion}/{idUsuario}")]
+        public IHttpActionResult EliminarFavorito(int idPublicacion, int idUsuario)
+        {
+            service.EliminarFavorito(idPublicacion,idUsuario);
+            return Ok();
+        }
+
         [HttpPost]
         [ResponseType(typeof(Publicacion))]
         [Route("Api/Publicacion/subirComentario")]
