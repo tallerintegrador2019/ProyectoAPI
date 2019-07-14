@@ -108,7 +108,31 @@ namespace ProyectoAPI.Service
                 instanciaBd.Favorito.Remove(item);
                 instanciaBd.SaveChanges();
             }
-            throw new NotImplementedException();
+        }
+
+        public List<Publicacion> ObtenerFavoritos(int idUsuario) {
+            var publicaciones = new List<Publicacion>();
+            //var listaPublicacionUsuario = instanciaBd.Favorito.Where(usuPubli => usuPubli.idUsuario == idUsuario);
+            var algo = from fav in instanciaBd.Favorito
+                       where fav.idUsuario == idUsuario
+                       select fav.idPublicacion;
+
+            foreach (var item in algo)
+            {
+                publicaciones.Add(instanciaBd.Publicacion.Find(item));
+            }
+
+            //var listaId = new List<int>();
+            
+            //foreach (var item in listaPublicacionUsuario)
+            //{
+            //    listaId.Add((int)item.idPublicacion);
+            //}
+            //foreach (var item2 in listaId)
+            //{
+            //    publicaciones.Add(instanciaBd.Publicacion.Find(item2));
+            //}
+            return publicaciones;
         }
     }
 }
