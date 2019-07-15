@@ -310,6 +310,8 @@ namespace ProyectoAPI.Controllers
                 return NotFound();
             }
         }
+
+
         // metodo Obtener publicaciones de un usuario
         [HttpGet]
         [ResponseType(typeof(Publicacion))]

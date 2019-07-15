@@ -224,6 +224,7 @@
     <Compile Include="Controllers\PasoController.cs" />
     <Compile Include="Controllers\PublicacionABMController.cs" />
     <Compile Include="Controllers\PublicacionController.cs" />
+    <Compile Include="Controllers\TipsController.cs" />
     <Compile Include="Controllers\UsuarioABMController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
