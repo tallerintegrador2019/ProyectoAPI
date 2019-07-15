@@ -264,6 +264,29 @@ namespace ProyectoAPI.Controllers
                 db.Paso.RemoveRange(pasos);
             }
 
+            List<Feedback> comentario = (from c in db.Feedback
+                                         where c.idPublicacion == id
+                                         select c).ToList();
+
+            if (comentario != null) {
+                db.Feedback.RemoveRange(comentario);
+            }
+
+            List<Like> like = (from l in db.Like
+                               where l.idPublicacion == id
+                               select l).ToList();
+            if (like != null) {
+                db.Like.RemoveRange(like);
+            }
+
+            List<Favorito> favorito = (from l in db.Favorito
+                               where l.idPublicacion == id
+                               select l).ToList();
+            if (favorito != null)
+            {
+                db.Favorito.RemoveRange(favorito);
+            }
+
             db.Publicacion.Remove(publicacion);
             db.SaveChanges();
 
@@ -328,28 +351,28 @@ namespace ProyectoAPI.Controllers
             return Ok(publicacion);
         }
 
-        [HttpGet]
-        [ResponseType(typeof(int))]
-        [Route("Api/Publicacion/DeletePublicacionUsuario/{id}/{idUsuario}")]
-        public IHttpActionResult DeletePublicacionUsuario(int id, int idUsuario)
-        {
-            //Publicacion publicacion = db.Publicacion.Find(id);
-            service.EliminarPublicacion(id);
-            List<Publicacion> publicacion = service.ObtenerPublicacionesUsuario(idUsuario);
-            if (publicacion == null)
-            {
-                return NotFound();
-            }
-            //if (publicacion == null)
-            //{
-            //    return NotFound();
-            //}
+        //[HttpGet]
+        //[ResponseType(typeof(int))]
+        //[Route("Api/Publicacion/DeletePublicacionUsuario/{id}/{idUsuario}")]
+        //public IHttpActionResult DeletePublicacionUsuario(int id, int idUsuario)
+        //{
+        //    //Publicacion publicacion = db.Publicacion.Find(id);
+        //    service.EliminarPublicacion(id);
+        //    List<Publicacion> publicacion = service.ObtenerPublicacionesUsuario(idUsuario);
+        //    if (publicacion == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    //if (publicacion == null)
+        //    //{
+        //    //    return NotFound();
+        //    //}
 
-            //db.Publicacion.Remove(publicacion);
-            //db.SaveChanges();
+        //    //db.Publicacion.Remove(publicacion);
+        //    //db.SaveChanges();
 
-            return Ok(publicacion);
-        }
+        //    return Ok(publicacion);
+        //}
 
         [HttpGet]
         [Route("Api/Publicacion/seleccionarFavorito/{idPublicacion}/{idUsuario}")]
