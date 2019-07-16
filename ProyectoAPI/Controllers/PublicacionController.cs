@@ -34,6 +34,9 @@ namespace ProyectoAPI.Controllers
         [Route("Api/Publicacion/")]
         public IHttpActionResult GetPublicacion()
         {
+            // AGREGADO PARA QUE NO TRAIGA TODAS SUS TABLAS RELACIONADAS
+            db.Configuration.LazyLoadingEnabled = false;    
+
             List<Publicacion> publicacion = (from publi in db.Publicacion
                                              select publi).ToList();
             if (publicacion == null)
