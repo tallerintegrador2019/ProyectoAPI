@@ -33,16 +33,17 @@ namespace ProyectoAPI.Controllers
         [Route("Api/Paso/Publicacion/{idPublicacion}")]
         public IHttpActionResult GetPasoPorPublicacion(int idPublicacion)
         {
-            var pasos = (from pa in db.Paso
-                                where pa.idPublicacion == idPublicacion
-                                select new {
-                                    pa.id,
-                                    pa.numero,
-                                    pa.descripcion,
-                                    pa.imagen,
-                                    pa.idPublicacion
-                                })
-                                .ToList();
+            var pasos = ( from pa in db.Paso
+                            where pa.idPublicacion == idPublicacion
+                            orderby pa.numero
+                            select new {
+                                pa.id,
+                                pa.numero,
+                                pa.descripcion,
+                                pa.imagen,
+                                pa.idPublicacion
+                            })
+                            .ToList();
 
             if (pasos == null)
             {
