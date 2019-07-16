@@ -290,6 +290,9 @@ namespace ProyectoAPI.Controllers
         [Route("Api/Publicacion/Buscar/{nombre}")]
         public IHttpActionResult Buscar(string nombre)
         {
+            // AGREGADO PARA QUE NO TRAIGA TODAS SUS TABLAS RELACIONADAS
+            db.Configuration.LazyLoadingEnabled = false;
+
             if (!String.IsNullOrEmpty(nombre))
             {
                 List<Publicacion> publicaciones = (from publi in db.Publicacion
