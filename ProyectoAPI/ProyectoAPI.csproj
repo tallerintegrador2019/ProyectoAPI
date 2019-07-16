@@ -343,7 +343,6 @@
     <Content Include="Content\Images\005-Coronado.jpg" />
     <Content Include="Content\Images\005-Lampara-Aceite.jpg" />
     <Content Include="Content\Images\006-Lampara-Aceite.jpg" />
-
     <Content Include="Content\Images\10-apps-cuidar-medio-ambiente.jpg" />
     <Content Include="Content\Images\188333.png" />
     <Content Include="Content\Images\41076-O2QB6R.jpg" />
@@ -414,6 +413,10 @@
     <Content Include="Content\Images\img0003_05.jpg" />
     <Content Include="Content\Images\img0003_portada.jpg" />
     <Content Include="Content\Images\istockphoto-610229362-612x612.jpg" />
+    <Content Include="Content\Images\jardin-vertical-001.jpg" />
+    <Content Include="Content\Images\jardin-vertical-002 - copia %282%29.jpg" />
+    <Content Include="Content\Images\jardin-vertical-003.jpg" />
+    <Content Include="Content\Images\jardin-vertical-004.jpg" />
     <Content Include="Content\Images\lampara-reciclada-icono.jpg" />
     <Content Include="Content\Images\lobobasura3.jpg" />
     <Content Include="Content\Images\logotipo_verde.png" />
