@@ -318,9 +318,6 @@ namespace ProyectoAPI.Controllers
         [Route("Api/Publicacion/PublicacionesUsuario/{idUsuario}")]
         public IHttpActionResult PublicacionesUsuario(int idUsuario)
         {
-            // AGREGADO PARA QUE NO TRAIGA TODAS SUS TABLAS RELACIONADAS
-            db.Configuration.LazyLoadingEnabled = false;
-
             List<Publicacion> publicacion = service.ObtenerPublicacionesUsuario(idUsuario);
 
             if (publicacion == null)
@@ -485,9 +482,6 @@ namespace ProyectoAPI.Controllers
         [Route("Api/Publicacion/ObtenerFavoritos/{idUsuario}")]
         public IHttpActionResult ObtenerFavoritos(int idUsuario)
         {
-            // AGREGADO PARA QUE NO TRAIGA TODAS SUS TABLAS RELACIONADAS
-            db.Configuration.LazyLoadingEnabled = false;
-
             List<Publicacion> favoritos = service.ObtenerFavoritos(idUsuario);
             if (favoritos == null)
             {

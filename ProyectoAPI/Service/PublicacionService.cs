@@ -14,6 +14,9 @@ namespace ProyectoAPI.Service
 
         public List<Publicacion> ObtenerPublicacionesUsuario(int idUsuario)
         {
+            // AGREGADO PARA QUE NO TRAIGA TODAS SUS TABLAS RELACIONADAS
+            instanciaBd.Configuration.LazyLoadingEnabled = false;
+
             var obtener = instanciaBd.Publicacion.Where(publi => publi.idUsuario == idUsuario).ToList();
             //var listaPublicacionUsuario = instanciaBd.Feedback.Where(usuPubli => usuPubli.idUsuario == idUsuario).ToList();
             //var listaId = new List<int>();
@@ -145,6 +148,10 @@ namespace ProyectoAPI.Service
         }
 
         public List<Publicacion> ObtenerFavoritos(int idUsuario) {
+
+            // AGREGADO PARA QUE NO TRAIGA TODAS SUS TABLAS RELACIONADAS
+            instanciaBd.Configuration.LazyLoadingEnabled = false;
+
             var publicaciones = new List<Publicacion>();
             //var listaPublicacionUsuario = instanciaBd.Favorito.Where(usuPubli => usuPubli.idUsuario == idUsuario);
             var algo = from fav in instanciaBd.Favorito
