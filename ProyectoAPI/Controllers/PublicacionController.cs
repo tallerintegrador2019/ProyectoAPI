@@ -38,6 +38,7 @@ namespace ProyectoAPI.Controllers
             db.Configuration.LazyLoadingEnabled = false;    
 
             List<Publicacion> publicacion = (from publi in db.Publicacion
+                                             orderby publi.id descending
                                              select publi).ToList();
             if (publicacion == null)
             {
