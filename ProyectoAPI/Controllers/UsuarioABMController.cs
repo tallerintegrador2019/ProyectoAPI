@@ -18,7 +18,8 @@ namespace ProyectoAPI.Controllers
         // GET: UsuarioABM
         public ActionResult Index()
         {
-            return View(db.Usuario.ToList());
+            var usuario = db.Usuario;
+            return View(usuario.ToList());
         }
 
         // GET: UsuarioABM/Details/5
@@ -39,7 +40,7 @@ namespace ProyectoAPI.Controllers
         // GET: UsuarioABM/Create
         public ActionResult Create()
         {
-            return View();
+              return View();
         }
 
         // POST: UsuarioABM/Create
@@ -70,7 +71,7 @@ namespace ProyectoAPI.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(usuario);
+                return View(usuario);
         }
 
         // GET: UsuarioABM/Edit/5
@@ -85,6 +86,7 @@ namespace ProyectoAPI.Controllers
             {
                 return HttpNotFound();
             }
+            
             return View(usuario);
         }
 
@@ -101,6 +103,7 @@ namespace ProyectoAPI.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            
             return View(usuario);
         }
 

@@ -14,6 +14,8 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using ProyectoAPI.Models;
+using ProyectoAPI.Models.ViewModel;
+using ProyectoAPI.Service;
 
 namespace ProyectoAPI.Controllers
 {
@@ -21,11 +23,24 @@ namespace ProyectoAPI.Controllers
     public class PublicacionController : ApiController
     {
         private todaviasirveDBEntities db = new todaviasirveDBEntities();
-
+        public PublicacionService service = new PublicacionService();
         // GET: api/Publicacion
-        public IQueryable<Publicacion> GetPublicacion()
+        //public IQueryable<Publicacion> GetPublicacion()
+        //{
+        //    return db.Publicacion;
+        //}
+        [HttpGet]
+        [ResponseType(typeof(Publicacion))]
+        [Route("Api/Publicacion/")]
+        public IHttpActionResult GetPublicacion()
         {
-            return db.Publicacion;
+            List<Publicacion> publicacion = (from publi in db.Publicacion
+                                             select publi).ToList();
+            if (publicacion == null)
+            {
+                return NotFound();
+            }
+            return Ok(publicacion);
         }
 
         // GET: api/Publicacion/5 
@@ -222,7 +237,30 @@ namespace ProyectoAPI.Controllers
             {
                 db.Paso.RemoveRange(pasos);
             }
-            
+
+            List<Feedback> comentario = (from c in db.Feedback
+                                         where c.idPublicacion == id
+                                         select c).ToList();
+
+            if (comentario != null) {
+                db.Feedback.RemoveRange(comentario);
+            }
+
+            List<Like> like = (from l in db.Like
+                               where l.idPublicacion == id
+                               select l).ToList();
+            if (like != null) {
+                db.Like.RemoveRange(like);
+            }
+
+            List<Favorito> favorito = (from l in db.Favorito
+                               where l.idPublicacion == id
+                               select l).ToList();
+            if (favorito != null)
+            {
+                db.Favorito.RemoveRange(favorito);
+            }
+
             db.Publicacion.Remove(publicacion);
             db.SaveChanges();
 
@@ -252,8 +290,8 @@ namespace ProyectoAPI.Controllers
             if (!String.IsNullOrEmpty(nombre))
             {
                 List<Publicacion> publicaciones = (from publi in db.Publicacion
-                                                 where publi.titulo.Contains(nombre)
-                                                 select publi).ToList();
+                                                   where publi.titulo.Contains(nombre)
+                                                   select publi).ToList();
 
                 if (publicaciones == null)
                 {
@@ -262,11 +300,141 @@ namespace ProyectoAPI.Controllers
 
                 return Ok(publicaciones);
             }
-
-            return NotFound();
-
+            else {
+                return NotFound();
+            }
         }
 
+
+        // metodo Obtener publicaciones de un usuario
+        [HttpGet]
+        [ResponseType(typeof(Publicacion))]
+        [Route("Api/Publicacion/PublicacionesUsuario/{idUsuario}")]
+        public IHttpActionResult PublicacionesUsuario(int idUsuario)
+        {
+            List<Publicacion> publicacion = service.ObtenerPublicacionesUsuario(idUsuario);
+
+            if (publicacion == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(publicacion);
+        }
+
+        //[HttpGet]
+        //[ResponseType(typeof(int))]
+        //[Route("Api/Publicacion/DeletePublicacionUsuario/{id}/{idUsuario}")]
+        //public IHttpActionResult DeletePublicacionUsuario(int id, int idUsuario)
+        //{
+        //    //Publicacion publicacion = db.Publicacion.Find(id);
+        //    service.EliminarPublicacion(id);
+        //    List<Publicacion> publicacion = service.ObtenerPublicacionesUsuario(idUsuario);
+        //    if (publicacion == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    //if (publicacion == null)
+        //    //{
+        //    //    return NotFound();
+        //    //}
+
+        //    //db.Publicacion.Remove(publicacion);
+        //    //db.SaveChanges();
+
+        //    return Ok(publicacion);
+        //}
+
+        [HttpGet]
+        [Route("Api/Publicacion/seleccionarFavorito/{idPublicacion}/{idUsuario}")]
+        public IHttpActionResult SeleccionarFavorito(int idPublicacion, int idUsuario)
+        {
+            //Publicacion publicacion = db.Publicacion.Find(id);
+
+            //List<Publicacion> 
+            var publicacion = service.SeleccionarFavoritos(idPublicacion, idUsuario);
+            if (publicacion == null)
+            {
+                return NotFound();
+            }
+            //if (publicacion == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //db.Publicacion.Remove(publicacion);
+            //db.SaveChanges();
+
+            return Ok(publicacion);
+        }
+
+        [HttpGet]
+        [Route("Api/Publicacion/seleccionarLike/{idPublicacion}/{idUsuario}")]
+        public IHttpActionResult SeleccionarLike(int idPublicacion, int idUsuario)
+        {
+            
+            var cargarLike = service.SeleccionarLike(idPublicacion, idUsuario);
+            if (cargarLike == null)
+            {
+                return NotFound();
+            }
+ 
+            return Ok(cargarLike);
+        }
+
+        [HttpDelete]
+        [Route("Api/Publicacion/eliminarFavorito/{idPublicacion}/{idUsuario}")]
+        public IHttpActionResult EliminarFavorito(int idPublicacion, int idUsuario)
+        {
+            service.EliminarFavorito(idPublicacion, idUsuario);
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route("Api/Publicacion/eliminarLike/{idPublicacion}/{idUsuario}")]
+        public IHttpActionResult EliminarLike(int idPublicacion, int idUsuario)
+        {
+            service.EliminarLike(idPublicacion, idUsuario);
+            return Ok();
+        }
+
+        [HttpPost]
+        [ResponseType(typeof(Publicacion))]
+        [Route("Api/Publicacion/subirComentario")]
+        public async Task<IHttpActionResult> SubirComentario()
+        {
+            var feedback = new Feedback();
+            string root1 = HttpContext.Current.Server.MapPath("~/Content/Images");
+            var provider = new MultipartFormDataStreamProvider(root1);
+            // Read the form data.
+            await Request.Content.ReadAsMultipartAsync(provider);
+            foreach (var key in provider.FormData.AllKeys)
+            {
+                if (!key.Equals("__RequestVerificationToken"))
+                {
+                    switch (key)
+                    {
+                        case "comentario":
+                            feedback.comentario = provider.FormData.GetValues(key)[0];
+                            break;
+                        case "idUsuario":
+                            var valor = provider.FormData.GetValues(key)[0];
+                            feedback.idUsuario = Convert.ToInt32(valor);
+                            break;
+                        case "idPublicacion":
+                            var valor1 = provider.FormData.GetValues(key)[0];
+                            feedback.idPublicacion = Convert.ToInt32(valor1);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            db.Feedback.Add(feedback);
+            db.SaveChanges();
+            return Ok(HttpStatusCode.OK);
+            //return Ok(HttpStatusCode.OK);
+        }
 
         // GET: api/Publicacion/Usuario/5               // LISTA LAS PUBLICACIONES DEL USUARIO
         [HttpGet]
@@ -284,11 +452,37 @@ namespace ProyectoAPI.Controllers
                                               where publi.idUsuario == idUsuario
                                               select publi).ToList();
 
-            return Ok(listPubliUsu); 
+        // controlador Obtener comentario de un publicacion
+        [HttpGet]
+        [ResponseType(typeof(Publicacion))]
+        [Route("Api/Publicacion/obtenerComentarioPublicacion/{idPublicacion}/{idUsuario}")]
+        public IHttpActionResult ObtenerComentarioPublicacion(int idPublicacion, int idUsuario)
+        {
+            ComentarioCantidad comentarioUsuario = service.ObtenerComentariosPublicacion(idPublicacion, idUsuario);
+            if (comentarioUsuario == null)
+            {
+                return Ok("sin resltados");
+            }
+
+            return Ok(comentarioUsuario);
+        }
+
+        // controlador Obtener comentario de un publicacion
+        [HttpGet]
+        [ResponseType(typeof(Publicacion))]
+        [Route("Api/Publicacion/ObtenerFavoritos/{idUsuario}")]
+        public IHttpActionResult ObtenerFavoritos(int idUsuario)
+        {
+            List<Publicacion> favoritos = service.ObtenerFavoritos(idUsuario);
+            if (favoritos == null)
+            {
+                return Ok("sin resltados");
+            }
+
+            return Ok(favoritos);
         }
 
 
-
-
-    } // cierre controller
+        // cierre controller
+    }
 }
