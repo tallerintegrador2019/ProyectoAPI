@@ -443,7 +443,7 @@ namespace ProyectoAPI.Controllers
         public IHttpActionResult GetPublicacionesUsuario(int idUsuario)
         {
             Usuario usuario = db.Usuario.Find(idUsuario);
-            if(usuario == null)
+            if (usuario == null)
             {
                 return NotFound();
             }
@@ -451,6 +451,9 @@ namespace ProyectoAPI.Controllers
             List<Publicacion> listPubliUsu = (from publi in db.Publicacion
                                               where publi.idUsuario == idUsuario
                                               select publi).ToList();
+
+            return Ok(listPubliUsu);
+        }
 
         // controlador Obtener comentario de un publicacion
         [HttpGet]
